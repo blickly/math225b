@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+%\vspace{-28pt}\qquad
+#2}}
+\medskip}
+
+% Umgebung "Lšsung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+\author{Ben Lickly}
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 1 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Author: Ben Lickly \\ Due: Thursday Feb 5}
+\end{center}
+
+\problem{
+Suppose $\M \models \TA$. Show that the embedding $n \mapsto \Term{n}^\M$ of $\Nat$ into $\M$ is elementary.
+}
+
+\problem{
+Let $\Lang =\{+\}$, where $+$ is a binary function symbol. Show that there are $2^{\aleph_0}$ many non-isomorphic countable $\Lang$-structures.
+}
+
+\problem{
+Let $\Lang = \{S,0,1\}$, where $S$ is a unary function symbol (\emph{successor}). Consider the $\Lang$-structure $\mathcal{N} = (\Nat, +1, 0,1)$. Show that up to isomorphism, $\operatorname{Th}(\mathcal{N})$ has only $\aleph_0$ many countable models.
+}
+
+\problem{
+Verify the following statements:
+\begin{enumerate}
+	\item If $n = l \cdot k$, then  $\PA^- \vdash \Term{n} = \Term{l}\cdot \Term{k}$.
+	\item If $n < k$, then  $\PA^- \vdash \Term{n} <  \Term{k}$.
+	\item For all $k \in \Nat$,  $\PA^- \vdash \forall x ( x \leq \Term{k} \to x= \Term{0} \vee x=\Term{1} \vee \dots \vee x=\Term{k})$.
+\end{enumerate}
+}	
+	
+\problem{
+DeÞne an order $<$ on $\Nat[X]$ (the set of all polynomials in the variable $X$ 
+with coefficients from $N$) making the polynomial $X$ `infinitely large' and satisfying (A8) - (A12). Show 
+that the resulting $\LA$-structure does not satisfy $\PA^-$. Which axioms are not satisÞed?
+}
+
+\problem{
+Show that $\Integer[X]/(2X^2-1)$, i.e.\ the ring $\Integer[X]$ modulo the equivalence 
+\[
+	p \sim q \quad \text{ iff } \quad p - q = r \cdot (2X^2 -1) \text{ for some $r \in \Integer[X]$},
+\] 
+can be ordered, but not discretely ordered.
+}
+
+\problem[*]{
+Find second-order formulas involving non-logical symbols $0, S$ ($S$ successor function) only 
+that deÞne $+,\cdot$ in $(\Nat, 0, +1)$. (You may use quantiÞcation over subsets $X \subseteq \Nat^k$ 
+and the relations `$(x_1 , x_2 , . . . , x_k )\in X$' for various fixed $k\in\Nat$.) Show that $+,\cdot$ are not deÞnable in ($N, 0, S)$ by first-order formulas.
+}
+
+
+
+
+\end{document}
+
