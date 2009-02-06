@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lšsung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 1 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday Feb 12}
+\end{center}
+
+\Aufg Write out primitive recursive derivations (like for $+$ in class) for the following functions: 
+$f(x,y) = xy$, $g(x,y) = x^y$, $h(x) = x!$.
+
+
+\Aufg
+Show that the functions $(x,y) \mapsto r(x,y)$, $(x,y) \mapsto q(x,y)$, where $r$ and $q$ are such that
+\[
+	x = q(x,y) \: y + r(x,y), \qquad 0 \leq r(x,y) < y,
+\]
+are primitive recursive.
+
+
+
+\Aufg
+Show that the following functions and relations are primitive recursive:
+\begin{enumerate}
+\item[a)] $x|y : \iff \exists z \, ( x \cdot z = y)$ \qquad \emph{x divides y}
+\item[b)] $D(x)$ \emph{= number of divisors of} $x$
+\item[c)] \emph{x is prime}
+\item[d)] $p_n$ = \emph{$(n+1)$-st prime} (i.e.\ $p_0 = 2, p_1 = 3, \ldots$)
+\item[e)] $(x)_y = 
+\begin{cases}
+      \text{the exponent of} p_y \text{ in the prime decomposition of } x & \text{if  } x>0, \\
+    0  & \text{otherwise}.
+\end{cases}$
+\end{enumerate}
+
+
+
+\Aufg
+Write Turing machines which compute the functions $f(x) \equiv k$, $g(x) = 2x$, $h(x,y) = x + y$.
+
+
+
+\Aufg
+Consider a Turing machine $M$ with three states (including the halting state $q_0$). We require that $M$ halts on input $0$. What is the maximum number of $1$'s that such an M can output on input $0$?
+
+
+
+
+
+
+
+\end{document}
+
