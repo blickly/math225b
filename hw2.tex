@@ -44,6 +44,16 @@
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
 
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
+
+
+
 
 % Umgebung "Lšsung"
 \newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
@@ -74,27 +84,26 @@
 \begin{document}
 
 \begin{center}
-{\LARGE Homework 1 for \textbf{MATH 225B}}
+{\LARGE Homework 2 for \textbf{MATH 225B}}
+%\vspace{0,5cm}
 
-\vspace{0,5cm}
-
-{\large Due: Thursday Feb 12}
+{\large Author: Ben Lickly \\ Due: Thursday Feb 12}
 \end{center}
 
-\Aufg Write out primitive recursive derivations (like for $+$ in class) for the following functions: 
+\problem{ Write out primitive recursive derivations (like for $+$ in class) for the following functions: 
 $f(x,y) = xy$, $g(x,y) = x^y$, $h(x) = x!$.
+}
 
-
-\Aufg
+\problem{
 Show that the functions $(x,y) \mapsto r(x,y)$, $(x,y) \mapsto q(x,y)$, where $r$ and $q$ are such that
 \[
 	x = q(x,y) \: y + r(x,y), \qquad 0 \leq r(x,y) < y,
 \]
 are primitive recursive.
+}
 
 
-
-\Aufg
+\problem{
 Show that the following functions and relations are primitive recursive:
 \begin{enumerate}
 \item[a)] $x|y : \iff \exists z \, ( x \cdot z = y)$ \qquad \emph{x divides y}
@@ -107,16 +116,17 @@ Show that the following functions and relations are primitive recursive:
     0  & \text{otherwise}.
 \end{cases}$
 \end{enumerate}
+}
 
 
-
-\Aufg
+\problem{
 Write Turing machines which compute the functions $f(x) \equiv k$, $g(x) = 2x$, $h(x,y) = x + y$.
+}
 
 
-
-\Aufg
+\problem{
 Consider a Turing machine $M$ with three states (including the halting state $q_0$). We require that $M$ halts on input $0$. What is the maximum number of $1$'s that such an M can output on input $0$?
+}
 
 
 
