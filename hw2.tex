@@ -102,7 +102,6 @@ Show that the functions $(x,y) \mapsto r(x,y)$, $(x,y) \mapsto q(x,y)$, where $r
 are primitive recursive.
 }
 
-
 \problem{
 Show that the following functions and relations are primitive recursive:
 \begin{enumerate}
@@ -128,11 +127,13 @@ Write Turing machines which compute the functions $f(x) \equiv k$, $g(x) = 2x$, 
 Consider a Turing machine $M$ with three states (including the halting state $q_0$). We require that $M$ halts on input $0$. What is the maximum number of $1$'s that such an M can output on input $0$?
 }
 
-
-
-
-
-
+The maximum number is 4, and the associated Turing Machine $M$ is:
+\begin{eqnarray*}
+	\{ q_1, 0 \} \rightarrow \{ q_2, 1, R \} \\
+	\{ q_2, 0 \} \rightarrow \{ q_1, 1, L \} \\
+	\{ q_1, 1 \} \rightarrow \{ q_2, 1, L \} \\
+	\{ q_2, 1 \} \rightarrow \{ q_0, 1, L \}
+\end{eqnarray*}
 
 \end{document}
 
