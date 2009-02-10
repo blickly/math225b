@@ -102,6 +102,33 @@ Show that the functions $(x,y) \mapsto r(x,y)$, $(x,y) \mapsto q(x,y)$, where $r
 are primitive recursive.
 }
 
+%divide(x,y)
+%  if (x < y):
+%    return (0, x)
+%  else:
+%    return divide(x-y,y) + (1,0)
+\begin{eqnarray*}
+if_F(0,y) = 0 \\
+if_F(x+1,y) = y
+\end{eqnarray*}
+\begin{eqnarray*}
+if_T(0,y) = y \\
+if_T(x+1,y) = 0
+\end{eqnarray*}
+\begin{eqnarray*}
+if(n,x,y) = if_T(n,x) + if_F(n,y)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+q(0, y) = 0 \\
+q(x+1, y) = q(x,y) + if(x-y,1,0)
+\end{eqnarray*}
+\begin{eqnarray*}
+r(0, y) = 0 \\
+r(x+1, y) = if(x-y,0,r(x, y) + 1)
+\end{eqnarray*}
+
+
 \problem{
 Show that the following functions and relations are primitive recursive:
 \begin{enumerate}
