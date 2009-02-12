@@ -6,18 +6,18 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amscd,amsbsy}
-%\usepackage{txfonts}
+\usepackage{txfonts}
 \usepackage[T1]{fontenc} 
 
 % \usepackage{eulervm}
 \usepackage{eucal} 
 %\usepackage{textcomp}
 
-%\usepackage{mathptmx} 
+\usepackage{mathptmx} 
 \usepackage{enumerate}
 
 
-%\usepackage{pdfsync}
+\usepackage{pdfsync}
 
 
 % Deutsche Texte
@@ -164,11 +164,15 @@ Show that the following functions and relations are primitive recursive:
 \item[b)] 
 	This is a bounded search bounded by $x$.
 \item[c)] 
-	This is a bounded search bounded by $\sqrt{x}$.
-\item[d)] \label{partd}
-	This is a bounded search bounded by ?? $(x/\log x)$%$(n+2)!$.
+	This is a bounded search bounded by $x$.
+\item[d)]
+  This is a bounded search bounded by $3^{n+1}$.  
+  We know that $p_{n-1} < p_n \le \Pi_{0}^{n-1}(p_n) + 1$, since if there is
+  no prime in the range $[p_{n-1}, \Pi_{0}^{n-1}(p_n) + 1]$, then 
+  $\Pi_{0}^{n-1}(p_n) + 1$ must be prime.
+  This allows us to bound the $n$th prime by $(\ldots 2(2(2+1) + 1) +1 \ldots)$, which is strictly less than $3^{n+1}$.
 \item[e)] 
-	From part d), we can find $p_y$ with primitive recursion.  The number of triel divisions to determine the exponent of $p_y$ in $x$ can be bounded by $\log x$, so this is also primitive recursive.
+	From part d), we can find $p_y$ with primitive recursion.  The number of trial divisions to determine the exponent of $p_y$ in $x$ can be bounded by $x$, so this is also primitive recursive.
 \end{enumerate}
 
 \problem{
