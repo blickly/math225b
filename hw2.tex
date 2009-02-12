@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amscd,amsbsy}
-\usepackage{txfonts}
+%\usepackage{txfonts}
 \usepackage[T1]{fontenc} 
 
 % \usepackage{eulervm}
@@ -17,7 +17,7 @@
 \usepackage{enumerate}
 
 
-\usepackage{pdfsync}
+%\usepackage{pdfsync}
 
 
 % Deutsche Texte
@@ -97,10 +97,23 @@ $f(x,y) = xy$, $g(x,y) = x^y$, $h(x) = x!$.
 In class, we defined the primitive recursive definition for addition, or
 $p(x,y)$.  The cases here are simple extensions of the same approach.
 \begin{eqnarray*}
-S_3(x,y,z) = z + 1
-f(0,x) = 0
-f(y+1, x) = S_3(p(y,x))
+f'(\vec{x}) &=& p(P_2^3(\vec{x}),P_3^3(\vec{x})) \\
+f(0,x) &=& C_0^1(x) = 0 \\
+f(y+1, x) &=& f'(y,x,f(y,x)) = x + f(y,x)
 \end{eqnarray*}
+Thus, $f(y,x) = xy$.
+\begin{eqnarray*}
+g'(\vec{x}) &=& f(P_2^3(\vec{x}),P_3^3(\vec{x})) \\
+g(0,x) &=& C_1^1(x) = 1 \\
+g(y+1, x) &=& g'(y,x,g(y,x)) = x \times g(y,x)
+\end{eqnarray*}
+Thus, $g(y,x) = x^y$.
+\begin{eqnarray*}
+h'(\vec{x}) &=& f(S(P_1^2(\vec{x})),P_2^2(\vec{x})) \\
+h(0) &=& C_1^0() = 1 \\
+h(y+1) &=& h'(y,h(y)) = (y+1) \times h(y)
+\end{eqnarray*}
+Thus, $h(y) = y!$.
 
 \problem{
 Show that the functions $(x,y) \mapsto r(x,y)$, $(x,y) \mapsto q(x,y)$, where $r$ and $q$ are such that
@@ -116,24 +129,18 @@ are primitive recursive.
 %  else:
 %    return divide(x-y,y) + (1,0)
 \begin{eqnarray*}
-if_F(0,y) = 0 \\
-if_F(x+1,y) = y
-\end{eqnarray*}
-\begin{eqnarray*}
-if_T(0,y) = y \\
-if_T(x+1,y) = 0
-\end{eqnarray*}
-\begin{eqnarray*}
-if(n,x,y) = if_T(n,x) + if_F(n,y)
+if(0,x,y) &=& P_1^2(x,y) = x \\
+if(n+1,x,y) &=& P_2^2(x,y) = y
 \end{eqnarray*}
 
+The following steps use the fact that $|x-y|$ is primitive recursive.
 \begin{eqnarray*}
-q(0, y) = 0 \\
-q(x+1, y) = q(x,y) + if(x-y,1,0)
+q(0, y) &=& 0 \\
+q(x+1, y) &=& q(x,y) + if(|x-y|,1,0)
 \end{eqnarray*}
 \begin{eqnarray*}
-r(0, y) = 0 \\
-r(x+1, y) = if(x-y,0,r(x, y) + 1)
+r(0, y) &=& 0 \\
+r(x+1, y) &=& if(|x-y|,0,r(x, y) + 1)
 \end{eqnarray*}
 
 
@@ -152,11 +159,63 @@ Show that the following functions and relations are primitive recursive:
 \end{enumerate}
 }
 
+\begin{enumerate}
+\item[a)] $\exists z < y \, ( x \cdot z = y)$ is a $\Delta_0$ formula.
+\item[b)] 
+	This is a bounded search bounded by $x$.
+\item[c)] 
+	This is a bounded search bounded by $x$.
+\item[d)] \label{partd}
+	This is a bounded search bounded by ?? %$(n+2)!$.
+\item[e)] 
+	From part d), we can find $p_y$ with primitive recursion.  The number of triel divisions to determine the exponent of $p_y$ in $x$ can be bounded by $\log x$, so this is also primitive recursive.
+\end{enumerate}
 
 \problem{
 Write Turing machines which compute the functions $f(x) \equiv k$, $g(x) = 2x$, $h(x,y) = x + y$.
 }
 
+The Turing Machine $M_f$ is:
+\begin{eqnarray*}
+	\{ q_1, 0 \} &\rightarrow& \{ q_2, 1, R \} \\
+	\{ q_1, 1 \} &\rightarrow& \{ q_2, 1, R \} \\
+	\{ q_2, 0 \} &\rightarrow& \{ q_3, 1, R \} \\
+	\{ q_2, 1 \} &\rightarrow& \{ q_3, 1, R \} \\
+	 &\ldots& \\
+	 \{ q_k, 0 \} &\rightarrow& \{ q_{k+1}, 1, R \} \\
+	 \{ q_k, 1 \} &\rightarrow& \{ q_{k+1}, 1, R \} \\
+	 \{ q_{k+1}, 0 \} &\rightarrow& \{ q_0, 0, R \} \\
+	 \{ q_{k+1}, 1 \} &\rightarrow& \{ q_0, 0, R \} \\
+\end{eqnarray*}
+
+The Turing Machine $M_g$ is:
+\begin{eqnarray*}
+	\{ q_1, 1 \} &\rightarrow& \{ q_1, 0, L \} \\
+	\{ q_1, 0 \} &\rightarrow& \{ q_2, 1, R \} \\
+	\{ q_2, 0 \} &\rightarrow& \{ q_3, 0, R \} \\
+	\{ q_3, 1 \} &\rightarrow& \{ q_3, 1, R \} \\
+	\{ q_3, 0 \} &\rightarrow& \{ q_4, 0, L \} \\
+	\{ q_4, 1 \} &\rightarrow& \{ q_5, 0, L \} \\
+	\{ q_5, 1 \} &\rightarrow& \{ q_5, 5, L \} \\
+	\{ q_5, 0 \} &\rightarrow& \{ q_6, 0, L \} \\
+	\{ q_6, 1 \} &\rightarrow& \{ q_6, 1, L \} \\
+	\{ q_6, 0 \} &\rightarrow& \{ q_7, 1, L \} \\
+	\{ q_7, 0 \} &\rightarrow& \{ q_8, 1, R \} \\
+	\{ q_8, 1 \} &\rightarrow& \{ q_8, 1, R \} \\
+	\{ q_8, 0 \} &\rightarrow& \{ q_3, 0, R \} \\
+	\{ q_4, 0 \} &\rightarrow& \{ q_0, 0, L \} \\
+\end{eqnarray*}
+
+The Turing Machine $M_h$ is:
+\begin{eqnarray*}
+	\{ q_1, 1 \} &\rightarrow& \{ q_1, 1, R \} \\
+	\{ q_1, 0 \} &\rightarrow& \{ q_2, 1, R \} \\
+	\{ q_2, 1 \} &\rightarrow& \{ q_2, 1, R \} \\
+	\{ q_2, 0 \} &\rightarrow& \{ q_3, 0, L \} \\
+	\{ q_3, 1 \} &\rightarrow& \{ q_4, 0, L \} \\
+	\{ q_4, 1 \} &\rightarrow& \{ q_5, 0, L \} \\
+	\{ q_5, 1 \} &\rightarrow& \{ q_0, 0, L \} \\
+\end{eqnarray*}
 
 \problem{
 Consider a Turing machine $M$ with three states (including the halting state $q_0$). We require that $M$ halts on input $0$. What is the maximum number of $1$'s that such an M can output on input $0$?
