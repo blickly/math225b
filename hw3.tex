@@ -43,6 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 
 % Umgebung "Lösung"
@@ -76,38 +83,38 @@
 \begin{center}
 {\LARGE Homework 3 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday Feb 19}
+{\large Author: Ben Lickly \\ Due: Thursday Feb 19}
 \end{center}
 
-\Aufg Prove that $K \equiv_1 K_0 \equiv_1 K_1$.
+\problem{ Prove that $K \equiv_1 K_0 \equiv_1 K_1$.}
 
-\Aufg
+\problem{
 Prove that the $m$-degree of $A\oplus B$ is the least upper bound 
 (l.u.b.) of the $m$-degrees of $A$ and $B$, namely 
 \begin{enumerate}[(a)]
 \item $A \leq_m A \oplus B$ and $B \leq_m A \oplus B$; and
 \item If $A \leq_m C$ and $B \leq_m C$ then $A\oplus B \leq_m C$.
 \end{enumerate}
+}
 
-
-\Aufg
+\problem{
 Show that every inifinite c.e.\ set has an infinite computable subset.
+}
 
-
-\Aufg[*]
+\problem[*]{
 Prove that $\operatorname{Inf} \equiv_1 \operatorname{Tot} \equiv_1 \operatorname{Con}$
+}
 
 
-
-\Aufg
+\problem{
 Define the \emph{busy beaver function} $\operatorname{BB}$ as
 \[
 	\operatorname{BB}(n) = \text{max number of $1$'s output by an $n$-state Turing machine on input $0$}
 \]
 Argue that $\operatorname{BB}$ is not computable. [Informal: How complicated is $\operatorname{BB}$? Can you ``reduce'' the halting problem to it?]
-
+}
 
 
 
