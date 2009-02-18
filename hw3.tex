@@ -72,11 +72,7 @@
 \newcommand{\PA}{\ensuremath{\mathsf{PA}}}
 
 \newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
-
 \newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
-
-
-
 
 \begin{document}
 
@@ -90,6 +86,14 @@
 
 \problem{ Prove that $K \equiv_1 K_0 \equiv_1 K_1$.}
 
+\[
+K, K_1 \le_1 K_0
+\]
+
+\[
+K_0 \le_1 K \le_1 K_1 \le_1 K_0
+\]
+
 \problem{
 Prove that the $m$-degree of $A\oplus B$ is the least upper bound 
 (l.u.b.) of the $m$-degrees of $A$ and $B$, namely 
@@ -100,12 +104,99 @@ Prove that the $m$-degree of $A\oplus B$ is the least upper bound
 }
 
 \problem{
-Show that every inifinite c.e.\ set has an infinite computable subset.
+Show that every infinite c.e.\ set has an infinite computable subset.
 }
 
 \problem[*]{
 Prove that $\operatorname{Inf} \equiv_1 \operatorname{Tot} \equiv_1 \operatorname{Con}$
 }
+
+\iffalse
+{\bf Prop}: 
+If $A \le_m B$ and $B$ computable $\Rightarrow$ $A$ computable \\
+\proof: If $A \le_m B$ via $f$ then
+\[
+		\chi_A(x) = \chi_B(f(x))
+\]
+
+\bigskip
+
+Ex:  $TOT = \{ x: \phi_x \text{ is total} \}$
+	Claim:  $K \le_1 TOT$
+
+\proof
+Def:  \[\psi(x,y) = \begin{cases}  1, &\text{if }x \in K \\
+          \uparrow, 	&o.w. \end{cases}\]
+By the S-m-n Theorem there exists comp. 1-1 func. s.t.
+	\[\phi_{f(x)}(y) = \psi(x,y)\]
+
+Claim:  $K \le_1 TOT$ via $f$ \\
+	If $x \in K \Rightarrow \psi(x,y) = 1$, f.all $y$ 
+        $\Rightarrow \phi_{f(x)} \text{ is total} \Rightarrow f(x) \in TOT$ \\
+        If $x \notin K \Rightarrow \psi(x,y) \uparrow, \text{f.all } y$ 
+        $\Rightarrow \phi_{f(x)} \text{ is not total} \Rightarrow f(x) \notin TOT$
+
+        \bigskip
+        HW Blueprint:
+\fi
+
+\noindent
+Claim: $ INF \le_1 CON $ \\
+Define $\psi$:
+\[ \psi(x,y) = \begin{cases} 0 &\exists z > y,\, \phi_x(z) \downarrow \\
+  \uparrow &\text{otherwise} \end{cases}
+\]
+By the S-m-n Theorem there exists comp. 1-1 func. s.t.
+	\[\phi_{f(x)}(y) = \psi(x,y)\]
+Claim:  $INF \le_1 CON$ via $f$
+\proof
+	If $x \in INF \Rightarrow \psi(x,y) = 0$, f.all $y$ 
+        $\Rightarrow \phi_{f(x)}$ is constant 
+        $\Rightarrow f(x) \in CON$ \\
+        If $x \notin INF \Rightarrow (\exists y) \psi(x,y) \uparrow$  
+        $\Rightarrow \phi_{f(x)}$ is not constant
+        $\Rightarrow f(x) \notin CON$
+
+\smallskip
+\noindent
+Claim: $ CON \le_1 TOT $ \\
+Define $\psi$:
+\[ \psi(x,y) = \begin{cases} 
+  \phi_x(0)      &\text{if } \phi_x(z) \downarrow \\
+  \uparrow      &\text{otherwise} \end{cases}
+\]
+By the S-m-n Theorem there exists comp. 1-1 func. s.t.
+	\[\phi_{f(x)}(y) = \psi(x,y)\]
+Claim:  $CON \le_1 TOT$ via $f$
+\proof
+	If $x \in CON \Rightarrow \psi(x,y) = \psi_x(0)$, f.all $y$ 
+        $\Rightarrow \phi_{f(x)}$ is total
+        $\Rightarrow f(x) \in TOT$ \\
+        If $x \notin CON$ 
+        $\Rightarrow (\exists y)\phi_x(y)\uparrow$ or $\phi_x(y) \ne \phi_x(0)$
+        $\Rightarrow \phi_{f(x)} \uparrow$
+        $\Rightarrow f(x) \notin TOT$
+
+\smallskip
+\noindent
+Claim: $ TOT \le_1 INF $ \\
+Define $\psi$:
+\[ \psi(x,y) = \begin{cases} 
+  0             &\text{if } \phi_x(z) \downarrow \text{f.all } z \le y \\
+  \uparrow      &\text{otherwise} \end{cases}
+\]
+By the S-m-n Theorem there exists comp. 1-1 func. s.t.
+	\[\phi_{f(x)}(y) = \psi(x,y)\]
+Claim:  $TOT \le_1 INF$ via $f$
+\proof
+	If $x \in TOT \Rightarrow \psi(x,y) = 0$, f.all $y$ 
+        $\Rightarrow \phi_{f(x)}$ is infinite
+        $\Rightarrow f(x) \in INF$ \\
+        If $x \notin TOT$ 
+        $\Rightarrow (\exists y)\psi(x,y)\uparrow$
+        $\Rightarrow \phi_{f(x)} \uparrow$, f.all $z > y$
+        $\Rightarrow \phi_{f(x)}$ is not infinite
+        $\Rightarrow f(x) \notin INF$
 
 
 \problem{
@@ -115,7 +206,6 @@ Define the \emph{busy beaver function} $\operatorname{BB}$ as
 \]
 Argue that $\operatorname{BB}$ is not computable. [Informal: How complicated is $\operatorname{BB}$? Can you ``reduce'' the halting problem to it?]
 }
-
 
 
 
