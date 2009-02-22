@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lösung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 4 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday Feb 26}
+\end{center}
+
+\Aufg Prove that $A \leq_m B$ and $B$ c.e.\ imply that $A$ is c.e. Use this to show that $\operatorname{Fin}$ and $\operatorname{Cof}$ are not c.e. 
+
+
+
+\Aufg Show that there are infinitely many sets that are c.e.\ but not computable.
+
+
+
+\Aufg
+A function $f: \Nat \to \Nat$ is \emph{increasing} if $f(x) < f(x+1)$ for all $x$. Show that an infinite set $A$ is computable iff it is the range of an increasing computable function.
+
+Use this to show that there exists a computable $f$ such that $\{W_{f(n)}\}$ consists precisely of the computable sets. 
+ 
+
+
+\Aufg[*]
+Show that $\Comp{K}$ contains an infinite c.e.\ subset. 
+Generalize this to: If $A$ is $m$-complete, then $\Comp{A}$ contains an infinite c.e.\ subset.
+
+
+\Aufg
+A set $A$ is \emph{self-dual} if $A \leq_m \Comp{A}$. (For example, $A = B \oplus \Comp{B}$ is self-dual for any $B$). Use the Recursion Theorem to show that no index set can be self-dual and give a new proof of Rice's Theorem.
+
+
+
+
+
+\end{document}
+
