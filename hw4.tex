@@ -43,6 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 
 % Umgebung "Lösung"
@@ -76,34 +83,34 @@
 \begin{center}
 {\LARGE Homework 4 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday Feb 26}
+{\large Author: Ben Lickly \\ Due: Thursday Feb 26}
 \end{center}
 
-\Aufg Prove that $A \leq_m B$ and $B$ c.e.\ imply that $A$ is c.e. Use this to show that $\operatorname{Fin}$ and $\operatorname{Cof}$ are not c.e. 
+\problem{ Prove that $A \leq_m B$ and $B$ c.e.\ imply that $A$ is c.e. Use this to show that $\operatorname{Fin}$ and $\operatorname{Cof}$ are not c.e. }
 
 
 
-\Aufg Show that there are infinitely many sets that are c.e.\ but not computable.
+\problem{ Show that there are infinitely many sets that are c.e.\ but not computable.}
 
 
 
-\Aufg
+\problem{
 A function $f: \Nat \to \Nat$ is \emph{increasing} if $f(x) < f(x+1)$ for all $x$. Show that an infinite set $A$ is computable iff it is the range of an increasing computable function.
 
-Use this to show that there exists a computable $f$ such that $\{W_{f(n)}\}$ consists precisely of the computable sets. 
- 
+Use this to show that there exists a computable $f$ such that $\{W_{f(n)}\}$ consists precisely of the computable sets.
+}
 
 
-\Aufg[*]
+\problem[*]{
 Show that $\Comp{K}$ contains an infinite c.e.\ subset. 
 Generalize this to: If $A$ is $m$-complete, then $\Comp{A}$ contains an infinite c.e.\ subset.
+}
 
-
-\Aufg
+\problem{
 A set $A$ is \emph{self-dual} if $A \leq_m \Comp{A}$. (For example, $A = B \oplus \Comp{B}$ is self-dual for any $B$). Use the Recursion Theorem to show that no index set can be self-dual and give a new proof of Rice's Theorem.
-
+}
 
 
 
