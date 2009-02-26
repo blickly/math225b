@@ -112,8 +112,26 @@ Generalize this to: If $A$ is $m$-complete, then $\Comp{A}$ contains an infinite
 A set $A$ is \emph{self-dual} if $A \leq_m \Comp{A}$. (For example, $A = B \oplus \Comp{B}$ is self-dual for any $B$). Use the Recursion Theorem to show that no index set can be self-dual and give a new proof of Rice's Theorem.
 }
 
+Let $A$ be an index set.
+Since $A$ is an index set, there must be a $\phi$, such that:
+\[
+\forall x,y\ 	[x \in A \wedge \phi_x=\phi_y \Rightarrow y \in A]
+\]
 
+Assume that $A$ is also \emph{self-dual}, or $A \le_m \Comp{A}$.
+This means that there exists a computable function $f: \Nat \rightarrow \Nat$, 
+such that $x \in A \Leftrightarrow f(x) \in \Comp{A}$.
+In other words, $x \in A \Leftrightarrow f(x) \not\in A$.
+Thus, we have:
+for all $i$, $\phi_i \ne \phi_{f(i)}$.
 
+By the recursion theorem, however, we know that there exists some index $i$, such that 
+\[
+        \phi_i = \phi_{f(i)}
+\]
+But this is a contradiction.
+
+Thus, no index set may be self-dual.
 
 \end{document}
 
