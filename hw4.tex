@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amscd,amsbsy}
-\usepackage{txfonts}
+%\usepackage{txfonts}
 \usepackage[T1]{fontenc} 
 
 % \usepackage{eulervm}
@@ -108,7 +108,8 @@ Show that $\Comp{K}$ contains an infinite c.e.\ subset.
 Generalize this to: If $A$ is $m$-complete, then $\Comp{A}$ contains an infinite c.e.\ subset.
 }
 
-Lemma:  We can effectively compute the G\"odel numbering, $e$, of any partial 
+\emph{Lemma}:  
+We can effectively compute the G\"odel numbering, $e$, of any partial 
 function for which $W_e$ is finite. 
 i.e.
 \[
@@ -117,55 +118,42 @@ f(x) = \begin{cases} 0 &\text{if } x \in S, \\
   \]
   For a finite set $S$.
 
-  \bigskip
+  {\bf Proof}: For each of the numbers in $S$, we can hardcode necessary
+  states in a Turing Machine to output each element.  Since there are
+  a finite number of elements, this takes a finite number of steps.
+  After doing this, we can simply make the Turing machine go into an infinite
+  loop.
 
+  \bigskip
+{\bf Overall Proof}:
 In the first case, we take $S_0 = \emptyset$, and we can find the 
-G\"odel number, $e_0$, for $f_0(x) = \uparrow$.
+G\"odel number, $e_0$, for the function $f_0(x) = \uparrow$.
 Clearly this function does not halt on any input, and so $e_0 \not\in K$ or 
 $e_0 \in \Comp{K}$.
 
 For each following step, let $S_k = \{ e_0, \ldots, e_{k-1} \}$.
 We can find the G\"odel number, $e_k$ for 
 $f_k$,
-and by the Padding Lemma, we can be sure that $e_k \not\in S_k$.
+and we can be sure that $e_k \not\in S_k$ since the function it computes
+is different from and $e_i$ with $i < k$.
+Thus we know that we can add $e_k$ to $S_{k+1}$ and still have
+$S_{k+1} \subseteq \Comp{K}$.
+
 We can continue this process indefinitely to produce an infinite c.e.
 set $S_{\infty} = \bigcup_{k \in \Nat} S_k$, which is a subset of $\Comp{K}$.
+
 %If we have a Turing machine that produces a set $s_1, \ldots, s_{k-1}$, and a new element $
 
 \bigskip
 
-In general, we can extend this proof to work for any set $\Comp{A}$, where $A$
-is $m$-complete, by adding $f(e_k)$ to the set rather than just $e_k$.
+For the general case, we can extend this proof to work for any set $\Comp{A}$, 
+where $A$ is $m$-complete.
+This means that $K \le_m A$, or there exists a 
+function $f : \Nat \rightarrow \Nat$, such that 
+$x \in K \Leftrightarrow x \in A$.
 
-\problem{
-A set $A$ is \emph{self-dual} if $A \leq_m \Comp{A}$. (For example, $A = B \oplus \Comp{B}$ is self-dual for any $B$). Use the Recursion Theorem to show that no index set can be self-dual and give a new proof of Rice's Theorem.
-}
-
-Let $A$ be an index set.
-Since $A$ is an index set, there must be a $\phi$, such that:
-\[
-\forall x,y\ 	[x \in A \wedge \phi_x=\phi_y \Rightarrow y \in A]
-\]
-
-Assume that $A$ is also \emph{self-dual}, or $A \le_m \Comp{A}$.
-This means that there exists a computable function $f: \Nat \rightarrow \Nat$, 
-such that $x \in A \Leftrightarrow f(x) \in \Comp{A}$.
-In other words, $x \in A \Leftrightarrow f(x) \not\in A$.
-Thus, we have:
-for all $i$, $\phi_i \ne \phi_{f(i)}$.
-
-By the recursion theorem, however, we know that there exists some index $i$, such that 
-\[
-        \phi_i = \phi_{f(i)}
-\]
-But this is a contradiction.
-
-Thus, no index set may be self-dual.
-
-\end{document}
-
-
-%If we have a Turing machine that produces a set $s_1, \ldots, s_{k-1}$, and a new element $
+Now, at each step of our proof, instead of just adding $e_k$ to $S_{k+1}$, 
+we add $f(e_k)$.  The rest of the proof remains the same.
 
 \problem{
 A set $A$ is \emph{self-dual} if $A \leq_m \Comp{A}$. (For example, $A = B \oplus \Comp{B}$ is self-dual for any $B$). Use the Recursion Theorem to show that no index set can be self-dual and give a new proof of Rice's Theorem.
