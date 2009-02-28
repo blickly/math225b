@@ -43,6 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 
 % Umgebung "Loesung"
@@ -76,16 +83,16 @@
 \begin{center}
 {\LARGE Homework 5 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday March 5}
+{\large Author: Ben Lickly \\ Due: Thursday March 5}
 \end{center}
 
-\Aufg
+\problem{
 Use the Recursion Theorem to prove that $K$ is not an index set.
+}
 
-
-\Aufg 
+\problem{ 
 \begin{enumerate}[(a)]
 \item Show that there exists a computable function $f$ whose set of fixed points is not c.e.
 
@@ -95,22 +102,22 @@ Use the Recursion Theorem to prove that $K$ is not an index set.
   \end{equation*}
 includes all partial computable functions.
 \end{enumerate}
+}
 
-
-\Aufg 
+\problem{ 
 Let $g$ be any computable function. Show that there exists an $n$ such that
 \begin{equation*}
   W_n \text{ computable } \quad \text{ and } \quad \mu y [W_y = \overline{W}_n]  > g(n).
 \end{equation*}
+}
 
-
-\Aufg
+\problem{
 Show that there exists no computable function $f(x,s)$ such that for all $x$, $\hat{f}(x) = \lim_s f(x,s)$ exists (i.e.\ $f(x,s)$ is eventually stable), and $\hat{f}$ is the characteristic function of \textsc{Tot}.
+}
 
-
-\Aufg
+\problem{
 State and prove relativized versions of the S-m-n Theorem and the Recursion Theorem.
-
+}
 
 
 
