@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Loesung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 5 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday March 5}
+\end{center}
+
+\Aufg
+Use the Recursion Theorem to prove that $K$ is not an index set.
+
+
+\Aufg 
+\begin{enumerate}[(a)]
+\item Show that there exists a computable function $f$ whose set of fixed points is not c.e.
+
+\item Show that if the set of fixed-points for $f$ is computable, then 
+  \begin{equation*}
+    \{ \varphi_x \colon \varphi_x = \varphi_{f(x)} \}
+  \end{equation*}
+includes all partial computable functions.
+\end{enumerate}
+
+
+\Aufg 
+Let $g$ be any computable function. Show that there exists an $n$ such that
+\begin{equation*}
+  W_n \text{ computable } \quad \text{ and } \quad \mu y [W_y = \overline{W}_n]  > g(n).
+\end{equation*}
+
+
+\Aufg
+Show that there exists no computable function $f(x,s)$ such that for all $x$, $\hat{f}(x) = \lim_s f(x,s)$ exists (i.e.\ $f(x,s)$ is eventually stable), and $\hat{f}$ is the characteristic function of \textsc{Tot}.
+
+
+\Aufg
+State and prove relativized versions of the S-m-n Theorem and the Recursion Theorem.
+
+
+
+
+
+\end{document}
+
