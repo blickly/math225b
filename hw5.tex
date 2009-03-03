@@ -156,20 +156,22 @@ there exists an $n$ such that $\Phi^A_n = \Phi^A_{f(n)}$
 \end{relrec}
 %
 \begin{proof}
-Using the S-m-n Theorem, define a 1-1 computable $d$ such that:
+Using the Relativized S-m-n Theorem, define a 1-1 computable $d$ such that:
 \[
-\phi_{d(u)}(z) = \begin{cases}
-  \phi_{\phi_u(u)}(z)		&\text{if } \phi_u(u) \downarrow, \\
+\Phi^A_{d(u)}(z) = \begin{cases}
+  \Phi^A_{\Phi^A_u(u)}(z)		&\text{if } \Phi^A_u(u) \downarrow, \\
   \uparrow			&\text{otherwise.}
 \end{cases}
 \]
-Let $v$ be such that $\phi_v = f \circ d$ \\
+Let $v$ be such that $\Phi^A_v = f \circ d$ \\
 {\bf Claim}:  
-$n= d(v)$ is a fixed point for $f$ \\
-	$f \circ d = \phi_v$ is total \\
-	$=> \phi_{d(v)} = \phi_{\phi_v(v)}$ \\
+\begin{align*}
+  & n = d(v) \text{ is a fixed point for } f \\
+  \Rightarrow& f \circ d = \Phi^A_v \text{ is total} \\
+  \Rightarrow& \Phi^A_{d(v)} = \Phi^A_{\Phi^A_v(v)}
+\end{align*}
 Now: \[
-\phi_n = \phi_{d(v)} = \phi_{\phi_v(v)} = \phi_{(f \circ d)(v)} = \phi_{f(d(v))} = \phi_{f(n)} 
+\Phi^A_n = \Phi^A_{d(v)} = \Phi^A_{\Phi^A_v(v)} = \Phi^A_{(f \circ d)(v)} = \Phi^A_{f(d(v))} = \Phi^A_{f(n)} 
 \]
 \end{proof}
 
