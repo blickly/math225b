@@ -122,14 +122,16 @@ State and prove relativized versions of the S-m-n Theorem and the Recursion Theo
 %There exist $z \in N$ such that for all $A \subseteq N$, $x, y \in N$
 %\[\Phi^A_z(x,y) = \Phi^A_x(y)\]
 
-S-m-n Theorem:
+\newtheorem*{relsmn}{Relativized S-m-n Theorem}
+\begin{relsmn}
 For every $m,n \ge 1$, there exists a 1-1 comp function $S_n^m$ of $m+1$ variables such that f.all $A\subseteq \Nat$ and $x,y_1,\ldots,y_m, z_1, \ldots, z_n \in \Nat$:
 \[\Phi^A_{S_n^m(x,y_1,\ldots,y_m)}(z_1, \ldots, z_n)
 = \Phi^A_{x}(y_1,\ldots,y_m,z_1,\ldots,z_n)\]
 		($y$'s are params, $z$'s are vars)
-
+\end{relsmn}
+%
 \begin{proof}
-Wlog $m=n=1$ \\
+Without loss of generality, let $m=n=1$ \\
 In order to simulate $\tilde{P}_{S_1^1(x,y)}$
 on work input $z$ and oracle input $A$, we must do the following:
 \begin{itemize}
@@ -142,6 +144,33 @@ Finding index for given program is uniformly effective in $x,y$, this defines $S
 
 If $S_1^1$ is not 1-1, we can use the relativized Padding Lemma to define new function $\tilde{S}_1^1$ strictly increasing in $<x,y>$
 such that $\Phi^A_{\tilde{S}_1^1(x,y)} = \Phi^A_{S_1^1(x,y)}$
+\end{proof}
+
+
+\newtheorem*{relrec}{Relativized Recursion Theorem}
+\begin{relrec}
+For every computable $f: \Nat \rightarrow \Nat$, 
+and arbitrary $A \subseteq \Nat$,
+there exists an $n$ such that $\Phi^A_n = \Phi^A_{f(n)}$
+	($n$ is a semantical fixed-point of $f$)
+\end{relrec}
+%
+\begin{proof}
+Using the S-m-n Theorem, define a 1-1 computable $d$ such that:
+\[
+\phi_{d(u)}(z) = \begin{cases}
+  \phi_{\phi_u(u)}(z)		&\text{if } \phi_u(u) \downarrow, \\
+  \uparrow			&\text{otherwise.}
+\end{cases}
+\]
+Let $v$ be such that $\phi_v = f \circ d$ \\
+{\bf Claim}:  
+$n= d(v)$ is a fixed point for $f$ \\
+	$f \circ d = \phi_v$ is total \\
+	$=> \phi_{d(v)} = \phi_{\phi_v(v)}$ \\
+Now: \[
+\phi_n = \phi_{d(v)} = \phi_{\phi_v(v)} = \phi_{(f \circ d)(v)} = \phi_{f(d(v))} = \phi_{f(n)} 
+\]
 \end{proof}
 
 \end{document}
