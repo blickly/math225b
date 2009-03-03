@@ -98,6 +98,7 @@ Use the Recursion Theorem to prove that $K$ is not an index set.
 %               Let f be s.t. \psi(e,x) = \phi_{f(e)}(x)
 %               Then f.all e, \phi_{f(e)} \ne \phi_e            by Rec Thm
 
+\begin{proof}
 Assume that $K$ were an index set.
 This means that for all $x,y$
 \[
@@ -106,31 +107,37 @@ x \in K \wedge (\phi_x=\phi_y) \Rightarrow y \in K
 
 Let \[
     \psi(e,x) = \begin{cases}
-	\phi_e(x)	&\text{if } e \ne x \\
-	\phi_e(e)+1	&\text{if } e = x \\
+	\uparrow	&\text{if } e \ne x \\
+	0		&\text{if } e = x \\
 \end{cases}
 \]
+ Let $f$ be such that $\psi(e,x) = \phi_{f(e)}(x)$.
 
-Let \[
-    \psi(e,x) = \begin{cases}
-	\phi_e(x)	&\text{if } e \ne x \\
-	\phi_e(e)+1	&\text{if } e = x, e \in K \\
-	0		&\text{if } e = x, e \not\in K \\
-\end{cases}
+By the Recursion Theorem, there exists an $e$ such that
+$\phi_e = \phi_{f(e)}$.
+
+Since $\phi_e(e) \downarrow$, $e \in K$.
+By the padding lemma, we can find a new index $e'$ for this same function.
+Even though we still have $\phi_{e'}(e) \downarrow$, 
+when applied to it's own index we get $\phi_{e'}(e') \uparrow$.
+Thus $e' \not\in K$. 
+We now have
+\[
+e \in K \wedge (\phi_e=\phi_{e'}) \not\Rightarrow e' \in K
 \]
-               Let $f$ be s.t. $\psi(e,x) = \phi_{f(e)}(x)$.
 
-Let $x \in K$
-$=> \phi_x(x) \downarrow$
-$=> \phi_{f(x)}(x) = \phi_x(x) + 1$
-$=> \phi_{f(x)} \ne \phi_x$
+Thus $K$ can not be an index set.
+\end{proof}
 
-Let $x \not\in K$
-$=> \phi_x(x) \uparrow$
-$=> \phi_{f(x)}(x) \uparrow$
+%Let \[
+%    \psi(e,x) = \begin{cases}
+%	\phi_e(x)	&\text{if } e \ne x \\
+%	\phi_e(e)+1	&\text{if } e = x, e \in K \\
+%	0		&\text{if } e = x, e \not\in K \\
+%\end{cases}
+%\]
+%               Let $f$ be s.t. $\psi(e,x) = \phi_{f(e)}(x)$.
 
-
-$\Rightarrow (\forall e) \phi_e \ne \phi_{f(e)}$
 %This means that for any computable $f$, there exists an $e$ such that 
 %$\phi_{f(e)} = \phi_e$.
 
