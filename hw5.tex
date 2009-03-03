@@ -118,9 +118,31 @@ Show that there exists no computable function $f(x,s)$ such that for all $x$, $\
 \problem{
 State and prove relativized versions of the S-m-n Theorem and the Recursion Theorem.
 }
+%Relativized Enumeration Theorem:
+%There exist $z \in N$ such that for all $A \subseteq N$, $x, y \in N$
+%\[\Phi^A_z(x,y) = \Phi^A_x(y)\]
 
+S-m-n Theorem:
+For every $m,n \ge 1$, there exists a 1-1 comp function $S_n^m$ of $m+1$ variables such that f.all $A\subseteq \Nat$ and $x,y_1,\ldots,y_m, z_1, \ldots, z_n \in \Nat$:
+\[\Phi^A_{S_n^m(x,y_1,\ldots,y_m)}(z_1, \ldots, z_n)
+= \Phi^A_{x}(y_1,\ldots,y_m,z_1,\ldots,z_n)\]
+		($y$'s are params, $z$'s are vars)
 
+\begin{proof}
+Wlog $m=n=1$ \\
+In order to simulate $\tilde{P}_{S_1^1(x,y)}$
+on work input $z$ and oracle input $A$, we must do the following:
+\begin{itemize}
+  \item
+    obtain $\tilde{P}_x$ (the $x$th 2-variable OTM),
+  \item
+    apply $\tilde{P}_x$ to work input $(y,z)$ and oracle input $A$.
+\end{itemize}
+Finding index for given program is uniformly effective in $x,y$, this defines $S_1^1$
 
+If $S_1^1$ is not 1-1, we can use the relativized Padding Lemma to define new function $\tilde{S}_1^1$ strictly increasing in $<x,y>$
+such that $\Phi^A_{\tilde{S}_1^1(x,y)} = \Phi^A_{S_1^1(x,y)}$
+\end{proof}
 
 \end{document}
 
