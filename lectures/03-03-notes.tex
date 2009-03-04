@@ -7,10 +7,13 @@
 \usepackage{amscd,amsbsy}
 \usepackage{txfonts}
 \usepackage[T1]{fontenc} 
+\usepackage{fullpage}
+\usepackage{ulsy}
 
 \usepackage{eucal} 
 \usepackage{enumerate}
 \usepackage{pdfsync}
+\usepackage{undertilde}
 
 \newcommand{\Nat}{\ensuremath{\mathbb{N}}}
 \newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
@@ -31,6 +34,7 @@
 \newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
 
 \newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
 
 \author{Ben Lickly}
 \date{March 3, 2009}
@@ -55,7 +59,7 @@ $A$ is \textit{computable enumerable} in $B$ if $A = W^B_e$ for some $e$.
 Thm: The following are equivalent:
 \begin{enumerate}[(i)]
 \item $A$ c.e. in $B$
-\item $A = \emptyset$ or $A$ is the range of a total $B$-comp functino
+\item $A = \emptyset$ or $A$ is the range of a total $B$-computable function
 \item $A$ is $\Sigma_1^B$
 \end{enumerate}
 
@@ -63,8 +67,9 @@ Relativized $\Sigma_1^B$: \\
 	A is in $\Sigma_1^B$-form if $A = \{ x : (\exists \vec{y}) R^B(x, \vec{y}) \}$
 	where $R^B$ is a relation computable in $B$.
 
-(For def'vility over $\Nat$: work over second-order arithmetic.)
-\[ (\Nat, \Pow{\Nat},    \epsilon, +, *, 0, 1) \]%  ^two sorted structure ^relation between number and set variables 
+(For definability over $\Nat$: work over second-order arithmetic.)
+\[ (\Nat, \Pow{\Nat},    \epsilon, +, *, 0, 1) \]
+%  ^two sorted structure ^relation between number and set variables 
 
  $x 	\in 	B$
 %^number var	^ set var.
@@ -88,37 +93,37 @@ By Use Principle:
 Turing degree of $A$:	$deg_T(A) = \{ B : B \equiv_T A \}$
 
 $\mathcal{D}$ class of T-degrees.\\	$2^{\aleph_0}$ many. \\
-parially ordered: $\underbar{a} \le \underbar{b}$ % should be undertilde
+parially ordered: $\utilde{a} \le \utilde{b}$ % should be undertilde
 
-each degree is infinite: Gicen $A$, let $A_n$ 
+each degree is infinite: Given $A$, let $A_n$ 
 be given by $ x \in A_n \Leftrightarrow x + n \in A$
-iff $A = $ %FIXME:
+iff $A = $ \fixme %FIXME:
 
 \newcommand{\join}{\vee}
 \defn upper semilattice: joins exist
 \[
- \underbar{a} \join \underbar{b} = deg_T(A \oplus B)
+ \utilde{a} \join \utilde{b} = deg_T(A \oplus B)
 \]
-If $\underbar{c} \ge \underbar{a}, \underbar{b}$, then 
-$\underbar{c} \ge \underbar{a} \join \underbar{b}$
+If $\utilde{c} \ge \utilde{a}, \utilde{b}$, then 
+$\utilde{c} \ge \utilde{a} \join \utilde{b}$
 
-$\underbar{a} \in \mathcal{D}$ is called c.e. if it contains a c.e. set \\
+$\utilde{a} \in \mathcal{D}$ is called c.e. if it contains a c.e. set \\
 $\mathcal{R} \subseteq \mathcal{D}$ denotes the set of c.e. degrees. \\
-$\underbar{a}$ is c.e. in $\underbar{b}$ if it contains $A \in \underbar{a}$ c.e. in $B \in \underbar{b}$.
+$\utilde{a}$ is c.e. in $\utilde{b}$ if it contains $A \in \utilde{a}$ c.e. in $B \in \utilde{b}$.
 
 \subsection*{The Jump Operator}
-\defn \emph{jump} of $A$, denoted by $A'$``
+\defn \emph{jump} of $A$, denoted by $A'$
 \[
- K^A = \{ x : \Phi^A_x(x) \}
+ A' = K^A = \{ x : \Phi^A_x(x) \}
 \]
 For $n \in \Nat$, $A^{(0)} = A$, $A^{(n+1)} = (A^{(n)})'$.
 
-Relativized Basc Thms:
+Relativized Basic Thms:
 \[
  K^A = K^A_0 = K^A_1 = \{ x : W^A_x \ne \emptyset \}
 \]
 
-\newtheorem*{jmpthm}{Jump Thm}
+\newtheorem*{jmpthm}{Jump Theorem}
 \begin{jmpthm}
  .
  \begin{enumerate}[(1)]
@@ -132,17 +137,18 @@ Relativized Basc Thms:
 		1 		&\text{if } Phi^A_e(x) = 0 \\ % ie.. x notin A
               \end{cases}
        \]
+ % contradiction
 \begin{align*}
- d \in A => Phi^A_d(d) \downarrow = f(d) = Phi^A_d(d) +1 >< \\ % contradiction
- d \not\in A => Phi^A_d(d) \uparrow = f(d) >< %contradiction
+ d \in A => Phi^A_d(d) \downarrow = f(d) = Phi^A_d(d) +1 \Rightarrow\Leftarrow \\ 
+ d \not\in A => Phi^A_d(d) \uparrow = f(d) \Rightarrow\Leftarrow \\
 \end{align*}			% f is total
 \end{proof}
   \item $B$ is c.e. in $A$ iff $B \le_1 A'$
   \item $A$ is c.e. in $B$, $B \le_T C$ => $A$ c.e. in $C$.
 \begin{proof}
- $A \ne \emptyset => A$ is the rege of a $B$-comp function. \\
-=> A '' C-Comp function
-% FIXME: Add proof
+ $A \ne \emptyset => A$ is the range of a $B$-comp function. \\
+=> $A$ is the range of a $C$-comp function
+\fixme % FIXME: Add proof
 \end{proof}
   \item $B \le_T A$ iff $B' \le_1 A'$
 \begin{proof}
@@ -160,18 +166,18 @@ now apply (3)
  \end{enumerate}
 \end{jmpthm}
 
-COR: Write $\underbar{0}^{(n)} = deg_T( 0^{(n)})$
+COR: Write $\utilde{0}^{(n)} = deg_T( 0^{(n)})$
 
-Thm: $\underbar{0} < \underbar{0}' < \underbar{0}'' < \ldots < \underbar{0}^{(n)} < \ldots$.
+Thm: $\utilde{0} < \utilde{0}' < \utilde{0}'' < \ldots < \utilde{0}^{(n)} < \ldots$.
 
 \section*{The Arithmetical Hierarchy}
 
 Representation Thm for c.e. sets:
 \begin{align*}
- A \text{ c.e.} &<=>& A \text{proj of comp rel } Z \\
+ A \text{ c.e.} &<=>& A \text{ proj of comp rel } Z \\
 &<=>& A \text{ is  } \Sigma_1-\text{def'able over } \Nat
 \end{align*}
-Goal: Extent thsi to more complicated formulas and relate it to the jump hierarchy
+Goal: Extend this to more complicated formulas and relate it to the jump hierarchy
 
 \defn $A$ is $\Sigma_n$, $n > 1$, iff there is
 	a comp. re. $R(x, y_1, \ldots, y_n)$, s.t
@@ -187,26 +193,29 @@ Goal: Extent thsi to more complicated formulas and relate it to the jump hierarc
 
 \defn $A$ is $\Delta_n$ if it is $\Sigma_n$ and $\Pi_n$.
 
-\defn $A$ is arithmtical if it is $\Sigma_n$ or $\Pi_n$ for some $n$.
+\defn $A$ is arithmetical if it is $\Sigma_n$ or $\Pi_n$ for some $n$.
 
 Quantifier manipulation:
 \begin{enumerate}[(1)]
- \item $A$ is $\Sigma_n$ <=> $\Conj{A}$ is $\Pi_n$
+ \item $A$ is $\Sigma_n \Leftrightarrow \Conj{A}$ is $\Pi_n$
  \item $A$ is $\Sigma_n$ => $\forall m > n$, $A$ is $\Sigma_m$ and $\Pi_m$, 
 	introducing ``vacuous'' quantifiers.
  \item $A,B$ is $\Sigma_n$( or $\Pi_n$)	=> $A \cup B$, $A \cap B$ is $\Sigma_n$
  \item \emph{quantifier contraction}:
 	$R$ is $\Sigma_n	=> A = \{x : \exists y R(x,y) \}$ is $\Sigma_n$
  \item $B \le_m A$, $A$ is $\Sigma_n$ => $B$ is $\Sigma_n$.
-	\proof  If $A = \{ x : \exists y_1 \forall \ldots R(x, \vec{y}) \}$
+   \begin{proof}
+	If $A = \{ x : \exists y_1 \forall \ldots R(x, \vec{y}) \}$
 	and $B \le_m A$ via f,
 	then $B = \{ x : \exists y_1 \forall \ldots R(f(x), \vec{y}) \}$
+      \end{proof}
+
  \item If R is $\Sigma_n$ (or $\Pi_n$), then
 	\begin{align*}
-	 A = \{ <x, y> : (\forall z < y) R(x,y,z) \\
-	 B = \{ <x, y> : (\exists z < y) R(x,y,z) \\
+          A = \{ <x, y> : (\forall z < y) R(x,y,z) \} \\
+          B = \{ <x, y> : (\exists z < y) R(x,y,z) \} \\
 	\end{align*}
-	are $\Sigma_n$ (or $Pi_n$)
+	are $\Sigma_n$ (or $\Pi_n$)
 		\proof (Exercise) Lookat pf of $A$ c.e. iff $A$ $\Sigma_1$-def'able over $\Nat$.
 
 \end{enumerate}
