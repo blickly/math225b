@@ -42,5 +42,155 @@
 \begin{document}
 \maketitle
 
+\subsection*{$\Sigma_n \text{ and } \Pi_n$}
+\begin{align*}
+ Fin &=& \{ x : W_x \text{ finite} \} \\
+ &=& \{x : \exists y \forall z (z \ge y \rightarrow z \not\in W_x) \} \\
+ &=& \{x : \exists y \forall z \forall s (z \ge y \rightarrow \phi_{x,s}(z) \uparrow) \} \\
+\end{align*}
+This is $\Sigma_2$
+\[
+ \Pi_2: Tot
+\]
+\[
+ \Sigma_3: COF, REC
+\]
+
+\section*{The Hierarchy Thm}
+\defn $A \subseteq \Nat$ is \emph{$\Sigma_n$-complete} (\emph{$\Pi_n$-complete}) if
+\begin{enumerate}[(1)]
+ \item $A$ is $\Sigma_n$ ($\Pi_n$)
+ \item f.all $B \in \Sigma_n (\Pi_N)$, $B \le_1 A$.
+\end{enumerate}
+Homework: no difference wheter we use $\le_m$ or $\le_1$
+
+Note: $A$ is $\Sigma_n$-computable iff $\Conj{A}$ is $\Pi_n$-complete
+
+To make notation work: Set $\Sigma_0 = \Pi_0 = \Delta_1$.
+
+\newtheorem*{pthm}{Post's Thm}
+\begin{pthm} .
+\begin{enumerate}[(1)]
+ \item 
+  \begin{align*}
+   B \in \Sigma_{n+1} &\Leftrightarrow& B \text{ is c.e. in some $\Pi_n$ set} \\
+   (&\Leftrightarrow& B \text{ is c.e. in some $\Sigma_n$ set} )\\
+  \end{align*}
+ \item
+  $0^{(n)}$ is $\Sigma_n$-complete for $n >0$.
+ \item
+  $B \in \Sigma_{n+1} \Leftrightarrow B$ c.e. in $0^{(n)}$.
+ \item
+  $B \in \Delta_{n+1} \Leftrightarrow B \le_T 0^{(n)}$.
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}[(1)]
+ \item  (=>) Sup $B \in \Sigma_{n+1}$.
+	Then $ x \in B <=> \exists y R(x,y)$ for some $ R \in \Pi_n$ \\
+	=> $B$ is $\Sigma_1$ in $R$ \\
+	=> $B$ is c.e. in $R$ by relativized Normal FOrm THm for c.e. sets
+
+	(<=) Sup $B$ is c.e. in $C \in \Pi_n$ \\
+	Then, for some $e$,
+	\begin{align*}
+	 x \in B &\Leftrightarrow& x \in W^C_e \\
+		&\Leftrightarrow& \exists s \exists \sigma 
+			[ \sigma \subset C \wedge x \in W^{\sigma}_{e,s} ] \\
+	\sigma \subset C &\Leftrightarrow& \forall y < |\sigma| [ \sigma(y) = C(y) ] \\
+		&\Leftrightarrow& \forall y < |\sigma| 
+			[ (\sigma(y) = 1 \wedge y \in C) \vee [ (\sigma(y) = 0 \wedge y \not\in C) ] ] \\
+	\end{align*}
+	Hence, this iis of form ($\Pi_n \cup \Sigma_n$). Now use quant manipulation.
+ \item Induction of $n$: \\
+	$n = 1$: (halting problem $\qed$) \\
+	$n => n+1$: $B \in Sigma_{n+1} \Leftrightarrow B$ c.e. is some $\Sigma_n$ set. \\
+	$\Leftrightarrow B$ c.e. in $0^{(n)}$ by IH and Jump Thm \\
+	$\Leftrightarrow B \le_1  0^{(n+1)}$ by Jump Thm (3)
+ \item by (1) + (2)
+ \item 
+\begin{align*}
+B \text{ is } \Delta_{n+1}  &\Leftrightarrow& B, \Conj{B} \in \Sigma_{n+1} \\
+&\Leftrightarrow& B,\Conj{B} \text{ c.e. in } 0^{(n)} \\
+&\Leftrightarrow& B \le_T 0^{(n)}, \text{ by relativized Complementation Thm}.
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+Cor: For $n > 0$, $\Delta_n \not\subseteq \Sigma_n$ and $\Delta_n \not\subseteq \Pi_n$.
+\begin{proof}
+ $0^{(n)} \in \Sigma_n - \Pi_n$ \\
+	Ass not: Then $0^{(n)} \in \Pi_n => 0^{(n)} \in \Delta_n 
+	=>^{\text{ by (4)}} 0^{(n)} \le_T 0^{(n-1)} ><$
+
+	Likewise $0^{(n)} \in \Pi_n - \Sigma_n$
+\end{proof}
+
+\section*{Complete Sets}
+THM: $Fin$ is $\Sigma_2$-complete \\
+$Tot$ is $\Pi_2$-complete
+\begin{proof}
+ ``Simultaneous'' reduction
+	Fix $ A \in \Sigma_2$. Hence $\Conj{A} \in \Pi_2$
+	Tere is a comp. R> s.t.
+\[
+ x \in \Conj{A} <=> \forall y \exists z R(x,y,z)
+\]
+Use S-m-n Thm to define comp. function f. s.t. 
+\[
+ \phi_{f(x)}(n) = \begin{cases}
+                   0		&\text{if } (\forall y \le n) (\exists z) R(x,y,z) \\
+                   \uparrow	&\text{otherwise}\\
+                  \end{cases}
+\]
+\begin{align*}
+ x \in \Conj{A} => \phi_{f(x)}(n) = 0 \forall n => f(x) \in Tot \\
+ x \not\in \Conj{A} => x \in A => 
+\phi_{f(x)}(n) \text{ defined for only fin. many $n$} => f(x) \in Fin \\
+\end{align*}
+\end{proof}
+
+THM: $COF$ is $\Sigma_3$-complete.
+\begin{proof} ``movable marker construction''.
+
+Let $A$ be $\Sigma_3$  THen, for some $R \in \Pi_2$ \\
+$x\in A=> \exists y R(x,y)$
+
+$FIN$ is $\Sigma_2$ complete, hence $INF = \{x : W_x \text{ is infinte} \}$ is
+$\Pi_2$ complete.  Therefore, there ex. comp. g. s.t.
+\[
+ R(x,y) \text{ holds} <=> W_{g(x,y)} \text{ infinite}
+\]
+
+Define ce. set $W_{f(x)}$ in stages:
+\[
+ W_{f(x)} = \bigcup_s W_{f(x),s}
+\]
+sych that
+$x \in A <=> W_{f(x)} \text{ cofinite.}$
+
+(At stage $s$
+$
+ \Conj{W_{f(x),s}} = \{ b^s_{x,0} < b^s_{x,1} < \ldots < b^s_{x,y} < \ldots \}
+$)
+
+Stage 0: $W_{f(x),0} = \emptyset$
+
+Stage $s+1$:  Ass  $\Conj{W_{f(x),s}} = \{ b^s_{x,0} < b^s_{x,1} < \ldots < b^s_{x,y} < \ldots \}$ \\
+For each $y \le s$:
+If $W_{g(x,y),s} \ne W_{g(x,y),s+1}$
+then enumerate $b^s_{x,y}$ into $W_{f(x),s+1}$
+
+
+\end{proof}
+
+
+
+\end{pthm}
+
+
+
+
+
+
 \end{document}
 
