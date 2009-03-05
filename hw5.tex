@@ -160,6 +160,31 @@ Let $g$ be any computable function. Show that there exists an $n$ such that
 \end{equation*}
 }
 
+\begin{proof}
+Let \[
+    \psi(n,x) = \begin{cases}
+	1	        &\text{if } (\exists e \le g(n)), 
+                              \text{the first output of $\phi_e$ is $x$,} \\
+        \uparrow	&\text{otherwise.} \\
+\end{cases}
+\]
+ Let $f$ be such that $\psi(n,x) = \phi_{f(n)}(x)$.
+
+By the Recursion Theorem, there exists an $n$ such that
+$\phi_n = \phi_{f(n)}$.
+
+Since $g$ is computable, we know that $g(x) \downarrow$ for any $x$.
+As a result, $W_n$ is also finite with no more than $g(n)$ elements. 
+Since any finite set is computable, $W_n$ must be computable.
+
+By construction, for any $y \le g(n)$, if $W_y \ne \emptyset$, then there is
+an element of $W_y$ in $W_n$, namely the first output of $\phi_y$.
+Thus $W_y \ne \Conj{W_n}$.
+%$(\exists x_y \in W_y) x_y \in W_n$.
+If $W_y = \emptyset$, then since $\Conj{W_n}$ is cofinite, clearly 
+$W_y \ne \Conj{W_n}$.
+\end{proof}
+
 \problem{
 Show that there exists no computable function $f(x,s)$ such that for all $x$, $\hat{f}(x) = \lim_s f(x,s)$ exists (i.e.\ $f(x,s)$ is eventually stable), and $\hat{f}$ is the characteristic function of \textsc{Tot}.
 }
