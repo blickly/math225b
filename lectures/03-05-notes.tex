@@ -37,7 +37,7 @@
 \newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
 
 \author{Ben Lickly}
-\date{March 3, 2009}
+\date{March 5, 2009}
 \title{Math 225 Notes}
 \begin{document}
 \maketitle
@@ -77,11 +77,11 @@ To make notation work: Set $\Sigma_0 = \Pi_0 = \Delta_1$.
    (&\Leftrightarrow& B \text{ is c.e. in some $\Sigma_n$ set} )\\
   \end{align*}
  \item
-  $0^{(n)}$ is $\Sigma_n$-complete for $n >0$.
+  $\emptyset^{(n)}$ is $\Sigma_n$-complete for $n >0$.
  \item
-  $B \in \Sigma_{n+1} \Leftrightarrow B$ c.e. in $0^{(n)}$.
+  $B \in \Sigma_{n+1} \Leftrightarrow B$ c.e. in $\emptyset^{(n)}$.
  \item
-  $B \in \Delta_{n+1} \Leftrightarrow B \le_T 0^{(n)}$.
+  $B \in \Delta_{n+1} \Leftrightarrow B \le_T \emptyset^{(n)}$.
 \end{enumerate}
 \begin{proof}
 \begin{enumerate}[(1)]
@@ -104,25 +104,25 @@ To make notation work: Set $\Sigma_0 = \Pi_0 = \Delta_1$.
  \item Induction of $n$: \\
 	$n = 1$: (halting problem $\qed$) \\
 	$n => n+1$: $B \in Sigma_{n+1} \Leftrightarrow B$ c.e. is some $\Sigma_n$ set. \\
-	$\Leftrightarrow B$ c.e. in $0^{(n)}$ by IH and Jump Thm \\
-	$\Leftrightarrow B \le_1  0^{(n+1)}$ by Jump Thm (3)
+	$\Leftrightarrow B$ c.e. in $\emptyset^{(n)}$ by IH and Jump Thm \\
+	$\Leftrightarrow B \le_1  \emptyset^{(n+1)}$ by Jump Thm (3)
  \item by (1) + (2)
  \item 
 \begin{align*}
 B \text{ is } \Delta_{n+1}  &\Leftrightarrow& B, \Conj{B} \in \Sigma_{n+1} \\
-&\Leftrightarrow& B,\Conj{B} \text{ c.e. in } 0^{(n)} \\
-&\Leftrightarrow& B \le_T 0^{(n)}, \text{ by relativized Complementation Thm}.
+&\Leftrightarrow& B,\Conj{B} \text{ c.e. in } \emptyset^{(n)} \\
+&\Leftrightarrow& B \le_T \emptyset^{(n)}, \text{ by relativized Complementation Thm}.
 \end{align*}
 \end{enumerate}
 \end{proof}
 
 Cor: For $n > 0$, $\Delta_n \not\subseteq \Sigma_n$ and $\Delta_n \not\subseteq \Pi_n$.
 \begin{proof}
- $0^{(n)} \in \Sigma_n - \Pi_n$ \\
-	Ass not: Then $0^{(n)} \in \Pi_n => 0^{(n)} \in \Delta_n 
-	=>^{\text{ by (4)}} 0^{(n)} \le_T 0^{(n-1)} ><$
+ $\emptyset^{(n)} \in \Sigma_n - \Pi_n$ \\
+	Ass not: Then $\emptyset^{(n)} \in \Pi_n => \emptyset^{(n)} \in \Delta_n 
+	=>^{\text{ by (4)}} \emptyset^{(n)} \le_T \emptyset^{(n-1)} ><$
 
-	Likewise $0^{(n)} \in \Pi_n - \Sigma_n$
+	Likewise $\emptyset^{(n)} \in \Pi_n - \Sigma_n$
 \end{proof}
 
 \section*{Complete Sets}
