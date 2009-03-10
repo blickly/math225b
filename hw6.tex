@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lösung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 6 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday March 12}
+\end{center}
+
+\Aufg
+Show that there is a uniform procedure such that given $\emptyset^{(n)}$ for any $n$, we can calculate $n$, i.e.\ there exists a $z$ such that
+\[
+	\text{for all $n$ }, \Phi_z^{\emptyset^{(n)}}(0) = n.
+\]
+
+\Aufg 
+\begin{alist}
+	\item[a] Let $\{A_y\}_{y \in \Nat}$ be any sequence of sets. Define the \emph{infinite join} 
+	\[
+		\oplus \{A_y\}_{y \in \Nat} =  \{ \langle x,y\rangle \colon x \in A_y \}.
+	\]
+	Prove that $\oplus \{A_y\}_{y \in \Nat}$ is the \emph{uniform least upper bound} for $\{A_y\}$ in the sense that if there exist a set $C$ and a computable function $f$ such that $A_y = \Phi^C_{f(y)}$ for all $y$, then $\oplus \{A_y\} \leq_{T} C$.
+	
+	\item[b] Given a set $A$, let $A^{(\omega)}$ be defined as $\oplus \{A^{(n)}\}_{n \in \Nat}$. Show that for any $A$ there does not exist a set $B$ such that $A^{(\omega)} \equiv_m B'$.
+\end{alist}
+
+
+
+\Aufg 
+\begin{alist}
+	\item[a] Prove that if $B \leq_m A$ and $A = \emptyset^{(n)}$ for some $n \geq 1$, then $B \leq_1 A$.
+	
+	\item[b] Prove that if $B = \emptyset^{(n)}$ for some $n \geq 1$, and $B \leq_m A$, then $B \leq_1 A$.
+\end{alist}
+
+
+	
+\Aufg 
+Define the \emph{weak jump} as
+\[
+	H_A = \{ x \colon W_x \cap A \neq \emptyset \}.
+\]
+Prove that if $A$ is $\Pi_n$-complete, then $H_A$ is $\Sigma_{n+1}$-complete. Conclude that
+\[
+	H_{\operatorname{Inf}} = \{ x \colon \exists y \: (y \in W_x \: \wedge \: W_y \text{ is infinite}) \}
+\]
+is $\Sigma_3$-complete.
+ 
+
+
+\Aufg[*]
+Recall that $2^\omega$ denotes the space of all infinite binary sequences. By identifying sets with their characteristic function, we can see $2^\omega$ as $\mathcal{P}(\Nat)$. The \emph{basic open sets} are given as
+\[
+	[\sigma] = \{ A \in 2^\omega \colon \sigma \subset A \}, \text{ where $\sigma$ is a finite binary string }
+\] 
+A set $X \subseteq 2^\omega$ has \emph{measure zero} if for any $\epsilon > 0$ there exists a set $\{\sigma_i \colon i \in \Nat\}$ of strings such that
+\[
+	X \subseteq \bigcup_{i \in \Nat} [\sigma_i] \quad \text{ and } \quad \sum_{i \in \Nat} 2^{-|\sigma_i|} < \epsilon.
+\]
+Show that if $A$ is not computable, then $\{B \colon B \geq_T A\}$ has measure zero.
+
+[\emph{Remark:} You may want to consult some analysis text if you are not familiar with measure theory. In particular, look for the \emph{Lebesgue Density Theorem}.]
+ 
+
+
+
+\end{document}
+
