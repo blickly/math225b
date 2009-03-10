@@ -83,12 +83,13 @@ To make notation work: Set $\Sigma_0 = \Pi_0 = \Delta_1$.
  \item
   $B \in \Delta_{n+1} \Leftrightarrow B \le_T \emptyset^{(n)}$.
 \end{enumerate}
+\end{pthm}
 \begin{proof}
 \begin{enumerate}[(1)]
  \item  (=>) Sup $B \in \Sigma_{n+1}$.
 	Then $ x \in B <=> \exists y R(x,y)$ for some $ R \in \Pi_n$ \\
 	=> $B$ is $\Sigma_1$ in $R$ \\
-	=> $B$ is c.e. in $R$ by relativized Normal FOrm THm for c.e. sets
+	=> $B$ is c.e. in $R$ by Relativized Normal Form Theorem for c.e. sets
 
 	(<=) Sup $B$ is c.e. in $C \in \Pi_n$ \\
 	Then, for some $e$,
@@ -96,11 +97,11 @@ To make notation work: Set $\Sigma_0 = \Pi_0 = \Delta_1$.
 	 x \in B &\Leftrightarrow& x \in W^C_e \\
 		&\Leftrightarrow& \exists s \exists \sigma 
 			[ \sigma \subset C \wedge x \in W^{\sigma}_{e,s} ] \\
-	\sigma \subset C &\Leftrightarrow& \forall y < |\sigma| [ \sigma(y) = C(y) ] \\
-		&\Leftrightarrow& \forall y < |\sigma| 
+	\sigma \subset C &\Leftrightarrow& \forall y < |\sigma|,\ [ \sigma(y) = C(y) ] \\
+		&\Leftrightarrow& \forall y < |\sigma|,\ 
 			[ (\sigma(y) = 1 \wedge y \in C) \vee [ (\sigma(y) = 0 \wedge y \not\in C) ] ] \\
 	\end{align*}
-	Hence, this iis of form ($\Pi_n \cup \Sigma_n$). Now use quant manipulation.
+	Hence, this is of the form ($\Pi_n \cup \Sigma_n$). Now use quant manipulation.
  \item Induction of $n$: \\
 	$n = 1$: (halting problem $\qed$) \\
 	$n => n+1$: $B \in Sigma_{n+1} \Leftrightarrow B$ c.e. is some $\Sigma_n$ set. \\
@@ -131,7 +132,7 @@ $Tot$ is $\Pi_2$-complete
 \begin{proof}
  ``Simultaneous'' reduction
 	Fix $ A \in \Sigma_2$. Hence $\Conj{A} \in \Pi_2$
-	Tere is a comp. R> s.t.
+	There is a comp. R s.t.
 \[
  x \in \Conj{A} <=> \forall y \exists z R(x,y,z)
 \]
@@ -152,8 +153,8 @@ Use S-m-n Thm to define comp. function f. s.t.
 THM: $COF$ is $\Sigma_3$-complete.
 \begin{proof} ``movable marker construction''.
 
-Let $A$ be $\Sigma_3$  THen, for some $R \in \Pi_2$ \\
-$x\in A=> \exists y R(x,y)$
+Let $A$ be $\Sigma_3$  Then, for some $R \in \Pi_2$
+\[ x\in A \Rightarrow \exists y R(x,y) \]
 
 $FIN$ is $\Sigma_2$ complete, hence $INF = \{x : W_x \text{ is infinte} \}$ is
 $\Pi_2$ complete.  Therefore, there ex. comp. g. s.t.
@@ -165,10 +166,10 @@ Define ce. set $W_{f(x)}$ in stages:
 \[
  W_{f(x)} = \bigcup_s W_{f(x),s}
 \]
-sych that
+such that
 $x \in A <=> W_{f(x)} \text{ cofinite.}$
 
-(At stage $s$
+(At stage $s$,
 $
  \Conj{W_{f(x),s}} = \{ b^s_{x,0} < b^s_{x,1} < \ldots < b^s_{x,y} < \ldots \}
 $)
@@ -182,13 +183,6 @@ then enumerate $b^s_{x,y}$ into $W_{f(x),s+1}$
 
 
 \end{proof}
-
-
-
-\end{pthm}
-
-
-
 
 
 
