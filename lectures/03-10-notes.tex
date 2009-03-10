@@ -42,5 +42,226 @@
 \begin{document}
 \maketitle
 
+\subsection*{COF is $\Sigma_3$-complete}
+(i.e. $\Sigma_3 \le_m COF$)
+
+Start with $A \in \Sigma_3$, $x \in A $ iff $\exists y,\ R(x,y)$ (R is $Pi_2$)
+
+\[
+ R(x,y) <=> W_{g(x,y)} \text{ infinite}
+\]
+(g computable)
+
+(At stage $s$,
+$
+ \Conj{W_{f(x),s}} = \{ b^s_{x,0} < b^s_{x,1} < \ldots < b^s_{x,y} < \ldots \}
+$)
+
+Given $x$, enumerate $W_{f(x)}$:
+\[
+ W_{f(x)} = \bigcup_s W_{f(x),s}
+\]                      %^ finite
+
+Stage $s+1$:  $\Conj{W_{f(x),s}} = \{ b^s_{x,0} < b^s_{x,1} < \ldots < b^s_{x,y} < \ldots \}$ \\
+
+For each $y \le s$,
+if $W_{g(x,y),s} \ne W_{g(x,y),s+1}$
+then enumerate $b^s_{x,y}$ into $W_{f(x),s+1}$
+
+
+\subsubsection*{Verify this works}
+
+\begin{align*}
+ x \in A &=>& \text{ for some } y, W_{g(x,y)} \text{ is infinite} \\
+ &=>& \text{ we act infinitely often on behalf of $W_{g(x,y)}$, (new elements show up)} \\
+\end{align*}
+This means $b^s_{x,y}$ never settles.
+
+Hence: ``The $y$-th element of the complement goes for infinity.'':
+\[
+ b^s_{x,y} \rightarrow^{s \rightarrow \infty} \infty
+\]
+$=> \Conj{W_{f(x)}} \le y \Rightarrow f(x) \in COF$
+
+\begin{align*}
+ x \not\in A &\Rightarrow& \text{For all $y$, $W_{g(x,y)}$ finite} \\
+  &\Rightarrow& \text{For each $y$, we act only finitely often on behalf of $W_{g(x,y)}$} \\
+  &\Rightarrow& b^s_{x,y} \text{ settles eventually 
+		(if no $W_{g(x,z)}, z \le y$ changes anymore) } \\
+  &\Rightarrow& \Conj{W_{f(x)}} = \{ b_{x,y} \}_{y \in \Nat} \quad ( b_{x,y} = \lim_s b^s_{x,y} \\
+  &\Rightarrow& W_{f(x)} \text{ infinite} \\
+\end{align*}
+
+One can extend this to simultaneous reduction:
+\[
+ (\Sigma_3, \Pi_3) \le_m (COF, COMP)
+\]
+$COMP = \{ x : \phi_x \equiv_T K \}$
+
+i.e. for $A \in \Sigma_3$:
+\begin{align*}
+ f(A) \subseteq COF \\
+ f(\Conj{A}) \subseteq COMP
+\end{align*}
+Since $ COF \subseteq REC = \{ x : W_x \text{ is computable } \}$
+ and $REC \cap COMP = \emptyset$.
+We get $REC$ is also $\Sigma_3$-complete.
+
+\subsubsection*{Modify proof}
+Enumerate $b^s_{x,y}$ into $W_{f(x)}$
+if $W_{g(x,y)}$ changes or $y$ gets enumerated into $K$ at step $s$.
+
+\textbf{HW:} Show if $x \not\in A$ then $W_{f(x)} \ge_T K$.
+
+\section*{A char. of the $\Delta^0_2$ T-degrees}
+
+\defn A sequence of (total) functions $\{ f_s \}_{s \in \Nat}$
+\emph{converges} (pointwise) to $f$ if f.all $x$,
+\[
+ f(x) = \lim_s f_s(x)
+\]
+i.e. if f.all but finitely many $s$, $f(x) = f_s(x)$
+
+\bigskip
+$\{f_s\}$ is \emph{computable} if there ex. a comp. function
+\[
+ \tilde{f} : \Nat \times \Nat \rightarrow \Nat \text{ s.t. }
+	f_s(x) = \tilde{f}(x,s)
+\]
+
+\bigskip
+A \emph{modulus} of convergence for $\{f_s\}$ is a function $m$, s.t.
+%                                   ^ assume this converges
+For all $s,x$
+	if $s \ge m(x)$, 	then $f_s(x) = f(x)$
+	(i.e. $f_s(x)$ has settled by time $m(x)$)
+
+$m$ is the \emph{least modulus} if $m(x) = (\mu s) (\forall t \ge s) [f_t(x) = f(x)]$.
+
+Note: If $m$ is a modulus for $\{f_s\}, f_s \rightarrow f$.
+%                             ^computable
+then $f \le_T m$.
+%
+b/c $f(x) = f_{m(x)}(x)$
+
+Furthermore, if $g \ge_T m$, then $g \ge_T f$.
+
+\subsection*{Q}
+Which functions do have computable approximations? (HW: not $TOT$)
+
+If they have one, how complicated is the modulus?
+
+\section*{Modulus Lemma}
+If $A$ is c.e. and $f \le_T A$, then there ex. a computable sequence
+$\{ f_s\}$ s.t. $f = \lim_s f_s$ 
+and a modulus $m$ of $\{ f_s\}$ s.t. $m \le_T A$.
+\begin{proof}
+ Sup. $A$ in c.e., $A = W_i$, $f = \Phi^A_e$.
+Let $A_s = W_{i,s}$
+
+Def:
+\[
+ f_s(x) = \begin{cases}
+           \Phi^{A_s}_{e,s}(x)	&\text{ if} \Phi^{A_s}_{e,s}(x) \downarrow \\
+           0			&\text{ o.w}
+          \end{cases}
+\]
+\begin{align*}
+ m(x) = (\mu s)(\exists z \le s) [ \Phi^{A_s \lceil z}_e (x) \downarrow \wedge A_x\lceil z = A \lceil z
+\end{align*}
+\end{proof}
+\begin{itemize}
+ \item $\{f_s\}$ is a computable sequence
+ \item $m \le_T A$
+ \item $m$ is a modulus for $\{f_s\}$, by use principle
+\end{itemize}
+For non-c.e. sets, we still have comp. approx in case $\le_T \emptyset'$
+
+\newtheorem{limitlemma}{Limit Lemma}
+\begin{limitlemma}
+ For any function $f$,
+$f \le_T A'$ iff there ex. an $A$-comp. sequence
+$\{f_s\}$ s.t. $\lim_s f_s = f$.
+\end{limitlemma}
+\begin{proof}
+ (=>) Sup $f \le_T A'$, We know $A'$ is c.e. in $A$.
+	=> relativized modulus lemma
+
+ (<=) up $f = \lim_s f_s$, $\{f_s\}$ $A$-comp.
+Def: 
+\[
+ A_x = \{ s : (\exists t) [ s \le t \wedge f_t(x) \ne f_{t+1}(x) ] \}
+\] %     ^ stages after which f_s(x) still changes
+
+\begin{itemize}
+ \item $A_x$ is finite
+ \item $B = \oplus_x A_x = \{ <s,x> : s \in A_x \}$
+	Hence $B$ c.e. in $A$
+	=> $B \le_T A'$
+\end{itemize}
+
+Claim: $f \le_T B \oplus A \le_T A'$
+
+Given $x,s$, using $B$ as an oracle, we can decide whether $f_s(x)$ changes after $s$.
+
+In particular, we can compute the least modulus 
+\[
+ \mu s (s \not\in A_x)
+\]
+
+Hence: \[
+A' \ge_T B \oplus A \ge_T m \oplus A \ge_T f
+       \]
+($B$ computes modulus, $A$ computes approximation)
+\end{proof}
+
+
+In particular: For $A = \emptyset$
+\[
+ A \le_T \emptyset' \text{ iff $f$ is comp. approximable}
+\]
+
+\subsubsection*{Cor}
+$F$ has c.e. T-degree iff $f$ is the limit of a comp. seqn. 
+$\{f_s\}$ which has a modulus $m \le_T f$.
+
+\begin{proof}
+ (=>) $f \equiv_T A$, $A$ c.e.
+Modulus lemma => ex. mod $m \le_T A$ for $f$ 
+
+(<=) $f = \lim_s f_s$ with mod $m \le_T A$.
+
+Def: c.e. set $B$ as in pf. of Limit Lemma
+then $f \le_T B$
+
+But also $B \le_T m \le_T A \equiv_T f$.
+
+Hence $f \equiv_T B$.
+\end{proof}
+
+\section*{Structure of the T-degrees}
+\newtheorem{postp}{Post's Problem}
+\begin{postp}
+ Do there exists incomplete non-computable degrees?
+
+(.i.e does there exist (c.e) $A$ s.t. $\emptyset <_T A <_T \emptyset'$)
+\end{postp}
+
+Soultion for non-c.e. (Kleene-Post) [1954]
+
+There exist degrees $\utilde{a}, \utilde{b} \le \utilde{0}$
+s.t. $\utilde{a}$ is incomarable with $\utilde{b}$.
+(i.e. $\utilde{a} \not\le_T \utilde{b}$ and $\utilde{b} \not\le_T \utilde{a}$
+implies $\utilde{0} < \utilde{a},\utilde{b} < \utilde{0}'$
+
+Requirements:
+$R_e: A \ne \Phi^B_e$
+$S_e: B \ne \Phi^A_e$
+
+Build $A$ and $B$ by extension of finite intial segments.
+(like forcing constructions).
+
+
+
 \end{document}
 
