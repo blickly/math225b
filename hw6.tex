@@ -43,7 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
-
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 % Umgebung "Lösung"
 \newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
@@ -76,18 +82,19 @@
 \begin{center}
 {\LARGE Homework 6 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday March 12}
+{\large Author: Ben Lickly \\ Due: Thursday March 12}
 \end{center}
 
-\Aufg
+\problem{
 Show that there is a uniform procedure such that given $\emptyset^{(n)}$ for any $n$, we can calculate $n$, i.e.\ there exists a $z$ such that
 \[
 	\text{for all $n$ }, \Phi_z^{\emptyset^{(n)}}(0) = n.
 \]
+}
 
-\Aufg 
+\problem{ 
 \begin{alist}
 	\item[a] Let $\{A_y\}_{y \in \Nat}$ be any sequence of sets. Define the \emph{infinite join} 
 	\[
@@ -97,19 +104,19 @@ Show that there is a uniform procedure such that given $\emptyset^{(n)}$ for any
 	
 	\item[b] Given a set $A$, let $A^{(\omega)}$ be defined as $\oplus \{A^{(n)}\}_{n \in \Nat}$. Show that for any $A$ there does not exist a set $B$ such that $A^{(\omega)} \equiv_m B'$.
 \end{alist}
+}
 
 
-
-\Aufg 
+\problem{ 
 \begin{alist}
 	\item[a] Prove that if $B \leq_m A$ and $A = \emptyset^{(n)}$ for some $n \geq 1$, then $B \leq_1 A$.
 	
 	\item[b] Prove that if $B = \emptyset^{(n)}$ for some $n \geq 1$, and $B \leq_m A$, then $B \leq_1 A$.
 \end{alist}
-
+}
 
 	
-\Aufg 
+\problem{ 
 Define the \emph{weak jump} as
 \[
 	H_A = \{ x \colon W_x \cap A \neq \emptyset \}.
@@ -119,10 +126,10 @@ Prove that if $A$ is $\Pi_n$-complete, then $H_A$ is $\Sigma_{n+1}$-complete. Co
 	H_{\operatorname{Inf}} = \{ x \colon \exists y \: (y \in W_x \: \wedge \: W_y \text{ is infinite}) \}
 \]
 is $\Sigma_3$-complete.
- 
+}
 
 
-\Aufg[*]
+\problem[*]{
 Recall that $2^\omega$ denotes the space of all infinite binary sequences. By identifying sets with their characteristic function, we can see $2^\omega$ as $\mathcal{P}(\Nat)$. The \emph{basic open sets} are given as
 \[
 	[\sigma] = \{ A \in 2^\omega \colon \sigma \subset A \}, \text{ where $\sigma$ is a finite binary string }
@@ -134,7 +141,7 @@ A set $X \subseteq 2^\omega$ has \emph{measure zero} if for any $\epsilon > 0$ t
 Show that if $A$ is not computable, then $\{B \colon B \geq_T A\}$ has measure zero.
 
 [\emph{Remark:} You may want to consult some analysis text if you are not familiar with measure theory. In particular, look for the \emph{Lebesgue Density Theorem}.]
- 
+}
 
 
 
