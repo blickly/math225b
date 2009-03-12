@@ -1,6 +1,11 @@
+# Temporary files
 *.aux
 *.log
 *.pdfsync
 *.dvi
 *.backup
 *~
+
+# Compiled PDFs
+hw*.pdf
+lectures/*notes.pdf
