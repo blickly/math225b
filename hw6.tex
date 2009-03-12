@@ -16,9 +16,7 @@
 %\usepackage{mathptmx} 
 \usepackage{enumerate}
 
-
 \usepackage{pdfsync}
-
 
 % Deutsche Texte
 \usepackage[applemac]{inputenc}
@@ -143,7 +141,15 @@ Show that if $A$ is not computable, then $\{B \colon B \geq_T A\}$ has measure z
 [\emph{Remark:} You may want to consult some analysis text if you are not familiar with measure theory. In particular, look for the \emph{Lebesgue Density Theorem}.]
 }
 
+Assume we have an $A$ that is not computable.  This means that $K \le_T A$.
 
+Now let $X = \{B \colon B \geq_T A \}$.  We want to show that $X$ has measure zero.
+
+To do this, we will construct a set of strings,
+$\{\sigma_i \colon i \in \Nat\}$, such that:
+\[
+	X \subseteq \bigcup_{i \in \Nat} [\sigma_i] \quad \text{ and } \quad \sum_{i \in \Nat} 2^{-|\sigma_i|} < \epsilon.
+\]
 
 \end{document}
 
