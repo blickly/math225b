@@ -1,0 +1,6 @@
+*.aux
+*.log
+*.pdfsync
+*.dvi
+*.backup
+*~
