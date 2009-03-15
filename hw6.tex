@@ -92,6 +92,26 @@ Show that there is a uniform procedure such that given $\emptyset^{(n)}$ for any
 \]
 }
 
+Let $e_0$ be the G\"odel numbering of any total Turing machine.
+
+Let $f(n)$ be an oracle Turing machine program that does the following:
+
+If $n = 0$, look at the tape at position $e_0$.
+        If $tape[e_0] = 1$, return
+        If $tape[e_0] = 0$, go into an infinite loop
+
+Otherwise, find the G\"odel numbering of $f(n-1)$, call it $e'$.
+Now look at the tape at position $e'$:
+        If $tape[e'] = 1$, return
+        If $tape[e] = 0$, go into an infinite loop
+
+Now our overall uniform procedure is as follows:
+\begin{verbatim}
+for x in 0 to \infty
+  let e_x be the godel number of f(x)
+      if e_x is not on the tape, return x
+\end{verbatim}
+
 \problem{ 
 \begin{alist}
 	\item[a] Let $\{A_y\}_{y \in \Nat}$ be any sequence of sets. Define the \emph{infinite join} 
