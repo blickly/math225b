@@ -92,25 +92,41 @@ Show that there is a uniform procedure such that given $\emptyset^{(n)}$ for any
 \]
 }
 
-Let $e_0$ be the G\"odel numbering of any total Turing machine.
+%Let $e_0$ be the G\"odel numbering of an Oracle Turing machine that
+%halts immediately without looking at either of its tapes.
 
-Let $f(n)$ be an oracle Turing machine program that does the following:
+Let $\Psi_p^A(n,x)$ be an Oracle Turing machine program, as defined below.
+Since $p$ is fixed, by the S-m-n theorem, there exists a computable function
+$f$, such that $\Psi_{f(n)}^A(x) = \Psi_p^A(n,x)$.
+Since they are equivalent, we choose to define
+the latter function for simplicity.
 
-If $n = 0$, look at the tape at position $e_0$.
-        If $tape[e_0] = 1$, return
-        If $tape[e_0] = 0$, go into an infinite loop
+We define $\Psi_{f(n)}^A(x)$ as follows:
+%We will define $\Psi_p^A(n,x)$ as follows:
+If $n = 0$, we define a simple function that is total (and thus $f(0) \in K$).
+\[
+\Psi_{f(0)}^A(x) = 0
+\]
+%as follows:
+%        If $tape[e_0] = 1$, return
+%        If $tape[e_0] = 0$, go into an infinite loop
+Otherwise, we will use the G\"odel numbering of $\Psi_{f(n-1)}^A(n-1,x)$:
+\[
+\Psi_{f(n)}^A(x) = \begin{cases}
+                0               &\text{ if $A[f(n-1)] = 1$} \\
+                \uparrow        &\text{ if $A[f(n-1)] = 0$} \\
+\end{cases}
+\]
 
-Otherwise, find the G\"odel numbering of $f(n-1)$, call it $e'$.
-Now look at the tape at position $e'$:
-        If $tape[e'] = 1$, return
-        If $tape[e] = 0$, go into an infinite loop
+%Otherwise, we will use the G\"odel numbering of $f(n-1)$, call it $e'$.
+%Now look at the tape at position $e'$:
+%        If $tape[e'] = 1$, return
+%        If $tape[e] = 0$, go into an infinite loop
 
 Now our overall uniform procedure is as follows:
-\begin{verbatim}
-for x in 0 to \infty
-  let e_x be the godel number of f(x)
-      if e_x is not on the tape, return x
-\end{verbatim}
+\[
+\Phi_z^{A}(y) = (\mu x) ( f(x) \not\in A )
+\]
 
 \problem{ 
 \begin{alist}
