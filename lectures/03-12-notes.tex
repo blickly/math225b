@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal} 
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+\author{Ben Lickly}
+\date{March 12, 2009}
+\title{Math 225 Notes}
+\begin{document}
+\maketitle
+
+\section*{Kleene-Post Theorem [1954]}
+There ex. T-degrees $\utilde{a},\utilde{b} \le \utilde{0}'$, s.t.
+$\utilde{a}$ and $\utilde{b}$ are T-incomparable 
+(This implies
+$\utilde{0} \le \utilde{a},\utilde{b} \le \utilde{0}'$).
+
+\begin{proof}
+  Construct sets. $A, B \le_T \emptyset'$
+  in stages by \emph{finite extension}.
+
+\begin{align*}
+  \chi_A = \bigcup_s f_s \qquad \chi_B = \bigcup_s g_s \\
+  f_s, g_s \le_T \emptyset' \text{ finite strings of length $\ge s$} \\
+\end{align*}
+$\left\{f_s\right\}, \left\{g_s\right\}$ are $\emptyset'$-computable sequences
+\[
+f_s \subset f_{s+1} \qquad 
+g_s \subset g_{s+1}
+\]
+This implies $A, B \le_T \emptyset'$, since e.g. to decide $x \in A$ comp. $s$ s.t. $|f_s| \ge x$.
+
+\subsection*{Requirements}:
+\begin{align*}
+  R_{e,0}: A \ne \Phi^B_e \\
+  R_{e,1}: B \ne \Phi^A_e \\
+\end{align*}
+
+\subsection*{Construction}
+ Stage $s$: \[
+ f_s = g_s = \emptyset \text{ (<= empty string)}
+ \]
+
+ Stage $s+1$ = $2e + 1$: Satisfy $R_{e,0}$
+
+ Let $n = |f_s|$. (i.e. $A(n)$ is not yet fixed)
+
+ Now use $\emptyset'$-oracle to test whether
+ \begin{equation}
+   (\exists \sigma)(\exists t)\ [\sigma \supset g_s \wedge \Phi^\sigma_{e,t}(n) \downarrow]
+   \label{star}
+ \end{equation}
+
+ If (\ref{star}) holds: 
+ let $\langle \sigma^*, t^* \rangle$ be least pair
+ satisfying (\ref{star}) and set:
+\begin{align*}
+  g_{s+1} = \sigma^* \\
+  f_{s+1} = f_s \frown \left(1 - \Phi^{\sigma^*}_{e,t^*}(n) \right) \\
+\end{align*}
+  hence $f_{s+1}(n) = A(n)$ is not the value computed by $\Phi^{g_{s+1}}_e(n)$,
+  and hence by use principle, not value computed by $\Phi^B_e(n)$.
+
+  If (\ref{star}) does not hold, let:
+  \begin{align*}
+    g_{s+1} = g_s \frown 0 \\
+    f_{s+1} = f_s \frown 0 \\
+  \end{align*}
+  (no danger of having $\Phi^B_e(n) \downarrow$, so not action required)
+
+  Stage $s+1 = 2e + 2$:
+  Satisfy $R_{e,1}$, proceed as above with roles of figs interchanged
+\end{proof}
+
+\subsubsection*{Q: Can we make $A,B$ c.e.?}
+Yes. Friedberg, Muchnik.
+Finite injury method.
+
+\section*{Forcing construction}
+$\mathbb{P}$ partial order (i.e. transitive and reflexive)
+
+$p \ge q$ we say ``$q$ refines $p$'' or ``$q$ extends $p$''
+
+\defn Let $D \subset \mathbb{P}$,
+$D$ is \emph{open} if f.all $p,q \in \mathbb{P}$
+\[
+(p \in D \text{ and } p \ge q) \text{ implies } q \in D
+\]
+
+\textbf{Remark}: This indeed generated a topology on $\mathbb{P}$.
+
+\defn $D$ is called \emph{dense} if f.all $p \in \mathbb{P}$ there ex. $d \in D$ s.t. $p \ge d$
+
+Exercise: This is eqn. to $D \bigcap Y \ne \emptyset$ f.all non-empty open sets $U$.
+
+
+\subsubsection*{Example}
+$\mathbb{P} = 2^{< \Nat}$ set of all finite binary strings
+%           FIXME: ^what does this mean?
+
+order: prefix order
+\[
+ \sigma \ge \tau \text{ iff } \sigma \subseteq \tau
+\]
+
+canonical correspondence
+\begin{align*}
+  \sigma \leftrightarrow [\sigma] = \left\{X \in s^{\Nat} : \sigma \subset X \right\} \\
+  \text{open subset in } \mathbb{P} \leftrightarrow \text{ open subset of } 2^{\Nat}
+\end{align*}
+
+\subsection*{Filters}
+Subset $G \subset \mathbb{P}$ s.t.
+\begin{enumerate}
+  \item $G \ne \emptyset$
+  \item If $p \ge q$ and $q \in G$ then $p \in G$
+  \item If $p,q \in G$ then ex. $r \in G$ s.t. $p \ge r$ and $q \ge r$ 
+\end{enumerate}
+
+\textbf{Example:}
+$\mathbb{P}$ = subsets of $\Nat$ = $\Pow{\Nat}$
+\[
+        A \ge B \text{ if } A \supseteq B
+\]
+
+Filter: $\left\{A : A \text{ cofinite} \right\}$
+
+$A$ cof. and $B \ge A$, then $B$ is cof.
+$A,B$ cof., then $A \bigcap B \le A,B$ and is cog.
+
+%%Huh, lost here
+
+$\Pow([0,1])$ same ordering \\
+filers: co-countable sets,
+measure 1 sets
+co-meager sets.
+
+\subsubsection*{Generic Filters}
+$\mathcal{D}$ collection of dense open sets in $\mathbb{P}$.
+
+$G$ is $\mathcal{D}$-generic on $\mathbb{P}$ iff 
+$G$ is a filter on $\mathbb{P}$ and f.all $D in \mathcal{D}, G \bigcap D \ne \emptyset$. 
+
+\newtheorem*{thm}{THM}
+\begin{thm}
+Sup $\mathbb{P}$ p.o on $2^{< \Nat}$, $p \in \mathbb{P}$ and $\mathcal{D} = \left\{D_n : n \in \Nat \right\}$
+count. family of dense open subsets of $\mathbb{P}$.
+Then there ex. $G \subseteq \mathbb{P}$ s.t. $p \in G$ and $G$ is a $\mathcal{D}$-generic filter on $\mathbb{P}$
+
+Remark: This just says topological space $\mathbb{P}$ satisfies Baire Category Thm
+\end{thm}
+\begin{proof}
+  Def seqn $(p_n : n \in \Nat)$ by recursion on $n$
+
+  \begin{align*}
+    p_0 &= p \\
+    p_{n+1} &= \text{the (lex) least } \sigma, p_n \ge \sigma \text{ and } \sigma \in D_n
+  \end{align*}
+  $p_{n+1}$ exists since $D_n$ is dense.
+
+  Now complete $(p_n)_{n \in \Nat}$ into filter by letting
+  \[ G = \left\{q \in \mathbb{P} : \exists n\ (q \ge p_n ) \right\} \]
+  Obviosly, $G \bigcap D_n$, f.all $n$
+
+  Exercise $G$ is a filter.
+\end{proof}
+
+\subsubsection*{idea}
+Dense sets: conditions that ``force'' the $e$th requirement to be satisfied.
+
+Generic sets: satisfies all requirementes.
+
+Kleene-Post-construction:
+p.o. $2^{<\Nat} \times 2^{<\Nat}$ with prefix-order
+\[
+(\sigma_0, \sigma_1) \ge ( \tau_0 \tau_1) \text{ iff } 
+        \sigma_0 \subseteq \tau_0 \text{ and } \sigma_1 \subseteq \tau_1
+\]
+
+Requirement sets
+$e \in \Nat, i \in \{0,1\}$ 
+
+\[
+\mathcal{D}_{e,i} =\left\{  
+(\tau_0, \tau_1): \text{ for some $x$, }
+\Phi^{\tau_{1-i}}_e(x) \downarrow \ne \tau_i ( \Conj(x))
+\text{ or f.all } \tau \le \tau_{1-i} \ \Phi^\tau_e(x) \uparrow \right\}
+\]
+every $(\tau_0, \tau_1) \in \mathcal{D}$ \emph{forces} that 
+$R_{e,i}$ is satisfied by any infinite extension of $(\tau_0, \tau_1)$
+
+we write $(\fixme$
+
+
+Lemma: $\mathcal{D}_{(e,i)}$ is dense in $2^{<\Nat} \times 2^{<\Nat}$
+
+$\left\{\mathcal{D}_{(e,i)}\right\}_{e,i}$ is countable.
+-> exists $\left\{\mathcal{D}_{(e,i)}\right\}$-generic filter
+$G \subseteq \mathbb{P}$
+
+
+
+Exercise:
+$G$ generic filter, 
+for this p.o.
+
+The elements of $G$ are linearly ordered so they define a pair of reals $(A,B)$
+
+\[
+\bigcup_(\sigma_0, \sigma_1) \in G \fixme
+\]
+\end{document}
