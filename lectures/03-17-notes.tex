@@ -42,4 +42,193 @@
 \begin{document}
 \maketitle
 
+\section{Minimal degree theorem}
+
+\newtheorem{mindeg}{Minimal Degree Theorem}
+\begin{mindeg}
+  There exists a degree $\utilde{a} > \utilde{0}$ s.t. 
+  there is no degree $\utilde{b}$ with $\utilde{0} < \utilde{b} < \utilde{a}$
+\end{mindeg}
+\begin{proof}
+  (Idea:) Forcing with perfect computable trees.
+\end{proof}
+
+\subsection{Trees
+(over $2^{<\Nat}$)}
+
+``simple'' representation:
+a tree $T$ is a subset of $2^{<\Nat}$ closed under intial segments
+
+\defn $A \in 2^\Nat$ is an \emph{infinite branch} or \emph{path} through $T$
+if f.all $n, A \lceil n \in T$.
+
+$[T]$ denotes the set of infinite branches through $T$.
+
+\textbf{Alternate representation}:
+Partial map $T: 2^{<\Nat} \rightarrow 2^{<\Nat}$ s.t.
+\begin{align*}
+  &\text{(1)}&
+     \forall \sigma,\tau 
+        \left(T(\sigma)\downarrow \wedge \tau \subseteq \sigma \rightarrow
+             (T(\tau)\downarrow \wedge T(\tau) \subseteq T(\sigma)) \right) \\
+  &\text{(2)}&
+     \forall \sigma \left(T(\sigma \frown 0) \downarrow \rightarrow
+        (T(\sigma \frown 0)\downarrow \wedge T(\sigma \frown 0) | %incompatible
+                T(\sigma \frown 1)) \right) \\
+\end{align*}
+
+Wlog $T$ preserves lexicographical ordering of strings
+
+\defn A tree is \emph{prefect} if $dom(T)$ is $2^{<\Nat}$.
+(From now on, we will be dealing only with perfect trees.)
+
+\subsubsection{Notation for trees}
+
+\defn $\tau$ is \emph{on $T$} if, f.some $\sigma$, $T(\sigma) = \tau$.
+
+$\tau$ is compatible with $T$ if there is a 
+$\tau^* \supseteq \tau$ that is on $T$.
+
+\defn $T^*$ is a \emph{subtree} of $T$ if $rug(T^*) \subseteq rug(T)$.
+
+Given tree $T$, $\sigma \in 2^{<\Nat}$
+\[
+ T_\sigma(\tau) = T(\sigma\frown\tau)
+\]
+
+\subsection{Forcing notion}
+$\mathcal{T}_c$ set of all (computable) perfect trees, 
+ordered by the subtree relation.
+(i.e. $T \ge T^*$ if $T \supseteq T^*$)
+
+computable: $T$ (as a mapping $2^{<\Nat} \rightarrow 2^{\Nat}$ is computable)
+
+\newtheorem{genex}{Exercise} 
+\begin{genex}
+  Generic Existence Thm for countable families of dense sets holds.
+\end{genex}
+(Exercise)
+
+We want to construct sets of natural numbers.
+A generic filter , however, is a set of trees.
+How do we get from filter to subset of $\Nat$?
+
+Given $G \subseteq \mathcal{T}_c$, define $\mathcal{A}_G \subseteq 2^\Nat$ (i.e subset of $\Pow{\Nat}$)
+\[
+A \in \mathcal{A}_G: \Leftrightarrow \text{ f.all } T \in G, A \in [T]
+\]
+\[
+\text{ i.e. }
+\mathcal{A}_G = \bigcap_{T \in G} [T]
+\]
+
+\newtheorem{lem}{Lemma}
+\begin{lem}
+  Let $\mathcal{C}$ be a collection of dense sets 
+  and suppose $G$ is $\mathcal{C}$-generic.
+  Then $\mathcal{A}_G \ne \emptyset$
+\end{lem}
+\begin{proof}
+  Inductively construct element $A \in \bigcap_{T \in G} [T]$
+
+  Let $\sigma_0 = \emptyset$.
+
+  Suppose $\sigma_n$ has been defined s.t. f. $i\le n$,
+  $\sigma_i$ is compatible with all $T \in G$
+  and $\sigma_0 \subset \sigma_1 \subset \dots \subset \sigma_n$.
+
+  Assume there sdoes not exist $k \in \left\{0,1\right\}$ s.t.
+  $\sigma_n \frown k$ compatible with all $T \in G$.
+
+  Choose $T_0 \in G$ s.t. $\sigma_n \frown 0$ s not compatible with $T_0$.
+  Choose $T_1 \in G$ s.t. $\sigma_n \frown 1$ s not compatible with $T_1$.
+
+  Since $G$ is generic, there exist perfect $T^*$ common
+  refinement for $T_0, T_1$.
+  This is impossible, since $T^*$ cannot extend $\sigma_n$,
+  but every perfect tree has to extend any string compatible with it.
+\end{proof}
+\subsection{Requirements for minimal degree}
+
+Requirement set $\mathcal{R}$:
+\begin{align*}
+\text{($A$ not comp) }  
+  &R_e:& \chi_A \ne \varphi_e \\
+\text{(nothing between 0 and $A$) }  
+  &Q_e:& \text{If } \Phi^A_e \text{ is total then either }
+        \Phi^A_e \text{ is computable or } A \le_T \Phi^A_e
+\end{align*}
+
+\newcommand{\forces}{\Vdash}
+\defn $T$ \emph{forces} $R \in \mathcal{R}$ ($T \forces R$), 
+if all $A \in [T]$ satisfy $T$.
+
+\newtheorem{densitylem}{Lemma (Density for $R_e$)}
+\begin{densitylem}
+  Given $T \in \mathcal{T}_c$, there exists subtree $T^*$ of $T$
+  s.t. $T^* \forces R_e$.
+\end{densitylem}
+\begin{proof}
+  If $\varphi_e$ is not total, choose $T^* = T$.
+
+  Ass. $\varphi_e$ is total.
+
+  By def. there ex. $x$ s.t.
+  \[
+      T(0)    (x) + T(1)(x)
+  \] % ^string ^xth bit
+
+  Only one of $T(0), T(1)$ can be compatible with $\varphi_e$.
+
+  Choose one which is not, say $i$, and set
+  \[
+  T^* = T_{\langle i\rangle<++>} % string of lenth 1
+  \]
+\end{proof}
+
+\newtheorem{densityqe}{Density for $Q_e$}
+\begin{densityqe}
+  Let $\sigma,\tau,\varrho \in 2^{<\Nat}$
+
+  $(\sigma,\tau)$ is an \emph{e-splitting} of $\varrho$ if
+  \[
+  \varrho \subset \sigma,\tau
+  \]
+  and for some $ x \in \Nat$, 
+  $\Phi^\sigma_e(x)\downarrow \ne \Phi^\tau_e(x)\downarrow$
+
+
+  A tree $T$ is \emph{e-splitting} if f.all $\sigma\in 2^{<\Nat}$
+  \[
+       \left(
+        T(\sigma\frown 0), T(\sigma\frown 1)
+        \right) \text{ is an e-splitting of $T(\sigma)$}
+  \]
+\end{densityqe}
+
+\textbf{CRUCIAL FACT}
+Sup $T \in \mathcal{T}_c$
+
+Let $A \in [T]$ s.t. $\Phi^A_e$ is  total.
+
+Then
+\begin{enumerate}
+  \item If there si no e-splitting on $T$,
+    then $\Phi^A_e$ is computable.
+  \item If $T$ is e-splitting, then $A \le_T \Phi^A_e$. 
+\end{enumerate}
+
+\newtheorem{existsdeg}{THM}
+\begin{existsdeg}
+  There exists a degree $\utilde{a} > 0$ s.t. 
+  there is no degree $\utilde{b}$ s.t. $\utilde{0} < \utilde{b} < \utilde{a}$.
+\end{existsdeg}
+
+\[
+\Phi_e^{T(\sigma\frown 0)}(x)\downarrow \ne 
+\Phi_e^{T(\sigma\frown 1)}(x)\downarrow
+\]
+$\Phi_e^{A}(x)$ agrees with one of them.
+
+
 \end{document}
