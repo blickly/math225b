@@ -44,7 +44,7 @@
 
 \section{Minimal degree theorem}
 
-\newtheorem{mindeg}{Minimal Degree Theorem}
+\newtheorem*{mindeg}{Minimal Degree Theorem}
 \begin{mindeg}
   There exists a degree $\utilde{a} > \utilde{0}$ s.t. 
   there is no degree $\utilde{b}$ with $\utilde{0} < \utilde{b} < \utilde{a}$
@@ -73,7 +73,7 @@ Partial map $T: 2^{<\Nat} \rightarrow 2^{<\Nat}$ s.t.
              (T(\tau)\downarrow \wedge T(\tau) \subseteq T(\sigma)) \right) \\
   &\text{(2)}&
      \forall \sigma \left(T(\sigma \frown 0) \downarrow \rightarrow
-        (T(\sigma \frown 0)\downarrow \wedge T(\sigma \frown 0) | %incompatible
+        (T(\sigma \frown 1)\downarrow \wedge T(\sigma \frown 0) | %incompatible
                 T(\sigma \frown 1)) \right) \\
 \end{align*}
 
@@ -103,7 +103,7 @@ ordered by the subtree relation.
 
 computable: $T$ (as a mapping $2^{<\Nat} \rightarrow 2^{\Nat}$ is computable)
 
-\newtheorem{genex}{Exercise} 
+\newtheorem*{genex}{Exercise} 
 \begin{genex}
   Generic Existence Thm for countable families of dense sets holds.
 \end{genex}
@@ -122,7 +122,7 @@ A \in \mathcal{A}_G: \Leftrightarrow \text{ f.all } T \in G, A \in [T]
 \mathcal{A}_G = \bigcap_{T \in G} [T]
 \]
 
-\newtheorem{lem}{Lemma}
+\newtheorem*{lem}{Lemma}
 \begin{lem}
   Let $\mathcal{C}$ be a collection of dense sets 
   and suppose $G$ is $\mathcal{C}$-generic.
@@ -137,7 +137,7 @@ A \in \mathcal{A}_G: \Leftrightarrow \text{ f.all } T \in G, A \in [T]
   $\sigma_i$ is compatible with all $T \in G$
   and $\sigma_0 \subset \sigma_1 \subset \dots \subset \sigma_n$.
 
-  Assume there sdoes not exist $k \in \left\{0,1\right\}$ s.t.
+  Assume there does not exist $k \in \left\{0,1\right\}$ s.t.
   $\sigma_n \frown k$ compatible with all $T \in G$.
 
   Choose $T_0 \in G$ s.t. $\sigma_n \frown 0$ s not compatible with $T_0$.
@@ -161,9 +161,9 @@ Requirement set $\mathcal{R}$:
 
 \newcommand{\forces}{\Vdash}
 \defn $T$ \emph{forces} $R \in \mathcal{R}$ ($T \forces R$), 
-if all $A \in [T]$ satisfy $T$.
+if all $A \in [T]$ satisfy $R$.
 
-\newtheorem{densitylem}{Lemma (Density for $R_e$)}
+\newtheorem*{densitylem}{Lemma (Density for $R_e$)}
 \begin{densitylem}
   Given $T \in \mathcal{T}_c$, there exists subtree $T^*$ of $T$
   s.t. $T^* \forces R_e$.
@@ -182,11 +182,11 @@ if all $A \in [T]$ satisfy $T$.
 
   Choose one which is not, say $i$, and set
   \[
-  T^* = T_{\langle i\rangle<++>} % string of lenth 1
+  T^* = T_{\langle i\rangle} % string of lenth 1
   \]
 \end{proof}
 
-\newtheorem{densityqe}{Density for $Q_e$}
+\newtheorem*{densityqe}{Density for $Q_e$}
 \begin{densityqe}
   Let $\sigma,\tau,\varrho \in 2^{<\Nat}$
 
@@ -213,12 +213,12 @@ Let $A \in [T]$ s.t. $\Phi^A_e$ is  total.
 
 Then
 \begin{enumerate}
-  \item If there si no e-splitting on $T$,
+  \item If there is no e-splitting on $T$,
     then $\Phi^A_e$ is computable.
   \item If $T$ is e-splitting, then $A \le_T \Phi^A_e$. 
 \end{enumerate}
 
-\newtheorem{existsdeg}{THM}
+\newtheorem*{existsdeg}{THM}
 \begin{existsdeg}
   There exists a degree $\utilde{a} > 0$ s.t. 
   there is no degree $\utilde{b}$ s.t. $\utilde{0} < \utilde{b} < \utilde{a}$.
