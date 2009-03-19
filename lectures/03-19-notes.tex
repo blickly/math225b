@@ -1,0 +1,338 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal} 
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+\author{Ben Lickly}
+\date{March 19, 2009}
+\title{Math 225 Notes}
+\begin{document}
+\maketitle
+
+perfect trees: $T: 2^{<\Nat} \rightarrow 2^{<\Nat}$
+\begin{align*}
+  &R_e:& \chi_A \ne \varphi_e \\
+  &Q_e:& \text{If } \Phi^A_e \text{ is total then either }
+        \Phi^A_e \text{ is computable or } A \le_T \Phi^A_e
+\end{align*}
+
+\defn $(\sigma,\tau)$ is an \emph{e-splitting} of $\varrho$ if
+  \[
+  \varrho \subset \sigma,\tau
+  \]
+  and for some $x$, 
+  $\Phi^\sigma_e(x)\downarrow \ne \Phi^\tau_e(x)\downarrow$
+
+  A tree $T$ is \emph{e-splitting} if f.all $\varrho$
+  \[
+       \left(
+        T(\sigma\frown 0), T(\sigma\frown 1)
+        \right) \text{ is an e-splitting of $T(\sigma)$}
+  \]
+  % FIXME: Question: What would a not e-splitting tree look like?
+
+  
+\textbf{Crucial fact}
+Sup $T \in \mathcal{T}_c$.
+Let $A \in [T]$ s.t. $\Phi^A_e$ is  total.
+
+Then
+\begin{enumerate}[(1)]
+  \item If there is no e-splitting on $T$,
+    then $\Phi^A_e$ is computable.
+  \item If $T$ is e-splitting, then $A \le_T \Phi^A_e$. 
+\end{enumerate}
+
+\begin{proof}
+  (1) Given $x$, we have to compute $\Phi^A_e(x)$.
+  
+  Find $\sigma$ s.t. $\Phi^\varrho_e(x)\downarrow$.
+  Such $\sigma$ must exist, since $\Phi^A_e$ is total
+  and $A$ is an inf. path through $T$.
+
+  There ex. $\tau$ on $T$, $\tau\subset A$ st. 
+  $\Phi^\tau_e(x) \downarrow = \Phi^A_e(x) \downarrow$. 
+
+  Since there are no e-splittings on $T$, we have 
+  $\Phi^\sigma_e(x) = \Phi^\tau_e(x) = \Phi^A_e(x)$.
+\end{proof}
+
+\begin{proof}
+  (2) Given $y \in \Nat$, we have to compute $A(y)$ 
+  using $\Phi^A_e$ as an oracle.
+
+  If $y < |T(\emptyset)|$, then since $T(\emptyset) \subset A$
+  we can use the computability of $T$ to compute $A(y)$.
+
+  Now assume we have found $\sigma \in 2^{<\Nat}$ s.t. $|\sigma| = n$
+  and $T(\sigma) \subset A$.
+  ( and hence can compute $A(y)$ for $ y < |T(\sigma)|$)
+
+  By assumption 
+      $ \left(
+        T(\sigma\frown 0), T(\sigma\frown 1)
+        \right) 
+      $
+      is an e-splitting for $T(\sigma)$
+
+      We can eff. find $x$ (by dovetailing) s.t. 
+      \[
+        \Phi_e^{T(\sigma\frown 0)}(x)\downarrow 
+    \ne \Phi_e^{T(\sigma\frown 1)}(x)\downarrow
+      \]
+
+
+      $\Phi_e^A(x)$ is equal to \textbf{exactly} one of 
+        $\Phi_e^{T(\sigma\frown 0)}(x)$ and
+        $\Phi_e^{T(\sigma\frown 1)}(x)$.
+
+     By use principle, if $T(\sigma \frown i) \subset A$ and 
+     $\Phi_e^{T(\sigma\frown i)}(x)\downarrow$, 
+     then $\Phi_e^{T(\sigma\frown i)}(x) = \Phi^A_e(x)$.
+
+     By comparing both $\Phi_e^{T(\sigma\frown i)}(x)$ 
+     with the oracle $\Phi^A_e$,
+     find which cof. $T(\sigma\frown 0)$, $T(\sigma\frown 1)$
+     is an initial segment of $A$.
+\end{proof}
+
+\newtheorem*{splitlem}{LEMMA}
+\begin{splitlem}
+  Let $T \in \mathcal{T}_c$ and assume
+  \begin{align*}
+    \forall \varrho \exists \sigma, \tau ( (T(\sigma), T(\tau)) \text{ is an e-splitting of $T(\varrho)$})
+  \end{align*}
+  \label{eq:star}
+  Then there ex. a comp subtree $T^*$ (call it $T^{SP}_e$) of $T$ that 
+  is e-splitting.
+\end{splitlem}
+\begin{proof}
+  Exercise
+\end{proof}
+
+Now we can prove density for $Q_e$ requirements.
+
+\newtheorem*{lem2}{LEMMA}
+\begin{lem2}
+  Given $T \in \mathcal{T}_c$ and $e \in \Nat$, 
+  there ex. $T^* \in \mathcal{T}_c$ s.t.
+  $T^*$ is a subtree of $T$ and $T^* \forces Q_e$
+\end{lem2}
+\begin{proof}
+  \textbf{Case 1}: There ex. $\sigma$ s.t. there are no 
+  e-splittings above $\sigma$, i.e. on $T_\sigma$.
+
+  Let $T^* = T_\sigma$.
+
+  \textbf{Case 2}: No such $\sigma$ exists.  Then \ref{eq:star} holds and
+  we lwt $T^* = T^{SP}_e$
+
+  In both cases $T^*$ is a comp. subtree of $T$,
+  and the crucial fact assures that $T^* \forces Q_e$.
+\end{proof}
+
+\newtheorem*{mintdeg}{THM}
+\begin{mintdeg}
+  THere exist minimal T-degrees
+\end{mintdeg}
+\begin{proof}
+  For $R \in \mathcal{R}$ ($\mathcal{R}$ is a reqn. set)
+
+  Let 
+  $C_R = \left\{T\in \mathcal{T}_c : T \forces R \right\}$
+  and let 
+  $\mathcal{C} = \left\{C_R : R \in \mathcal{R} \right\}$
+                % showed dense in p.o.
+
+  There exists a $\mathcal{C}$-generic set $G \in \mathcal{T}_c$.
+  
+  Fix $A \in A_G$.
+  Then $A$ is inf. path in $A_G$
+\[
+G \text{ generic } \rightarrow G \cap C_R \ne \emptyset \text{ f.all } R \in \mathcal{R}`
+\]
+\fixme
+
+$A$ is a path through every tree in $G$
+in particular, through a tree in $G \cap C_R$
+
+$\Rightarrow A$ satisfies $R$.
+\end{proof}
+
+\section{Theories and Decidability}
+G\"odel numbers of formulas.
+
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
+
+\[
+\mathcal{L}_A = \left\{+, *, < , 0, 1\right\}
+\]
+
+Terms:
+\begin{align*}
+  \gn{0} &=& 1 \\
+  \gn{1} &=& 5 \\
+  \gn{x_i} &=& 5^2 * 7 ^i \\
+  \gn{s+t} &=& 5^3 * 7^{\gn{s}} * 11^{\gn{t}} \\
+  \gn{s*t} &=& 5^4 * 7^{\gn{s}} * 11^{\gn{t}} \\
+\end{align*}
+
+Formulas:
+\begin{align*}
+  \gn{s=t} &=& 3 * 7^{\gn{s}} * 11^{\gn{t}} \\
+  \gn{s<t} &=& 3 * 5 * 7^{\gn{s}} * 11^{\gn{t}} \\
+  \gn{\neg \varphi} &=& 3 * 5^2 * 7^{\gn{\varphi}} \\
+  \gn{\varphi \rightarrow \psi} &=& 3 * 5^3 * 7^{\gn{\varphi}} * 11^{\gn{\psi}} \\
+  \gn{\exists x_i \varphi} &=& 3 * 5^4 * 7^i * 11^{\gn{\phi}} \\
+\end{align*}
+
+Sequences of formulas
+\[
+ \langle \varphi_0, \dots, \varphi_n \rangle 
+ = p_0^{\gn{\varphi_0} + 1} * \dots * p_n^{\gn{\varphi_n} + 1}
+\]
+
+Convenient distintion between GV's of terms formuals, sqn of formulas.
+
+\textbf{Important}: mapping is 1-1 and ``effective''
+in particular set of GN's is a compu subset of $\Nat$
+
+inverse is also effective
+
+Possible for other countable languages
+
+
+\textbf{Theoreis}
+$T$ set of $\mathcal{L}_A$-sentences deductively closed.  
+i.e. if $T \models \sigma$ then $\sigma \in T$.
+
+
+$T$ is \emph{consistent} if $T$ has a model.
+
+$T$ is \emph{effectively axiomatizable} fi there ex a comp set of sentences 
+$\Delta$ s.t.
+\[
+T = \left\{\sigma : \Delta \models \sigma \right\}
+\]
+
+T is \emph{complete} if f.all senteces,
+\[
+\sigma \in T \text{ or } \neg \sigma \in T
+\]
+
+Fix a complete decidable proof system for first order logic.
+i.e.
+\newcommand{\proves}{\vdash}
+\[
+\Gamma \proves \varphi \text{ iff } \Gamma \models \varphi
+\]
+
+$\Gamma$-proofs are finite sen. of formulas $<\varphi_0, \dots, \varphi_n >$.
+
+\[
+\varphi_k \in \Gamma \cap \text{Axioms}
+\]
+or there ex. $i,j < k$, s.t.
+\[
+\varphi_i = \varphi_j \rightarrow \varphi_k
+\]
+
+Assume $\Delta$ effectively axiomatized $T$
+
+proof predicate:
+\begin{align*}
+  proof_T(x) \Leftrightarrow x \text{ is GN of seqn. of formulas }
+  \wedge (\forall k > length(x) )
+  \left[ (x)_k \in \Delta \cup \text{Axioms} \vee (\exists i,j < k) \left( (x)_i = \gn{(x)_i \rightarrow (x)_k}\right) \right]
+\end{align*}
+
+\defn
+(bew = provable)
+
+\begin{align*}
+  bew(x,a) \Leftrightarrow proof_T(x) \wedge a =  (x)_{length(x)-1} \\
+  bwb(a) \Leftrightarrow \exists z bew(x,a)
+\end{align*}
+
+\newtheorem*{cethm}{THM}
+\begin{cethm}
+  An effect. exiomatizable theory is c.e
+\end{cethm}
+\begin{proof}
+  Follows from comp. of $bew(.,.)$
+  and the normal form for c.e. sets.
+\end{proof}
+\newtheorem*{decthm}{THM}
+\begin{decthm}
+Every eff. axiom complete theory is decidable (= computable)
+\end{decthm}
+\begin{proof}
+  Clear if $T$ is inconsistent.
+
+  Sup $T$ is consistent.
+  By completeness, $bwb(\neg \varphi) \Leftrightarrow \neg bwb(\varphi)$.
+
+  Let $A = \left\{\varphi : bwb(\varphi)\right\}$ ($A$ is c.e.)
+  $\Conj{A} = \left\{\varphi : \neg bwb(\varphi)\right\} = \left\{\varphi : bwb(\neg \varphi) \right\}
+  $ c.e.
+
+  $\Rightarrow $ is comp. by Complementation Thm.
+\end{proof}
+
+\newtheorem*{notdecthm}{THM}
+\begin{notdecthm}
+  $Th(\Nat)$ is not decidable.
+\end{notdecthm}
+\begin{proof}
+  Every c.e. is $\Sigma_1$-def'able over $\Nat$
+  Hence ther ex. $\varphi_k(x)$ s.t.
+  \[
+  \Nat \models \varphi_k[e] \text{ iff } e \in k
+  \]
+\end{proof}
+
+\newtheorem*{cor}{COR}
+\begin{cor}
+  $Th(\Nat)$ is not eff. axiomatizable
+\end{cor}
+\begin{proof}
+  $Th(\Nat)$ complete
+\end{proof}
+
+$PA$ is incomplete.
+
+\end{document}
