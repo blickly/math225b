@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lösung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 7 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday March 19}
+\end{center}
+
+
+\Aufg 
+Show that if $A$ is $\Sigma_3$, then there exists a computable $f$ such that
+\begin{eqnarray*}
+  x \in A & \iff & W_{f(x)} \text{ cofinite, } \\
+  x \not\in A & \iff & W_{f(x)} \text{ Turing complete. }
+\end{eqnarray*}
+by modifying the construction for $\Sigma_3 \leq_m \operatorname{Cof}$ as indicated in class (coding $K$ into $W_{f(x)}$).
+Give a detailed argument why this yields that $K \leq_T W_{f(x)}$ if $x \not \in A$.
+
+
+\Aufg
+Show that there exists a set $A \leq_T \emptyset'$ such that $A$ is not Turing equivalent to a c.e.\ set. (Hence there exist non-c.e.\ $\Delta_2$-degrees.)
+
+
+
+
+
+\Aufg[*]
+Show that for each $A \geq_T \emptyset'$, there exists a $B$ such that $B' \equiv_T A$.
+
+ 
+
+
+
+\end{document}
+
