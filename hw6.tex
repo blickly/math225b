@@ -139,7 +139,26 @@ Now our overall uniform procedure is as follows:
 	\item[b] Given a set $A$, let $A^{(\omega)}$ be defined as $\oplus \{A^{(n)}\}_{n \in \Nat}$. Show that for any $A$ there does not exist a set $B$ such that $A^{(\omega)} \equiv_m B'$.
 \end{alist}
 }
-
+\begin{alist}
+ \item[a] We can define this Turing reduction in a straightforward manner,
+   simply using the following reduction:
+   \[
+   \Phi_e^A(\langle x, y\rangle) = \Phi_{f(y)}^A(x) 
+   \]
+   In the case that the oracle tape is $C$, 
+   we have $\Phi_e^C = \oplus \{A_y\}$, just as we wanted.
+ \item[b]
+   Using the Jump Theorem, we can translate the $\equiv_m$ into a $\equiv_T$.
+   %
+   Now, assume that for some set $A$, there did exist a $B$ such that
+   $A^{(\omega)} \equiv_T B'$.
+   This would mean that $A^{(n)} \le_T B$, since
+   $A^{(n+1)} \le_T A^{(\omega)} \equiv_T B'$.
+   Since this is true for all $n$, this means that $B$ is a uniform upper
+   bound for $A^{(n)}$, but it is distinct from $A^{(\omega)}$.
+   This contradicts our result from part (a) that $A^{(\omega)}$ was the
+   uniform least upper bound.
+\end{alist}
 
 \problem{ 
 \begin{alist}
