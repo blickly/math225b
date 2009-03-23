@@ -43,7 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
-
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 % Umgebung "Lösung"
 \newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
@@ -76,13 +82,13 @@
 \begin{center}
 {\LARGE Homework 7 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday March 19}
+{\large Author: Ben Lickly \\ Due: Thursday March 19}
 \end{center}
 
 
-\Aufg 
+\problem{ 
 Show that if $A$ is $\Sigma_3$, then there exists a computable $f$ such that
 \begin{eqnarray*}
   x \in A & \iff & W_{f(x)} \text{ cofinite, } \\
@@ -90,18 +96,19 @@ Show that if $A$ is $\Sigma_3$, then there exists a computable $f$ such that
 \end{eqnarray*}
 by modifying the construction for $\Sigma_3 \leq_m \operatorname{Cof}$ as indicated in class (coding $K$ into $W_{f(x)}$).
 Give a detailed argument why this yields that $K \leq_T W_{f(x)}$ if $x \not \in A$.
+}
 
 
-\Aufg
+\problem{
 Show that there exists a set $A \leq_T \emptyset'$ such that $A$ is not Turing equivalent to a c.e.\ set. (Hence there exist non-c.e.\ $\Delta_2$-degrees.)
+}
 
 
 
 
-
-\Aufg[*]
+\problem[*]{
 Show that for each $A \geq_T \emptyset'$, there exists a $B$ such that $B' \equiv_T A$.
-
+}
  
 
 
