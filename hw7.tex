@@ -8,6 +8,7 @@
 \usepackage{amscd,amsbsy}
 \usepackage{txfonts}
 \usepackage[T1]{fontenc} 
+\usepackage{undertilde}
 
 % \usepackage{eulervm}
 \usepackage{eucal} 
@@ -103,7 +104,62 @@ Give a detailed argument why this yields that $K \leq_T W_{f(x)}$ if $x \not \in
 Show that there exists a set $A \leq_T \emptyset'$ such that $A$ is not Turing equivalent to a c.e.\ set. (Hence there exist non-c.e.\ $\Delta_2$-degrees.)
 }
 
+\begin{proof}
+  We will construct the set $A$ in stages by \emph{finite extension}:
+\begin{align*}
+  & \chi_A = \bigcup_s f_s  \\
+  f_s \le_T \emptyset', &\text{ for all finite strings of length $\ge s$} \\
+\end{align*}
+$\left\{f_s\right\}$ is a $\emptyset'$-computable sequence:
+\[
+f_s \subset f_{s+1} 
+\]
+%This implies $A \le_T \emptyset'$, since e.g. to decide $x \in A$ comp. $s$ s.t. $|f_s| \ge x$.
 
+\subsection*{Requirements}
+  We want to show that $A$ is not equivalent to any c.e. set.
+  Since there are countably many c.e. sets, we can order them.
+  Let $B_i$ be the $i$th c.e. set.
+  Formally, we require:
+\begin{align*}
+  R_{e,i}: A \ne \Phi^{B_i}_e \\
+\end{align*}
+
+\subsection*{Construction}
+We need to now construct the intermediate stages $f_s$ such that 
+$
+\chi_A = \bigcup_s f_s
+$.
+
+ Stage $0$: \[
+ f_0 = \emptyset 
+ \]
+
+ Stage $s+1 = e+1$: Satisfy $R_{e}$
+
+ Let $n = |f_s|$. (i.e. $A(n)$ is not yet fixed)
+
+ Now use $\emptyset'$-oracle to test whether
+ \begin{equation}
+   (\exists \sigma)(\exists t)\ [\sigma \subset B_s \wedge \Phi^\sigma_{e,t}(n) \downarrow]
+   \label{star}
+ \end{equation}
+
+ If (\ref{star}) holds: 
+ let $\langle \sigma^*, t^* \rangle$ be least pair
+ satisfying (\ref{star}) and set:
+\begin{align*}
+  f_{s+1} = f_s \frown \left(1 - \Phi^{\sigma^*}_{e,t^*}(n) \right) \\
+\end{align*}
+  hence $f_{s+1}(n) = A(n)$ is not the value computed by $\Phi^{\sigma^*}_e(n)$,
+  and hence by use principle, not value computed by $\Phi^{B_s}_e(n)$.
+
+  If (\ref{star}) does not hold, let:
+  \begin{align*}
+    f_{s+1} = f_s \frown 0 \\
+  \end{align*}
+  (no danger of having $\Phi^{B_s}_e(n) \downarrow$, so not action required)
+\end{proof}
 
 
 \problem[*]{
