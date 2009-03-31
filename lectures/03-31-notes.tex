@@ -34,7 +34,8 @@
 \newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
 
 \newcommand{\forces}{\Vdash}
-\newcommand[1]{\gn}{\ulcorner #1 \urcorner}
+\newcommand{\proves}{\vdash}
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
 \newcommand{\defn}{\textbf{Definition}: }
 \newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
 
@@ -44,4 +45,217 @@
 \begin{document}
 \maketitle
 
+\subsection*{Last Time}
+Used $\Sigma_1$-representability over $\Nat$
+c.e. sets to prove that $Th(\Nat)$ is undecidable
+
+\textbf{COR}: PA consistent $\Rightarrow$ PA is incomplete
+
+More general result:
+\emph{Every} computable, consistent extension of $PA^-$ is incomplete.
+
+Need representability in \emph{theories}.
+
+\defn $f : \Nat^k \rightarrow \Nat$ total
+        and $T \supseteq PA^-$ theory.
+$F$ is \emph{representable in $T$} iff there is an $\mathcal{L}_A$ formula
+$\Theta(x_1, \dots, x_k, y)$ s.t. f.all $\vec{n}\in\Nat^k$,
+\begin{enumerate}[(a)]
+  \item $T \proves \exists !y \Theta(\vec{n},y)$
+  \item if $m = f(\vec{n})$ then $T \proves \Theta(\vec{n}, m)$
+\end{enumerate}
+
+$S \subseteq \Nat^k$ is \emph{representable in $T$} iff 
+there is an $\mathcal{L}_A$-forumla
+$\Theta(x_1, \dots, x_k)$ s.t. f.all $\vec{n} \in \Nat^k$,
+\begin{align*}
+  \vec{n} \in S \Rightarrow T \proves \Theta(\vec{n})
+  \vec{n} \not\in S \Rightarrow T \proves \neg\Theta(\vec{n})
+\end{align*}
+
+\subsection*{Representability Lemma for $PA^-$}
+Every computable function $f: \Nat^k \rightarrow \Nat$
+is \emph{$\Sigma_1$-representable} in $PA^-$ (and hence and extension thereof).
+%        ^ \Theta is \Sigma_1
+
+\begin{proof}
+ By representation theorem (over $\Nat$), $Graph_f$ is
+$\Sigma_1$-def'able over $\Nat$:
+
+Let $\varphi$ be $\Delta_0$ s.t.
+\begin{align*}
+  f(\vec{x}) = y \text{ iff } \Nat \models &\exists z \varphi(\vec{x},y,z) \\
+  &\exists z \varphi( \vec{x} , y ,z) \\ %FIXME: add underlines
+  &\exists z \varphi(z) [\vec{x}, y] \\
+\end{align*}
+
+\defn \[
+\psi(\vec{x}, y, z) = \varphi(\vec{x}, y, z) \wedge \forall u, v \le y+z
+( u+v < y + z \rightarrow \neg\varphi(\vec{x}, u, v) )
+\]
+$\psi$ is $\Delta_0$
+
+Verify (a), (b) for $\Theta$:
+
+\begin{enumerate}
+  \item[(b)]
+    Suppose $k=f(\vec{n})$. Then $k$ is the unique nat. number satisfying
+    \[ \Nat \models \exists z \varphi(\vec{n}, k, z) 
+    \]
+    Let $l$ be lest s.t. $\Nat \models \varphi(\vec{n}, k, l)$
+    Then $\Nat \models \psi(\vec{n},k,l)$
+    Hence $\Nat \models \exists \psi(\vec{n},k,z)$
+
+Recall: Upward absoluteness of $\Sigma_1$ formulas:
+$PA^-$ proves every $\Sigma_1$ formula true in $\Nat$.
+(
+if $\Nat \models \varphi[\vec{a}] \Rightarrow 
+\mathcal{M} \models \varphi[\vec{a}]$ f.all end extensions of $\Nat$
+
+models of $PA^-$ are end.extensions of $PA^-$
+)
+
+Hence $PA^- \proves \exists z \psi(\vec{n},k,z)$
+
+\item[(a)]
+  Sup $k = f(\vec{n})$.
+  Let $l$ be minimal s.t. 
+  $\Nat \models \varphi(\vec{n},k,l)$
+
+  Let $\mathcal{M} \models PA^-$
+
+  Sup $a,b \in \mathcal{M}$ s.t. $\mathcal{M} \models \psi(\vec{n},a,b)$
+
+  \textbf{Show}: $a = k$
+
+  $\varphi$ is $\Delta_0$.  Use absoluteness for $\Delta_0$-formulas
+  $\Nat \models \varphi(\vec{n},k,l)$ hence $\mathcal{M} \models \varphi(\vec{n},k,l)$
+
+  $\mathcal{M}$ end-extension, $<$ is linear.
+  
+\begin{align*}
+  \Rightarrow a,b \le k+l \\
+  \Rightarrow^{\Delta_0-\text{absoluteness}} 
+  \Nat \models \psi(\vec{n},a,b) \\
+  \Rightarrow \Nat \models \varphi(\vec{n},k,l) \\
+  \Rightarrow \Nat \models \exists z \varphi(\vec{n},a,z) \\
+  \Rightarrow f(\vec{n}) = a \\
+  \Rightarrow a = k
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\textbf{COR} If $A \subseteq \Nat^k$ is computable, then $A$ is $\Sigma_1$-represent. in $PA^-$.
+
+\begin{proof}
+  $\chi_A$ is computable
+  Let $\Theta$ be as in Rep Lemma f. funtion
+
+Claim: $\Theta(\vec{x},1)$ represents $A$ in $PA^-$
+\begin{align*}
+  \vec{n} \in A \Rightarrow \chi_A(\vec{n}) = 1 \Rightarrow PA^- \proves \Theta(\vec{n}, 1) \\
+  \vec{n} \not\in A \Rightarrow \chi_A(\vec{n}) = 0 \Rightarrow PA^- \proves \Theta(\vec{n}, 0) \\
+\end{align*}
+by (a), $PA^- \proves \exists !y \Theta(\vec{n},y)$
+thus, is no model $\mathcal{M} \models PA^-$
+thus $PA^- \proves \neg \Theta(\vec{n},1)$
+\end{proof}
+
+\subsection*{Diagonalization Lemma}
+
+Let $T$ be an $\mathcal{L}_A$-theory s.t. all comp. functions are
+$\Sigma_1$-representable, and let $\Theta(x)$ be an $\mathcal{L}_A$-formula.
+
+Then there exists an $\mathcal{L}_A$-sentence $G$ s.t.
+\[
+T \proves G \leftrightarrow \Theta(\gn{G})
+\]
+Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-sentence
+\begin{proof}
+  Let 
+  \iffalse %FIXME: compile error
+  \[
+  diag(n) =
+  \begin{cases}
+   \gn{\forall y ( y=n \rigtarrow \sigma(y))} % FIXME: Underline n
+   &\text{if $n = \gn{\sigma(x)}$ for some $\mathcal{L}_A$ formula $\sigma$} \\
+   0 &\text{ o.w.}
+  \end{cases}
+  \]
+  \fi
+  $diag$ is computable
+
+  Let $\delta(x,y)$ be $\Sigma_1$-representation of $diag(x)$ in $T$.
+
+  Let $\psi(x) = \forall z \left( \delta(x,z) \rightarrow \Theta(z) \right)$
+
+  $n = \psi(x)$
+
+  $G = \forall y \left( y = n \rightarrow \psi(y) \right)$ %FIXME: underline n
+
+  \textbf{Then}: $G$ is the sentence whose GN is $diag(\gn{\psi(x)})$.
+
+  If $\Theta$ is $\Pi_1$, then:
+  \begin{align*}
+    \psi(x) &=& \forall ( \exists \rightarrow \forall) \\
+            &=& \forall \forall \forall (\neg \vee) \qquad (\Pi_1) \\
+            G &=&  \forall y ( \Delta_0 \rightarrow \Pi_1) \qquad (\Pi_1) \\
+  \end{align*}
+
+\begin{align}
+  \label{eq:star}
+  T \proves G \leftrightarrow \psi(\underline{n}) \\
+  T \proves G \leftrightarrow \forall z (\delta(\underline{n}, z) \rightarrow \Theta(z)) \\
+\end{align}
+$\delta$ repres. diag in $T$:
+
+\begin{align*}
+  diag(m) = 
+  \gn{G} \Rightarrow T \proves \delta(\underline{m}, \underline{\gn{G}})
+  \text{ and } T \proves \exists !y \delta(\underline{m},y)
+\end{align*}
+Since $n = \gn{\psi(x)}$ and $\gn{G} = diag(\gn{\psi(x)})$
+thus, $diag(n) = \gn{G}$
+
+Hence 
+\begin{align*}
+  T &\proves& \forall y \left( \delta(\underline{n}, y) \leftrightarrow
+  y = \underline{\gn{G}} \right) \\
+  &\proves& G \leftrightarrow \forall y (y = \underline{\gn{G}} \rightarrow \Theta(y)) \\
+  &\proves& G \leftrightarrow \Theta(\gn{G})
+\end{align*}
+\end{proof}
+
+
+\subsubsection*{Aside}
+\[
+PA^- \proves \exists
+\]
+
+\section*{Godel-Rosser Thm}
+Let $T$ be a computable set of sentences s.t.
+\begin{enumerate}[(a)]
+  \item For no $\mathcal{L}_A$-sent. $\sigma, \sigma \in T$ and $\neg\sigma \in $. ($T$ is simply consistent)
+  \item 
+    \[
+T \supseteq \left\{ \sigma : \sigma \text{ is $\Sigma_1$ or $\Pi_1$ s.t.} PA^- \proves \sigma  \right\}
+    \]
+\end{enumerate}
+Then $T$ is incomplete: there eists $\Pi_1$-sentence $\tau$ s.t.
+$\tau, \neg \tau \not\in T$
+
+\begin{proof}
+  $T$-computable  $\Rightarrow^\text{Repr. Lemma}$ ex. $\Sigma_1$-formula
+  $\Theta(x)$ s.t.
+\begin{align*}
+  \sigma \in T \Rightarrow PA^- \proves \Theta(\gn{\sigma}) \\
+  \sigma \not\in T \Rightarrow PA^- \proves \neg \Theta(\gn{\sigma}) \\
+\end{align*}
+By Diag. Lemma, ex. $\Pi_1$-sent. $\tau$ s.t.
+\[
+PA^- \models \tau \leftrightarrow \neg \Theta( \gn{\tau})
+\]
+Then $\tau \in T$
+$\neg \tau \in T$.
+\end{proof}
 \end{document}
