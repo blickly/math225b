@@ -58,7 +58,7 @@ Need representability in \emph{theories}.
 
 \defn $f : \Nat^k \rightarrow \Nat$ total
         and $T \supseteq PA^-$ theory.
-$F$ is \emph{representable in $T$} iff there is an $\mathcal{L}_A$ formula
+$f$ is \emph{representable in $T$} iff there is an $\mathcal{L}_A$ formula
 $\Theta(x_1, \dots, x_k, y)$ s.t. f.all $\vec{n}\in\Nat^k$,
 \begin{enumerate}[(a)]
   \item $T \proves \exists !y \Theta(\vec{n},y)$
@@ -66,10 +66,10 @@ $\Theta(x_1, \dots, x_k, y)$ s.t. f.all $\vec{n}\in\Nat^k$,
 \end{enumerate}
 
 $S \subseteq \Nat^k$ is \emph{representable in $T$} iff 
-there is an $\mathcal{L}_A$-forumla
+there is an $\mathcal{L}_A$-formula
 $\Theta(x_1, \dots, x_k)$ s.t. f.all $\vec{n} \in \Nat^k$,
 \begin{align*}
-  \vec{n} \in S \Rightarrow T \proves \Theta(\vec{n})
+  \vec{n} \in S \Rightarrow T \proves \Theta(\vec{n}) \\
   \vec{n} \not\in S \Rightarrow T \proves \neg\Theta(\vec{n})
 \end{align*}
 
@@ -102,9 +102,9 @@ Verify (a), (b) for $\Theta$:
     Suppose $k=f(\vec{n})$. Then $k$ is the unique nat. number satisfying
     \[ \Nat \models \exists z \varphi(\vec{n}, k, z) 
     \]
-    Let $l$ be lest s.t. $\Nat \models \varphi(\vec{n}, k, l)$
+    Let $l$ be least s.t. $\Nat \models \varphi(\vec{n}, k, l)$
     Then $\Nat \models \psi(\vec{n},k,l)$
-    Hence $\Nat \models \exists \psi(\vec{n},k,z)$
+    Hence $\Nat \models \exists z \psi(\vec{n},k,z)$
 
 Recall: Upward absoluteness of $\Sigma_1$ formulas:
 $PA^-$ proves every $\Sigma_1$ formula true in $\Nat$.
@@ -191,7 +191,7 @@ Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-s
 
   $n = \psi(x)$
 
-  $G = \forall y \left( y = \underline{n} \rightarrow \psi(y) \right)$
+  $G = \forall y \left( y = \underline{n} \rightarrow \psi(y) \right)$ %FIXME: underline n
 
   \textbf{Then}: $G$ is the sentence whose GN is $diag(\gn{\psi(x)})$.
 
@@ -203,9 +203,9 @@ Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-s
   \end{align*}
 
 \begin{align}
-  \label{eq:star}
   T \proves G \leftrightarrow \psi(\underline{n}) \\
-  T \proves G \leftrightarrow \forall z (\delta(\underline{n}, z) \rightarrow \Theta(z)) \\
+  \label{eq:star}
+  T \proves G \leftrightarrow \forall z (\delta(\underline{n}, z) \rightarrow \Theta(z))
 \end{align}
 $\delta$ repres. diag in $T$:
 
@@ -235,13 +235,13 @@ PA^- \proves \exists
 \section*{Godel-Rosser Thm}
 Let $T$ be a computable set of sentences s.t.
 \begin{enumerate}[(a)]
-  \item For no $\mathcal{L}_A$-sent. $\sigma, \sigma \in T$ and $\neg\sigma \in $. ($T$ is simply consistent)
+  \item For no $\mathcal{L}_A$-sent. $\sigma, \sigma \in T$ and $\neg\sigma \in T$. ($T$ is simply consistent)
   \item 
     \[
 T \supseteq \left\{ \sigma : \sigma \text{ is $\Sigma_1$ or $\Pi_1$ s.t.} PA^- \proves \sigma  \right\}
     \]
 \end{enumerate}
-Then $T$ is incomplete: there eists $\Pi_1$-sentence $\tau$ s.t.
+Then $T$ is incomplete: there exists $\Pi_1$-sentence $\tau$ s.t.
 $\tau, \neg \tau \not\in T$
 
 \begin{proof}
