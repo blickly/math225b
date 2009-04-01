@@ -226,7 +226,7 @@ Sequences of formulas
  = p_0^{\gn{\varphi_0} + 1} * \dots * p_n^{\gn{\varphi_n} + 1}
 \]
 
-Convenient distintion between GV's of terms formuals, sqn of formulas.
+Convenient distinction between GV's of terms formuals, sqn of formulas.
 
 \textbf{Important}: mapping is 1-1 and ``effective''
 in particular set of GN's is a compu subset of $\Nat$
@@ -236,14 +236,14 @@ inverse is also effective
 Possible for other countable languages
 
 
-\textbf{Theoreis}
+\textbf{Theories}
 $T$ set of $\mathcal{L}_A$-sentences deductively closed.  
 i.e. if $T \models \sigma$ then $\sigma \in T$.
 
 
 $T$ is \emph{consistent} if $T$ has a model.
 
-$T$ is \emph{effectively axiomatizable} fi there ex a comp set of sentences 
+$T$ is \emph{effectively axiomatizable} if there ex a comp set of sentences 
 $\Delta$ s.t.
 \[
 T = \left\{\sigma : \Delta \models \sigma \right\}
@@ -275,9 +275,9 @@ Assume $\Delta$ effectively axiomatized $T$
 
 proof predicate:
 \begin{align*}
-  proof_T(x) \Leftrightarrow x \text{ is GN of seqn. of formulas }
-  \wedge (\forall k > length(x) )
-  \left[ (x)_k \in \Delta \cup \text{Axioms} \vee (\exists i,j < k) \left( (x)_i = \gn{(x)_i \rightarrow (x)_k}\right) \right]
+  proof_T(x) \Leftrightarrow& x \text{ is GN of seqn. of formulas } 
+  \wedge (\forall k > length(x) ) \\
+  &\left[ (x)_k \in \Delta \cup \text{Axioms} \vee (\exists i,j < k) \left( (x)_i = \gn{(x)_i \rightarrow (x)_k}\right) \right]
 \end{align*}
 
 \defn
