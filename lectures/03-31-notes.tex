@@ -85,7 +85,7 @@ $\Sigma_1$-def'able over $\Nat$:
 Let $\varphi$ be $\Delta_0$ s.t.
 \begin{align*}
   f(\vec{x}) = y \text{ iff } \Nat \models &\exists z \varphi(\vec{x},y,z) \\
-  &\exists z \varphi( \vec{x} , y ,z) \\ %FIXME: add underlines
+  &\exists z \varphi( \underline{\vec{x}} , \underline{y} ,z) \\
   &\exists z \varphi(z) [\vec{x}, y] \\
 \end{align*}
 
@@ -191,7 +191,7 @@ Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-s
 
   $n = \psi(x)$
 
-  $G = \forall y \left( y = n \rightarrow \psi(y) \right)$ %FIXME: underline n
+  $G = \forall y \left( y = \underline{n} \rightarrow \psi(y) \right)$
 
   \textbf{Then}: $G$ is the sentence whose GN is $diag(\gn{\psi(x)})$.
 
