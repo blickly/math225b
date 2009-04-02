@@ -45,4 +45,221 @@
 \begin{document}
 \maketitle
 
+\subsection*{Godel-Rosser}
+$T$ comp. set of seqn.
+\begin{enumerate}[(a)]
+  \item simply consistent
+  \item \[
+    \sigma : \sigma \text{ is $\Sigma_1$ or $\Pi_q$, s.t. } PA^- \proves \sigma
+    \]
+\end{enumerate}
+Then $T$ is incomplete in the sense that $\exists\tau$ 
+s.t. $\tau, \neg\tau \not\in T$.
+
+\subsubsection*{Diagonal Lemma}
+$T$ $\mathcal{L}_A$-theory s.t. all comput. functions are
+$\Sigma_1$-representable in $T$.
+
+Then f.any $\mathcal{L}_A$-formula  $\Theta(x)$ has a ``fixed point''
+%
+i.e. there ex. sent. $G$ s.t.
+\[
+T \proves G \leftrightarrow \Theta(\gn{G})
+\]
+
+\textbf{COR:}
+\newtheorem*{firstincomp}{1st Godel Incompleteness Thm}
+\begin{firstincomp}
+  If $T$ is a consistent eff. axiomatizable $\mathcal{L}_A$-threay extending
+  $PA^-$, then there is a $\Pi_1$-sentence $\tau$ s.t.
+  neither $T \proves \tau$ nor $T \proves \neg\tau$
+\end{firstincomp}
+\begin{proof}
+  Ass. $T$ decides all $\Pi_1,\Sigma_1$ sentences
+               ($T$ is $\Pi_1/\Sigma_1$-complete)
+
+  Let $S = \left\{ \sigma : \sigma \text{ is $\Sigma_1$ or $\Pi_1$ sentence s.t. } T \proves \sigma \right\}$
+
+  Note:
+  \begin{itemize}
+    \item $S$ is computable ($T$ is assumed complete and eff. axiomatizable)
+    \item $S$ is simply consistent since $T$ is consistent.
+  \end{itemize}
+
+  $S$ sasfies hypothesis of Godel-Rosser THm.
+  Hence there ex. $\Pi_1$-sent. $\tau$ s.t.
+  \[
+        \tau, \neg\tau \not\in S
+  \]
+  Hence $T \not\proves \tau, \neg\tau$
+\end{proof}
+
+\newtheorem*{tarski}{Tarski's Theorem}
+\begin{tarski}
+  Let $\mathcal{M} \models PA^-$
+  There is no $\mathcal{L}_A$-formula $\Theta(x)$ s.t. f.all $n$
+  \[
+  \mathcal{M} \models \Theta(\underline{n}) \Leftrightarrow n = \gn{\sigma}
+  \text{ for some $\mathcal{L}_A$-snet.}
+  \]
+  $\sigma$ s.t. $\mathcal{M} \models \sigma$
+\end{tarski}
+\begin{proof}
+  Ass. $\Theta$ were such a formula
+
+  By Dial Lemma, ex. sentence $\tau$
+  \[
+  PA^- \proves \tau \leftrightarrow \neg\Theta(\gn{\tau})
+  \]
+  in part.
+  \[
+  \mathcal{M} \models \tau \Leftrightarrow \mathcal{M} \models \neg\Theta(\gn{\tau})
+  \]
+\end{proof}
+
+\newtheorem*{nonrep}{Non-Representability Lemma}
+\begin{nonrep}
+  For no consistent extension $T\supseteq PA$ is $T$ representable in itself.
+  (identify $T$ with set of GNs of sentences in $T$)
+\end{nonrep}
+\begin{proof}
+  Suppose $\varphi_T$ represents $T$.
+  By Diag Lemma, $\exists \tau$ s.t. 
+  \begin{align}
+    \label{eq:star}
+  T \proves \tau \Leftrightarrow \neg\varphi_T(\gn{\tau})
+  \end{align}
+
+  \textbf{Case 1:}
+  \[
+  T \proves \tau \Rightarrow \tau \in T \Rightarrow T \proves \varphi_T(\gn{\tau})
+  \]
+  on the other hand, by \ref{eq:star}
+  \[
+  T \proves \tau \Rightarrow T \proves \neg \varphi_T(\gn{\tau})
+  \]
+  hence $T$ is consistent
+
+  \textbf{Case 2:} $T \not\proves \tau$
+  similar
+\end{proof}
+
+\textbf{COR:} Every consistent extension $T$ of $PA^-$ is undecidable.
+\begin{proof}
+  If $T$ were decidable, by Represent. Lemma,
+  $T$ is representable in $T$
+\end{proof}
+
+\defn Given a theory $T$ set of sentences $S$,
+        let $T+S$ denote the smallest theory $\supseteq T \cup S$
+
+ $T'$ is a \emph{finite extension} of $T$ if $T' = T+S$
+ for some finite $S$.
+
+\textbf{Prop:} Every finite extension $T'$ of a decibable theory $T$ is
+decidable
+\begin{proof}
+  HW exercise
+\end{proof}
+
+\textbf{COR:} The set $TAUT_{\mathcal{L}_A}$
+(set of all $\mathcal{L}_A$-tautologies) is undecidable
+(actually holds f.all $\mathcal{L} \supseteq \mathcal{L}_A$)
+\begin{proof}
+  $PA^-$ is a finite extension of $TAUT_{\mathcal{L}_A}$
+\end{proof}
+
+
+Recall provability predicates:
+\begin{align*}
+  bew_T(b,a): b \text{ is the GN of a proof in $T$ of a formula with GN } a \\
+  bwb_T(a): \exists b bew_T(b,a)
+\end{align*}
+
+If $T$ is powerful enough to satisfy Repres. Lemma,
+then $bew_T(b,a)$ is repr. in $T$ by some
+$\Sigma_1$-formula $\Theta_{bew}(x,y)$
+
+$\Theta_{bwb}(x)$
+
+
+We say that $\Theta_{bwb}(x)$ is a \emph{provability predicate for $T$}
+if
+\begin{align*}
+  (P_1)& \quad 
+  T \proves \sigma \Rightarrow T \proves \Theta_{bwb}(\gn{\sigma}) \\
+  (P_2)& \quad
+  T \proves \Theta_{bwb}(\gn{\sigma \rightarrow \tau}) \wedge
+        \Theta_{bwb}(\gn{\sigma}) \rightarrow \Theta_{bwb}(\gn{\tau}) \\
+  (P_3)& \quad
+  T \proves \Theta_{bwb}(\gn{\sigma}) \rightarrow 
+        \Theta_{bwb}(\gn{\Theta_{bwb}(\gn{\sigma})})
+\end{align*}
+
+\newtheorem*{secondincomp}{2nd Incompleteness Theorem}
+\begin{secondincomp}
+  Let $T$ be an $\mathcal{L}_A$-theory with prov. predicate $\Theta_{bwb}$
+  and admitting $\Sigma_1$-representations of comp. functions
+  (e.g. $T = PA$)
+
+  Then 
+  \[
+  T \text{ consistent} \Rightarrow T \not\proves Con_T
+  \]
+\end{secondincomp}
+\begin{proof}
+  By Diag. Lemma, ex. sentence $\tau$ s.t.
+  \begin{align}
+    T \proves \tau \leftrightarrow \neg\Theta_{bwb}(\gn{\tau})
+    \label{equ:star}
+  \end{align}
+  If $T \proves \tau$, then by (P1) $T \proves \theta_{bwb}(\gn{\tau})$,
+  hence by \ref{equ:star} $T \proves \neg\tau$, thus $T$ is inconsistent.
+
+  Thus
+  \begin{align}
+    T \text{ consistent} \Rightarrow T \not\proves \tau
+    \label{eq:twostar}
+  \end{align}
+
+  Claim: $T \proves Con_T \rightarrow \neg \Theta_{bwb}(\gn{\tau})$
+
+  LEMMA: If for sentences $\sigma, \eta$
+  \[
+  T \proves \sigma \leftrightarrow (\Theta_{bwb}(\gn{\sigma}) \rightarrow \eta)
+  \]
+  then
+  \[
+  T \proves \sigma \leftrightarrow (\Theta_{bwb}(\gn{\eta}) \rightarrow \eta)
+  \]
+
+  Prove Claim from LEMMA:
+
+  We have $T \proves \tau \leftrightarrow \neg \Theta_{bwb}(\gn{\tau})$
+  \[
+  \proves \Theta_{bwb}(\gn{\tau}) \leftrightarrow (\Theta_{bwb}(\gn{\tau}) \rightarrow (0 = 1))
+  \]
+  Hence
+  \[
+  T \proves \tau \leftrightarrow (\Theta_{bwb}(\gn{\tau}) \rightarrow (0 = 1))
+  \]
+
+  Apply lemma with $\sigma = \tau$, $\eta = (0 = 1)$
+  Hence \[
+  T \proves \tau \leftrightarrow (\Theta_{bwb}(\gn{0=1}) \rightarrow (0 = 1))
+  \]
+
+  Hence $T \proves \tau \leftrightarrow Con_T$
+
+  Thus by \ref{equ:star}
+  $T \proves Con_T \leftrightarrow \neg\Theta_{bwb}(\gn{\tau})$
+  \qed Claim
+
+  Sup now $T$ is consistent.  By \ref{eq:twostar} $T \not\proves \tau$
+
+  hence $T \not\proves \neg \Theta_{bwb}(\gn{\tau})$
+
+  hence by claim, $T \not\proves Con_T$.
+\end{proof}
+
 \end{document}
