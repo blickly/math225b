@@ -173,16 +173,14 @@ T \proves G \leftrightarrow \Theta(\gn{G})
 Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-sentence
 \begin{proof}
   Let 
-  \iffalse %FIXME: compile error
   \[
   diag(n) =
   \begin{cases}
-   \gn{\forall y ( y=n \rigtarrow \sigma(y))} % FIXME: Underline n
+    \gn{\forall y ( y=\underline{n} \rightarrow \sigma(y))}
    &\text{if $n = \gn{\sigma(x)}$ for some $\mathcal{L}_A$ formula $\sigma$} \\
    0 &\text{ o.w.}
   \end{cases}
   \]
-  \fi
   $diag$ is computable
 
   Let $\delta(x,y)$ be $\Sigma_1$-representation of $diag(x)$ in $T$.
@@ -191,7 +189,7 @@ Moreover, if $\Theta$ is $\Pi_1$, then $G$ can be thaken equivalent to $\Pi_1$-s
 
   $n = \psi(x)$
 
-  $G = \forall y \left( y = \underline{n} \rightarrow \psi(y) \right)$ %FIXME: underline n
+  $G = \forall y \left( y = \underline{n} \rightarrow \psi(y) \right)$
 
   \textbf{Then}: $G$ is the sentence whose GN is $diag(\gn{\psi(x)})$.
 
