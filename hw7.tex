@@ -116,16 +116,16 @@ f_s \subset f_{s+1}
 \]
 %This implies $A \le_T \emptyset'$, since e.g. to decide $x \in A$ comp. $s$ s.t. $|f_s| \ge x$.
 
-\subsection*{Requirements}
+\subsubsection*{Requirements}
   We want to show that $A$ is not equivalent to any c.e. set.
   Since there are countably many c.e. sets, we can order them.
   Let $B_i$ be the $i$th c.e. set.
   Formally, we require:
 \begin{align*}
-  R_{e,i}: A \ne \Phi^{B_i}_e \\
+  R_{e}: A \ne \Phi^{B_e}_e \\
 \end{align*}
 
-\subsection*{Construction}
+\subsubsection*{Construction}
 We need to now construct the intermediate stages $f_s$ such that 
 $
 \chi_A = \bigcup_s f_s
@@ -158,9 +158,13 @@ $.
   \begin{align*}
     f_{s+1} = f_s \frown 0 \\
   \end{align*}
-  (no danger of having $\Phi^{B_s}_e(n) \downarrow$, so not action required)
-\end{proof}
+  (no danger of having $\Phi^{B_s}_e(n) \downarrow$, so no action is required)
 
+  By construction, we have ensured that the set $A \ne \Phi^B_e$ for any c.e.
+  set $B$.
+  Our construction for $A$ only used an $\emptyset'$-oracle, so we also have
+  $A \le_T \emptyset'$.
+\end{proof}
 
 \problem[*]{
 Show that for each $A \geq_T \emptyset'$, there exists a $B$ such that $B' \equiv_T A$.
