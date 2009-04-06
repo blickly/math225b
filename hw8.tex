@@ -43,7 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
-
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 % Umgebung "Lösung"
 \newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
@@ -78,29 +84,29 @@
 \begin{center}
 {\LARGE Homework 8 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday April 9}
+{\large Author: Ben Lickly \\ Due: Thursday April 9}
 \end{center}
 
 
-\Aufg 
+\problem{ 
 Show that if $T$ is a decidable $\LA$-theory and $T' \supseteq T$ is a finite extension, then $T'$ is decidable.
+}
 
 
-
-\Aufg
+\problem{
 Show that, for all functions $f : \Nat^k \to \Nat$ (where $k\geq 1$), $f$ is representable 
 in $\PA^-$ implies that $f$ is computable.
+}
 
 
-
-\Aufg
+\problem{
 Suppose $T$ is an $\LA$-theory and $\Delta$ is a c.e.\ set of sentences such that $T = \{\sigma \colon \Delta \models \sigma \}$. Show that $T$ is effectively (i.e.\ computably) axiomatizable.
- 
+}
 
 
-\Aufg
+\problem{
 An $\LA$-structure $\mathcal{A}$ is \emph{strongly undecidable} if every $\LA$-theory $T$ with $\mathcal{A} \models T$ is undecidable. 
 \begin{itemize}
 	\item[(a)] Show that $\Nat$ is strongly undecidable.
@@ -111,10 +117,10 @@ A theory $T$ is called \emph{hereditarily undecidable} if each subtheory of $T$ 
 	\item[(c)] Show that if $T$ has a strongly undecidable model, then $T$ is hereditarily undecidable.
 \end{itemize}  
 Conclude that every strongly undecidable theory is hereditarily undecidable.
+}
 
 
-
-\Aufg
+\problem{
 Prove the Lemma from class: Suppose $T$ allows representations and has a provability predicate $\theta$ that satisfies the conditions  
 \begin{enumerate}[(P1)]
 	\item $T \vdash \sigma$ implies $T \vdash \theta(\GN{\sigma})$
@@ -123,7 +129,7 @@ Prove the Lemma from class: Suppose $T$ allows representations and has a provabi
 \end{enumerate}
 
 Let $\sigma, \eta$ be $\LA$-sentences such that $T \vdash \sigma \: \leftrightarrow \: (\theta(\GN{\sigma}) \: \to \: \eta)$. Show that $$T \vdash \sigma \: \leftrightarrow \: (\theta(\GN{\eta}) \: \to \: \eta)$$.
-
+}
 
 
 
