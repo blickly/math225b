@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lösung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\GN}[1]{\ensuremath{\ulcorner #1 \urcorner}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 8 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday April 9}
+\end{center}
+
+
+\Aufg 
+Show that if $T$ is a decidable $\LA$-theory and $T' \supseteq T$ is a finite extension, then $T'$ is decidable.
+
+
+
+\Aufg
+Show that, for all functions $f : \Nat^k \to \Nat$ (where $k\geq 1$), $f$ is representable 
+in $\PA^-$ implies that $f$ is computable.
+
+
+
+\Aufg
+Suppose $T$ is an $\LA$-theory and $\Delta$ is a c.e.\ set of sentences such that $T = \{\sigma \colon \Delta \models \sigma \}$. Show that $T$ is effectively (i.e.\ computably) axiomatizable.
+ 
+
+
+\Aufg
+An $\LA$-structure $\mathcal{A}$ is \emph{strongly undecidable} if every $\LA$-theory $T$ with $\mathcal{A} \models T$ is undecidable. 
+\begin{itemize}
+	\item[(a)] Show that $\Nat$ is strongly undecidable.
+\end{itemize}
+A theory $T$ is called \emph{hereditarily undecidable} if each subtheory of $T$ (i.e.\ any subset of $T$ closed under deduction) is undecidable.
+\begin{itemize}
+	\item[(b)] Show that $\mathcal{A}$ is strongly undecidable iff $\operatorname{Th}(\mathcal{A})$ is hereditarily undecidable.
+	\item[(c)] Show that if $T$ has a strongly undecidable model, then $T$ is hereditarily undecidable.
+\end{itemize}  
+Conclude that every strongly undecidable theory is hereditarily undecidable.
+
+
+
+\Aufg
+Prove the Lemma from class: Suppose $T$ allows representations and has a provability predicate $\theta$ that satisfies the conditions  
+\begin{enumerate}[(P1)]
+	\item $T \vdash \sigma$ implies $T \vdash \theta(\GN{\sigma})$
+	\item $T \vdash [\theta(\GN{\sigma}) \: \wedge \:\theta(\GN{\sigma \to \tau})] \; \to \; \theta(\GN{\tau})$
+	\item $T \vdash \theta(\GN{\sigma}) \; \to \; \theta(\GN{\theta(\GN{\sigma})})$
+\end{enumerate}
+
+Let $\sigma, \eta$ be $\LA$-sentences such that $T \vdash \sigma \: \leftrightarrow \: (\theta(\GN{\sigma}) \: \to \: \eta)$. Show that $$T \vdash \sigma \: \leftrightarrow \: (\theta(\GN{\eta}) \: \to \: \eta)$$.
+
+
+
+
+\end{document}
+
