@@ -45,4 +45,141 @@
 \begin{document}
 \maketitle
 
+\section*{Last Time}
+\begin{align*}
+  (P_1)& \quad 
+  T \proves \sigma \Rightarrow T \proves \Theta_{bwb}(\gn{\sigma}) \\
+  (P_2)& \quad
+  T \proves \Theta_{bwb}(\gn{\sigma \rightarrow \tau}) \wedge
+        \Theta_{bwb}(\gn{\sigma}) \rightarrow \Theta_{bwb}(\gn{\tau}) \\
+  (P_3)& \quad
+  T \proves \Theta_{bwb}(\gn{\sigma}) \rightarrow 
+        \Theta_{bwb}(\gn{\Theta_{bwb}(\gn{\sigma})})
+\end{align*}
+$(P_1)$ followss directly from reresentability
+
+\section*{This Time}
+Let $\Theta_{bew}(x,y)$ be $\Sigma_1$-repres. of $bew_T(a,b) \subseteq \Nat \times \Nat$
+
+\defn \[
+\Theta_{bwb}(y) = \exists x, \Theta_{bew}(x,y)
+\]
+Assume $T \proves \sigma$
+
+Then there ex. $a$ s.t. $bew_T(a, \gn{\sigma})$
+\begin{align*}
+ \rightarrow& T \proves \Theta_{bew}(\underline{a}, \underline{\gn{\sigma}}) \\
+ \rightarrow& T \proves \exists x, \Theta_{bew}(x, \underline{\gn{\sigma}}) \\
+ \rightarrow& T \proves  \Theta_{bwb}(\underline{\gn{\sigma}})
+\end{align*}
+
+\newtheorem*{blah}{THM}
+\begin{blah}
+  Let $\delta$ be an operator on $\mathcal{L}_A$-formulas s..t
+  \[
+  \text{free } \delta \varphi \subseteq \text{free } \varphi
+  \]
+  s.t.
+\begin{align*}
+  (d_1)& \quad 
+  PA \proves \varphi  \Rightarrow PA \proves \delta\varphi \\
+  (d_2)& \quad
+  PA \proves \delta(\varphi \rightarrow \psi) \rightarrow
+  (\delta\varphi \rightarrow \delta\psi) \\
+  (d_3)& \quad
+  PA \proves (\delta\varphi)[t/x]  \rightarrow \delta(\varphi[t/x]) \\
+\end{align*}
+Then 
+\[
+PA \proves \varphi \rightarrow \delta\varphi 
+                \text{ f.all $\Sigma_1$-formulas } \varphi
+\]
+This implies $(P_3)$ since $\Theta_{bwb}(\gn{\varphi})$ is $\Sigma_1$-sentence.
+\end{blah}
+\begin{proof}
+  works y induction over formulas
+
+  \textbf{Exa:}
+  bounded quantification
+
+  Sup $PA \proves \varphi \rightarrow \delta\varphi$
+  Let $y \not\in \text{ var } \varphi$
+  Let $\psi = (\forall x \subset y) \varphi$
+  Show $PA \proves \psi \rightarrow \delta\psi$
+
+  Initial step: $PA \proves \psi[0/y]$
+  Hence by $(d_1)$, $PA \proves \delta(\psi[0/y])$
+  and by $(d_3)$, $PA \proves (\delta\psi)[0/y]$
+  Hence in particular, $PA \proves \psi[0/y] \rightarrow (\delta\psi)[0/y]$
+
+  Inductive Step:
+  \begin{align*}
+&   PA \proves \psi[y+1 / y] \leftrightarrow (\psi \wedge \varphi[y/x]) \\
+&   PA \proves \psi \rightarrow \delta\varphi \text{ yields }
+       PA \proves \varphi[y/x] \rightarrow (\delta\varphi)[y/x] \\
+\text{Hence } 
+&   PA \proves (\psi[y+1 / y] \wedge (\psi \rightarrow \delta\psi) )
+       \rightarrow (\psi \wedge \varphi[y/x] \wedge 
+                                (\psi \rightarrow \delta\psi)) \\
+  \rightarrow
+&   PA \proves (\psi[y+1 / y] \wedge (\psi \rightarrow \delta\psi) )
+       \rightarrow (\delta\psi \wedge \delta\varphi[y/x]) \\
+  \rightarrow
+&   PA \proves (\psi[y+1 / y] \wedge (\psi \rightarrow \delta\psi) )
+       \rightarrow (\delta\psi[y+1 / y]) \\
+  \rightarrow
+&   PA \proves (\psi \rightarrow \delta\psi) \rightarrow
+            (\psi[y+1 / y] \rightarrow \delta\psi[y+1 / y])
+  \end{align*}
+\end{proof}
+
+\subsection*{``Philosophical'' Implications}
+\[
+PA \not\proves CON_{PA}
+\]
+
+\[
+  PA^\bot = PA + \neg CON_{PA}
+\]
+Since $PA \not\proves CON_{PA}$, $PA^\bot$ is consistent.
+
+The proof of the 2nd Incompleteness Thm actually yields
+\begin{align}
+  PA \proves CON_{PA} \leftrightarrow \neg \Theta_{bwb}(\gn{CON_{PA}})
+  \label{eq:star}
+\end{align}
+
+Additional property of $\Theta_{bwb}$:
+%
+If $T$ satisfies $(P_1)-(P_2)$
+and $T' = T + \sigma$, then
+\[
+T \proves \Theta_{T'}(\gn{\tau}) \leftrightarrow \Theta_T(\gn{\sigma \rightarrow \tau})
+\]
+and $(P_1)-(P_2)$ hold for $T'$
+
+Hence 
+\begin{align*}
+  &PA \proves \Theta_{PA+\sigma}(\gn{0=1}) \leftrightarrow \Theta_{PA}(\gn{\sigma \rightarrow 0 = 1}) \\
+ \rightarrow
+  &PA \proves \Theta_{PA+\sigma}(\gn{0=1}) \leftrightarrow \Theta_{PA}(\gn{\neg \sigma}) \\
+ \rightarrow
+  &PA \proves \neg \Theta_{PA+\sigma}(\gn{0=1}) \leftrightarrow \neg \Theta_{PA}(\gn{\neg \sigma}) \\
+ \rightarrow
+ &PA \proves \neg CON_{PA} \leftrightarrow \neg \Theta_{PA}(\gn{CON_{PA}})
+\end{align*}
+and thus by equation \ref{eq:star},
+\[
+PA \proves CON_{PA^\bot} \leftrightarrow CON_{PA}
+\]
+
+Hence also \[
+ PA^\bot \proves \dots
+\]
+
+Since $PA^\bot \proves \neg CON_{PA}$,
+it follows that $PA^\bot \proves \neg CON_{PA^\bot}$
+
+\textbf{HW Exercise}: What the heck does this mean???
+
 \end{document}
