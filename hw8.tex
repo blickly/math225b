@@ -77,7 +77,7 @@
 \newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
 
 
-
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
 
 \begin{document}
 
@@ -104,6 +104,35 @@ in $\PA^-$ implies that $f$ is computable.
 \problem{
 Suppose $T$ is an $\LA$-theory and $\Delta$ is a c.e.\ set of sentences such that $T = \{\sigma \colon \Delta \models \sigma \}$. Show that $T$ is effectively (i.e.\ computably) axiomatizable.
 }
+
+\begin{proof}
+In order to show that a theory $T$ is effectively axiomatizable, we need to
+show a computable set of sentences $\Delta_{comp}$ such that
+\[
+T = \{ \sigma : \Delta_{comp} \models \sigma \}
+\]
+
+We cannot use $\Delta$ for this purpose since $\Delta$ is only computably
+enumerable.  In order to construct this new set, we will use the fact that
+a c.e.\ set with a total order that outputs its elements in order is
+computable.
+Using this fact, we will create a new set $\Delta_{comp}$ such that each of
+its elements is greater than the last using the total order
+$\varphi < \psi \Leftrightarrow \gn{\varphi} < \gn{\psi}$.
+Our set will be 
+\[
+\Delta_{comp} = \{ \varphi_1 , \varphi_1 \wedge \varphi_2 , \dots \}
+\]
+where $\varphi_i$ is the $i$th sentence produced in the enumeration of
+$\Delta$. Since taking conjunctions can only increase the G\"odel number of
+a formula, this set will be strictly increasing.
+
+Since $\bigwedge \Delta_{comp} = \bigwedge \Delta$, the theory formed by
+the inductive closure of $\Delta_{comp}$ must also be the same as that
+formed from $\Delta$.
+\end{proof}
+
+
 
 
 \problem{
