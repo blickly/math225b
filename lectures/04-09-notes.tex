@@ -1,0 +1,329 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal} 
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\proves}{\vdash}
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+\author{Ben Lickly}
+\date{April 9, 2009}
+\title{Math 225 Notes}
+\begin{document}
+\maketitle
+
+\subsection*{Transfer by Interpretation}
+
+\textbf{Goal:} Transfer incompleteness and undecidability results to other
+theories.
+
+Ideas: ``Interpret'' $PA^-$ inside another theory.
+
+First: Do this for structures
+
+Let $\mathcal{M}$ be an $\mathcal{L}$-structure:
+\[
+\mathcal{M} = \left( M, (f_i)_{i\in I}, (R_j)_{j\in J},
+                                          (c_k)_{k \in K} \right)
+\]
+Let $\mathcal{N}$ be an $\mathcal{L}$-structure:
+\[
+\mathcal{N} = \left( N, (f_i)_{i\in I}, (R_j)_{j\in J},
+                                        (c_k)_{k \in K} \right)
+\]
+
+
+$\mathcal{M}$ is \emph{definably interpreted} in $\mathcal{N}$ if there ex.
+a def'ble $X \subseteq N^m,\ m \in \Nat$
+and there exist formulas
+$(\varphi_i)_{i\in I}$, $(\psi_j)_{j\in J}$ and $(d_k)_{k\in K}, d_k \in X$
+s.t.
+\begin{align*}
+  \varphi_i \text{ defines a function $f_{\varphi_i}$ on $X$ (arange $\subset X$)} \\ 
+  \psi_j \text{ defines a relation $R_{\psi_j}$ on $X$} \\ 
+  \text{and } \left( X, (f_{\varphi_i}), (R_{\psi_j}), (d_k) \right)
+        text{ is isomorphic to } \mathcal{M}
+\end{align*}
+
+Exa:
+\begin{align*}
+\mathcal{M} = GL_2(\Real)
+\qquad
+\mathcal{N} = \Real
+\\
+\mathcal{L} = \left\{ * \right\}
+\qquad
+\mathcal{L}' = \left\{ +, * \right\}
+\\
+X = \left\{ (a, b, c, d) \in \Real^4 : ad - bc \ne 0 \right\}
+\\
+\varphi \left((a_1, b_1, c_1, d_1), (a_1, b_1, c_1, d_1), (a, b, c, d) \right)
+        = (a_1 * a_2 + b_1 * c_1 = a) \wedge \dots
+\end{align*}
+
+\newtheorem*{defintrundec}{THM}
+\begin{defintrundec}
+  If $Th(\mathcal{M})$ is undecidable and $\mathcal{M}$ def'bly interpreted in
+  $\mathcal{N}$, then $Th(\mathcal{N})$ is undecidable.
+\end{defintrundec}
+  We Prove stranger statement:
+
+  COR: $Th(\Integer)$ is undecidable
+\begin{proof}
+  \Nat def'ble in $\Integer$ via
+  \[
+  \left\{ x : \exists a,b,c,d, x = a^2 + b^2 + c^2 + d^2 \right\}
+  \]
+\end{proof}
+
+\newtheorem*{julia}{THM (Julia Robinson)}
+\begin{julia}
+  $\Integer$ is def'ble in $\Rat$
+\end{julia}
+COR: $Th(\Rat)$ is undecidable
+
+\subsection*{Interpretability for Theories}
+Let $T$ be an $\mathcal{L}$-theory 
+Let $T$' be an $\mathcal{L}'$-theory 
+
+Let $P$ be unary predicate symbol not occurring in $\mathcal{L}'$
+
+$P$-relativization of $\mathcal{L}'$-formula $\varphi$: $\varphi^P$
+replace all subformulas of the form
+\begin{align*}
+  \exists x \psi \text{ by } \exists x (P(x) \wedge \psi) \\
+  \forall x \psi \text{ by } \forall x (P(x) \rightarrow \psi) \\
+\end{align*}
+
+Exa:
+\[
+\left( \forall x \exists y y = x+1 \right)^P =
+        \forall x \left( P(x) \rightarrow \exists y (P(y) \wedge y = x+1) \right)
+\]
+
+\defn $T$ is \emph{interpretable} in $T'$
+if there is a finite set $\Delta$ of formulas s.t. 
+$\Sigma$ contains \emph{explicit definitions} of all symbols of $\mathcal{L}$
+not occurring in $\mathcal{L}'$.
+
+expl. definition of functino sumbol $f$ in $\mathcal{L}$
+\begin{align*}
+  \varphi_f = \qquad y = f(\vec{x}) \leftrightarrow \delta(\vec{x}, y)
+\end{align*}                                      % ^ \mathcal{L}' fmla
+s.t. $T' \proves \forall \vec{x} \exists y \delta(\vec{x}, y)$
+%
+and a explicitly defined unary pred. symbol $P$ s.t.
+\[
+T^P \subseteq T' + \Delta
+\]          % (\mathcal{L} \cup \mathcal{L}' \cup P)-theory
+
+EXA: 
+\[
+T \subseteq T'
+\qquad
+\Delta = \{ P(x) \leftrightarrow x=x \}
+\]
+Then f.all $\sigma \in T$, $\Delta \proves \sigma \leftrightarrow \sigma^P$
+
+Hence $\sigma \in T \Rightarrow \sigma^P \in T' + \Delta$
+
+If $\mathcal{M}$ is def'bly interpreted in $\mathcal{N}$, then
+$Th(\mathcal{M})$ is interpretable in $Th(\mathcal{N})$
+
+
+\subsection*{Closure Axioms}
+\begin{align*}
+  \text{CA:} \quad &\exists x P(x),& \quad &P(c),& \quad  &\forall \vec{x}
+  \left( \bigwedge_{i=1}^n  P(x_i) \rightarrow P(f(\vec{x})\right) \\
+  &(\exists x x=x)^P&  &(\exists x x = c)^P& &(\forall \vec{x} \exists y y = f(\vec{x}))^P
+\end{align*}
+CA is up to equialence of the form $F^P$ for some
+finite set $F \subseteq TAUT_\mathcal{L}$
+
+$\Rightarrow CA \subseteq T^P$ for any theory $T$
+
+\newtheorem*{bmodca}{LEMMA}
+\begin{bmodca}
+  If $\mathcal{B} \models CA + \Delta$, then there ex. an $\mathcal{L}$-struct
+  $\mathcal{A}$ s.t. $\mathcal{A} = P^\mathcal{B}$ and $\mathcal{A}$'s
+  functions and relations are the ones defined by $\Delta$.
+  Denote $\mathcal{A}$ by $\mathcal{B}_\Delta$.
+  $\mathcal{B}_\Delta$ is a substructure of the $\mathcal{L}$-reduct
+  of $\mathcal{B}$
+\end{bmodca}
+\newtheorem*{bdeltsig}{LEMMA}
+\begin{bdeltsig}
+  Let $\mathcal{B} \models CA + \Delta$.
+  Then 
+  \[
+  \mathcal{B}_\Delta \models \sigma \Leftrightarrow \mathcal{B} \models \sigma^P
+  \]
+  f.all $\mathcal{L}$-sentences $\sigma$
+\end{bdeltsig}
+\begin{proof}
+  Show $(\mathcal{B}_\delta, \nu) \models \varphi \Leftrightarrow
+  (\mathcal{B}_\delta, \nu) \models \varphi^P$
+  f.all $\mathcal{B}_\Delta$ assignments $\nu$.
+
+  $\nu$ : Var $\rightarrow |\mathcal{B}_\Delta|$
+
+ By inductino on $\varphi$:
+
+ \textbf{atomic}
+ \begin{align*}
+   \varphi^P = \varphi \\
+   \mathcal{B}_\Delta\ ``\subseteq"\ \mathcal{B}
+   \text{ and interpretation is over $|\mathcal{B}_\Delta|$}
+ \end{align*}
+
+ \textbf{Induction} for $\forall$:
+  \begin{align*}
+(\mathcal{B}_\delta, \nu) \models \forall x \varphi \Leftrightarrow
+(\mathcal{B}_\delta, \nu^x_a) \models \forall \varphi 
+\text{f.all $\nu$ s.t. $\nu(x) = a$
+$a \in \mathcal{B}_\Delta = P^\mathcal{B}$ arbitrary} \\
+(\mathcal{B}_\delta, 
+% FIXME: Incomplete notes
+\fixme
+%
+\end{align*}
+\end{proof}
+
+\newtheorem*{lem}{LEMMA}
+\begin{lem}
+  If $T$ is axiomatized by $X$, then for interpretability it suff. that
+  \[
+X^P \cup CA \subseteq T' + \Delta
+  \]
+\end{lem}
+\begin{proof}
+Show $S \proves \sigma \Rightarrow S^P \cup CA \proves \sigma^P$ (*)
+Let $S \proves \sigma$, $\mathcal{B} \models S^P \cup CA$
+  
+By Lemma, $\mathcal{B}_\Delta \models S$, thus $\mathcal{B}_\Delta \models \sigma$
+
+By Lemma, $\mathcal{B} \models \sigma^P$
+\end{proof}
+\defn $T$ is \emph{strongly undecidable} if $T$ is consistent
+and every model is strongly undecidable.
+
+PROP: $T$ is strongly undecidable iff for every $T'$ s.t. $T + T'$ is consistent,
+$T'$ is undecidable
+\begin{proof}
+  straightforward
+\end{proof}
+
+\newtheorem{thm}{THM}
+\begin{thm}
+  Let $T$ be interpretable in $T'$.
+  If $T$ is stongly undec., so is $T'$
+\end{thm}
+\begin{proof}
+  Let $\widetilde{T}$ be compatible with $T'$
+  Then $T' + \widetilde{T}$ is consistent, so is $T' + \widetilde{T} + \Delta$.
+\end{proof}
+
+  Consider:
+  \[
+  S = \left\{ \sigma : \sigma \text{$\mathcal{L}$-sentence and } \sigma^P \in \widetilde{T} + A + CA \right\}
+  \]
+
+  Claim: $S$ is a theory
+\begin{proof}
+  Let $S \proves \sigma$
+  \fixme
+
+  Hence we can apply (*) and get
+  \begin{align*}
+    S^P \cup CA \models \sigma^P \in \widetilde{T} + \Delta + CA \\
+    \rightarrow \sigma \in S
+  \end{align*}
+
+  Now let $\mathcal{B} \ne T' + \widetilde{T} + \Delta$
+  Since $T^P \subseteq T' + \Delta$, we have
+  \[
+  \mathcal{B} \models T^P \text{ and } \mathcal{B} \models S^P
+  \]
+  Thus $\mathcal{B}_\Delta \models T$ and $\mathcal{B}_\Delta \models S$
+  by Lemma
+\begin{align*}
+  \rightarrow S \text{ is compatible with } T \\
+  \rightarrow S \text{ is undecidable} \\
+\end{align*}
+If $\widetilde{T}$ were decidable, so would be $\widetilde{T} + \Delta$
+(HW Exercise)
+\begin{align*}
+  \rightarrow \widetilde{T} + \Delta + CA \text{ is decidable} \\
+  \rightarrow S \text{ is decidable} \Rightarrow\Leftarrow \\
+\end{align*}
+\end{proof}
+
+COR: $Th(\Nat), Th(\Integer)$ are str. undecidable.
+In particular, every subtheory is undecidable
+e.g. theory of commutative rings
+
+PROP: $PA$ is interpretable in $ZF$
+
+Idea: $P(x) \leftrightarrow x \in \omega$
+\[
+x+1 \qquad x \cup \left\{ x \right\}
+\]
+
+$PA^-$ is interpretable in weaker subtheories of $ZFC$:
+\[
+T_\in 
+\qquad
+\exists x \forall y
+\qquad
+y \not\in x
+\qquad
+(\emptyset \tex{ exist})
+\]
+Tarksi-Mootowski-Robinson
+
+COR: Set of Tautoloies over binary rel. symbol is undecidable
+
+$PA$ is bi-interpretable with $ZF$\fixme
+
+\section*{Decidable Theories}
+
+Abelian Groups
+
+F.o. logic Taut with only equality
+
+$Th(\Integer, +)$
+
+\end{document}
