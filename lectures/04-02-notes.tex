@@ -70,7 +70,7 @@ T \proves G \leftrightarrow \Theta(\gn{G})
 \textbf{COR:}
 \newtheorem*{firstincomp}{1st Godel Incompleteness Thm}
 \begin{firstincomp}
-  If $T$ is a consistent eff. axiomatizable $\mathcal{L}_A$-threay extending
+  If $T$ is a consistent eff. axiomatizable $\mathcal{L}_A$-theory extending
   $PA^-$, then there is a $\Pi_1$-sentence $\tau$ s.t.
   neither $T \proves \tau$ nor $T \proves \neg\tau$
 \end{firstincomp}
@@ -86,7 +86,7 @@ T \proves G \leftrightarrow \Theta(\gn{G})
     \item $S$ is simply consistent since $T$ is consistent.
   \end{itemize}
 
-  $S$ sasfies hypothesis of Godel-Rosser THm.
+  $S$ satisfies hypothesis of Godel-Rosser Thm.
   Hence there ex. $\Pi_1$-sent. $\tau$ s.t.
   \[
         \tau, \neg\tau \not\in S
@@ -100,14 +100,14 @@ T \proves G \leftrightarrow \Theta(\gn{G})
   There is no $\mathcal{L}_A$-formula $\Theta(x)$ s.t. f.all $n$
   \[
   \mathcal{M} \models \Theta(\underline{n}) \Leftrightarrow n = \gn{\sigma}
-  \text{ for some $\mathcal{L}_A$-snet.}
+  \text{ for some $\mathcal{L}_A$-sent.}
   \]
   $\sigma$ s.t. $\mathcal{M} \models \sigma$
 \end{tarski}
 \begin{proof}
   Ass. $\Theta$ were such a formula
 
-  By Dial Lemma, ex. sentence $\tau$
+  By Diag Lemma, ex. sentence $\tau$
   \[
   PA^- \proves \tau \leftrightarrow \neg\Theta(\gn{\tau})
   \]
@@ -173,7 +173,7 @@ decidable
 Recall provability predicates:
 \begin{align*}
   bew_T(b,a): b \text{ is the GN of a proof in $T$ of a formula with GN } a \\
-  bwb_T(a): \exists b bew_T(b,a)
+  bwb_T(a): \exists b, bew_T(b,a)
 \end{align*}
 
 If $T$ is powerful enough to satisfy Repres. Lemma,

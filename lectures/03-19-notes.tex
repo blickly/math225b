@@ -276,7 +276,7 @@ Assume $\Delta$ effectively axiomatized $T$
 proof predicate:
 \begin{align*}
   proof_T(x) \Leftrightarrow& x \text{ is GN of seqn. of formulas } 
-  \wedge (\forall k > length(x) ) \\
+  \wedge (\forall k < length(x) ) \\
   &\left[ (x)_k \in \Delta \cup \text{Axioms} \vee (\exists i,j < k) \left( (x)_i = \gn{(x)_i \rightarrow (x)_k}\right) \right]
 \end{align*}
 
@@ -285,7 +285,7 @@ proof predicate:
 
 \begin{align*}
   bew(x,a) \Leftrightarrow proof_T(x) \wedge a =  (x)_{length(x)-1} \\
-  bwb(a) \Leftrightarrow \exists z bew(x,a)
+  bwb(a) \Leftrightarrow \exists x bew(x,a)
 \end{align*}
 
 \newtheorem*{cethm}{THM}
