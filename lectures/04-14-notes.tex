@@ -45,4 +45,211 @@
 \begin{document}
 \maketitle
 
+\section{Ramsey's Thm}
+\subsection{Notation}
+$A$ is a set
+
+\subsection{Ramsey's Thm}
+\newtheorem{ramsey}{Ramsey's Thm}
+\begin{ramsey}
+  If $X$ is countably infinite and $[X]^n = C_1 \cup \dots \cup C_r$
+  then $X$ contains an infinite homogeneous subset.
+\end{ramsey}
+\begin{proof}
+  (By induction on $n$).
+
+  $n=1$: Pifenhole Principle
+
+  $n+1$: Let $x_0 = min X$, put $\widetilde{X_0} = X \setminus \left\{ x_0 \right\}$
+  Induce r.coloring of $[\widetilde{x_0}]^n$
+  \[
+  \left\{ y_1, \dots, y_n \right\} \in C^0_i \Leftrightarrow \left\{ x_0, y_1, \dots, y_n \right\} \in C_i
+  \]
+  By I.H., there ex. $X_1 \subseteq \widetilde{X_0}$ infinite homogeneous subset.
+
+  Let $x_1 = min X_1$   $\widetilde{X_1} = X_1 \ \left\{ x_1 \right\}$
+  induce r.coloring based on $x_1$
+
+  $\rightarrow$ homog. subset $X_2 \subseteq \widetilde{X_1}$
+  
+  $\rightarrow^\text{inductively}$ infinite seuence $x_0 < x_1 < x_2 < \dots$
+  sets $X_1 \supseteq X_2 \supseteq X_3 \supseteq \dots$
+
+  By Pig. Pr. there exists $I$, $` \le I \le r$, s.t.
+  $\left[ X_k \right]^n \subseteq C^{k-1}_i$ for $\infty$-many $k \ge 1$
+  \fixme
+
+  Claim $\bar{X}$ is homogeneous for the coloring.
+
+  Let $y_1 < y_2 < \dots < y_{n+1} \in \bar{X}$.
+
+  Then $y_1 = x_e$ for some $l \in \Nat$
+  This implies $y_2 , \dots, y_{n+1} \in X_{e+1}$
+  By choice of $\bar{X}$, $\left[ X_{e+1} \right]^n \subseteq C^e_i$
+
+  By def of coloring $C^e_1 \cup \dots \cup C^e_r$, 
+  \[
+  \left\{ x_e, y_2, \dots, y_{n+1} \right\} \in C_i
+  \]
+\end{proof}
+
+\section{Notation}
+
+$[A]^n$ = $n$-dium subsets of $A$
+
+$\kappa, \nu$ cardinals:
+$\kappa \rightarrow (\nu)^n_r$ means
+for every r-coloring of $[K]^n$ there exists a homogeneous subset of size $\nu$
+
+Ramsey's Thm:
+\[
+\aleph_0 \rightarrow (\aleph_0)^n_r \text{ for every $n, r \in \Nat$}
+\]
+One case show:
+$2^{\aleph_0} \not \rightarrow (3)^2_{\aleph_0}$
+
+\newtheorem*{finiteram}{Finite Ramset THm}
+\begin{finiteram}
+  FOr all $m, n, r \in \Nat$ there ex. $l \in \Nat$ s.t. $l \rightarrow (m)^n_r$ 
+\end{finiteram}
+\begin{proof}
+  Sup no such $l$ exists.
+  
+  For each $l$, let
+  $T_e = \left\{ f: \left[ \left\{ 0, \dots, l-1J \right\} \right]^n \rightarrow \left\{ 0, \dots, r-1 \right\}\right\}$
+  s.t. no homogeneous subset of size $m$ exists
+
+  Then $T_e \ne \emptyset$ for all $l$.
+  Each $T_e$ is finite
+
+  If $f \in T_{e+1}$, then there exists unique $g \subset f$ s.t. $g \in T_e$
+
+  (Every coloring of $l+1$ inuces coloring of $e$, and a homog. subset of $l$ is also homog. subset of $l+1$)
+
+  Hence we can order $T = \bigcup_{e} T_e$ by inclusion and get a \emph{finite branching} infinite tree.
+
+
+\subsubsection*{Aside}
+  \defn A tree $T$ is \emph{finite branching} if for all $\sigma \in T$
+  the set of immediate successors of $\sigma$ is finite.
+
+\newtheorem*{konig}{K\"onig's Lemma (Compactness Principle for trees)}
+\begin{konig}
+  If $T$ is an infinite, finite branching tree, then
+  \[
+      [T] \ne \emptyset
+  \] % ^ set of all inifinte paths through $T$
+\end{konig}
+\begin{proof}
+  Given $\sigma \in T$, let $[\sigma]^* = \left\{ \tau \in T : \tau \supseteq \sigma \right\}$
+
+  Construct inf. path $X \in [T]$ inductively
+
+  Let $X \lceil 0 = \emptyset$
+
+  Given $X \lceil n$ s.t. $[ X \lceil n]^*$ is infinite,
+  let $\left\{ \tau_1, \dots, \tau_m \right\}$ be the immediate successors of $X \lceil n$
+  Since $[X \lceil n]^* = [\tau_1]^* \cup \dots \cup [\tau_m]^*$.
+
+  By Pig.Pr., some $[\tau_i]^*$ is infinite
+
+  Let $X \lceil n+1 = \tau_i$
+\end{proof}
+
+Pf of Fin R.T (cont.)
+Let $F$ be an infinite path throught $T$
+
+THen $F$ represents $r$-coloring of $[\Nat]^n$
+
+By Infinite Ramsey Thm, there ex. $H \subseteq \Nat$ homgeneous for $F$
+
+Let $h_1 < h_2 < \dots < h_m$ be the first $m$ elements of $H$.
+
+For $l > h_m$, $\left\{ h_1, \dots, h_m \right\}$ is homogeneous for $f_e \in T_e= F\lceil e$
+\end{proof}
+
+\subsection{Indiscernibles}
+
+$\mathcal{L}$ language, $\mathcal{M}$ $\mathcal{L}$-structure
+
+\defn $I$ infinite set, $A = \left\{ a_i : i \in I \right\} \subseteq \mathcal{M}$
+($a_i$ disjoint)
+
+$A$ is \emph{indiscernible} if f.all $i_1,\dots,i_m$ , $j_1, \dots, j_m \in I$
+($i$s distinct from each other and $j$s distinct from each other)
+then 
+\[
+\mathcal{M} \models \varphi\left[ a_{i,1}, \dots a_{im}\right] 
+\Leftrightarrow \mathcal{M} \models \varphi\left[ a_{j,1}, \dots, a_{j,m} \right]
+\]
+f.all $\mathcal{L}$-formula $\varphi$
+
+EXA: $F$ algebraically closed field infinite transcendence degree.
+
+Think $\Comp$ over $\Rat$
+infinite set $S \subseteq \Comp$ s.t.
+
+$\forall a_1, \dots, a_n \in S$ f.all $p \in \Rat[x_1, \dots, x_n]$
+\[
+p(a_1, \dots, a_n) \ne 0
+\]
+
+By ZL, there ex. max. alg. independent set $A$
+
+For $i_1, \dots, i_m$, $j_1, \dots, j_m$ there exists an automorphism
+\[
+\Rat(A) \rightarrow \Rat(A)
+\]
+s.t. 
+$\sigma(a_{i,k}) = a_{j,k}$ and 
+$\sigma = id$ on rest of $A$
+
+One can show this extends to automorph. of $F$
+
+Then $D \models \varphi[a_{i,1}, \dots, a_{i,m}] \Leftrightarrow F \models \varphi[\sigma(a_{i,1}), \dots, \sigma(a_{i,m})]$
+
+\subsubsection*{Problem}
+If $\mathcal{M}$ is ordered, it is hard to find an infinite set of indicernibles.
+
+EXA: $(\Rat, <)$ For all $p,q \in \Rat$ $p \ne q$ either $p < q$ or $q < p$
+$\rightarrow$ no set of indiscernibles of size 2
+
+
+\defn
+$(I, n)$ linear ordered set, $(a_i : i \in I)$ seqn. of distinct elements in $M$.
+
+$(a_i : i \in I)$ is a seqn. of \emph{order indiscernibles}
+if whenever $i_1 < i_2 < \dots < i_m$ and $j_1 < j_2 < \dots < j_m$
+are two increasing seqn. in $I$, then
+\[
+\mathcal{M} \models \varphi[a_{i,1}, \dots, a_{i,m}]
+\Leftrightarrow
+\mathcal{M} \models \varphi[a_{j,1}, \dots, a_{j,m}]
+\]
+f.all $\mathcal{L}$-formulas $\varphi$
+
+EXA: $Th(\Rat, <)$ has quantifier elimination
+$\rightarrow$ For $\varphi$ exists quant. free $\psi$ s.t.
+\[
+\Rat \models \varphi \leftrightarrow \psi
+\]
+$\psi$ is essentially of the form
+\[
+x_{i,1} <\not=
+x_{i,2} <\not=
+\dots <\not=
+x_{i,m}
+\]
+
+Let $I = \Rat$ 
+$p_1 < \dots < p_m$,
+$q_1 < \dots < q_m \in \Rat$,
+
+Then
+\[
+\Rat \models \psi[p_1, \dots, p_m] \Leftrightarrow
+\Rat \models \psi[q_1, \dots, q_m]
+\]
+$\rightarrow$ $\Rat$ is a set of indiscernibles for $\Rat$
+
 \end{document}
