@@ -43,6 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 
 % Umgebung "Lösung"
@@ -80,34 +87,34 @@
 \begin{center}
 {\LARGE Homework 9 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday April 16}
+{\large Author: Ben Lickly \\ Due: Thursday April 16}
 \end{center}
 
 
-\Aufg 
+\problem{ 
 In class we showed that $\PA^{\bot} = \PA + \neg \Ax{CON}_{\PA}$ is consistent, but $\PA^{\bot}$ proves its own inconsistency.
 Write two or three paragraphs explaining how one can resolve this apparent paradox.
+}
 
 
-
-\Aufg
+\problem{
 Show that $\PA$ is interpretable in $\Ax{ZF}$.
+}
 
 
-
-\Aufg
+\problem{
 Show that there is a strongly undecidable structure for a language  whose only non-logical symbol is a $4$-ary predicate symbol $R$.
+}
 
 
-
-\Aufg
+\problem{
 Let $\Lang' \supset \Lang$ be an extension of a language $\Lang$ that adds only new constants. Suppose $\M'$ is an expansion of an $\Lang$-structure $\M$ to an $\Lang'$-structure. Show that if $\M'$ is strongly undecidable, then $\M$ is strongly undecidable.  
+}
 
 
-
-\Aufg[*]
+\problem[*]{
 Let $\mathcal{S}_\Integer$ be the symmetric group of $\Integer$, i.e.\ the set of all permutations of $\Integer$ under composition. Let $S$ be the element of $\mathcal{S}_\Integer$ defined by $S(n) = n+1$.
 
 \begin{alist}
@@ -121,7 +128,7 @@ Let $\mathcal{S}_\Integer$ be the symmetric group of $\Integer$, i.e.\ the set o
 	\item[d] Show that $\mathcal{S}_\Integer$ is strongly undecidable.
 
 \end{alist}
-
+}
 
 \vspace{5ex}
 
