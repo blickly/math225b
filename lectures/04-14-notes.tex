@@ -58,7 +58,7 @@ $A$ is a set
 \begin{proof}
   (By induction on $n$).
 
-  $n=1$: Pifenhole Principle
+  $n=1$: Pigeonhole Principle
 
   $n+1$: Let $x_0 = min X$, put $\widetilde{X_0} = X \setminus \left\{ x_0 \right\}$
   Induce r.coloring of $[\widetilde{x_0}]^n$
@@ -72,7 +72,7 @@ $A$ is a set
 
   $\rightarrow$ homog. subset $X_2 \subseteq \widetilde{X_1}$
   
-  $\rightarrow^\text{inductively}$ infinite seuence $x_0 < x_1 < x_2 < \dots$
+  $\rightarrow^\text{inductively}$ infinite sequence $x_0 < x_1 < x_2 < \dots$
   sets $X_1 \supseteq X_2 \supseteq X_3 \supseteq \dots$
 
   By Pig. Pr. there exists $I$, $` \le I \le r$, s.t.
@@ -95,11 +95,11 @@ $A$ is a set
 
 \section{Notation}
 
-$[A]^n$ = $n$-dium subsets of $A$
+$[A]^n$ = $n$-dim subsets of $A$
 
 $\kappa, \nu$ cardinals:
 $\kappa \rightarrow (\nu)^n_r$ means
-for every r-coloring of $[K]^n$ there exists a homogeneous subset of size $\nu$
+for every r-coloring of $[\kappa]^n$ there exists a homogeneous subset of size $\nu$
 
 Ramsey's Thm:
 \[
@@ -108,9 +108,9 @@ Ramsey's Thm:
 One case show:
 $2^{\aleph_0} \not \rightarrow (3)^2_{\aleph_0}$
 
-\newtheorem*{finiteram}{Finite Ramset THm}
+\newtheorem*{finiteram}{Finite Ramsey Thm}
 \begin{finiteram}
-  FOr all $m, n, r \in \Nat$ there ex. $l \in \Nat$ s.t. $l \rightarrow (m)^n_r$ 
+  For all $m, n, r \in \Nat$ there ex. $l \in \Nat$ s.t. $l \rightarrow (m)^n_r$ 
 \end{finiteram}
 \begin{proof}
   Sup no such $l$ exists.
@@ -124,7 +124,7 @@ $2^{\aleph_0} \not \rightarrow (3)^2_{\aleph_0}$
 
   If $f \in T_{e+1}$, then there exists unique $g \subset f$ s.t. $g \in T_e$
 
-  (Every coloring of $l+1$ inuces coloring of $e$, and a homog. subset of $l$ is also homog. subset of $l+1$)
+  (Every coloring of $l+1$ induces coloring of $e$, and a homog. subset of $l$ is also homog. subset of $l+1$)
 
   Hence we can order $T = \bigcup_{e} T_e$ by inclusion and get a \emph{finite branching} infinite tree.
 
@@ -138,7 +138,7 @@ $2^{\aleph_0} \not \rightarrow (3)^2_{\aleph_0}$
   If $T$ is an infinite, finite branching tree, then
   \[
       [T] \ne \emptyset
-  \] % ^ set of all inifinte paths through $T$
+  \] % ^ set of all infinte paths through $T$
 \end{konig}
 \begin{proof}
   Given $\sigma \in T$, let $[\sigma]^* = \left\{ \tau \in T : \tau \supseteq \sigma \right\}$
@@ -157,11 +157,11 @@ $2^{\aleph_0} \not \rightarrow (3)^2_{\aleph_0}$
 \end{proof}
 
 Pf of Fin R.T (cont.)
-Let $F$ be an infinite path throught $T$
+Let $F$ be an infinite path through $T$
 
-THen $F$ represents $r$-coloring of $[\Nat]^n$
+Then $F$ represents $r$-coloring of $[\Nat]^n$
 
-By Infinite Ramsey Thm, there ex. $H \subseteq \Nat$ homgeneous for $F$
+By Infinite Ramsey Thm, there ex. $H \subseteq \Nat$ homogeneous for $F$
 
 Let $h_1 < h_2 < \dots < h_m$ be the first $m$ elements of $H$.
 
