@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+
+%\usepackage{a4wide}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+
+% \usepackage{eulervm}
+\usepackage{eucal} 
+%\usepackage{textcomp}
+
+%\usepackage{mathptmx} 
+\usepackage{enumerate}
+
+
+\usepackage{pdfsync}
+
+
+% Deutsche Texte
+\usepackage[applemac]{inputenc}
+
+% Seitenlayout
+\pagestyle{empty}
+
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\hoffset}{-1,5cm}
+\setlength{\voffset}{-2,5cm}
+
+\newcommand{\alabel}[1]{\mbox{(#1)}\hfill}
+\newenvironment{alist}
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\alabel}%
+                \setlength{\parsep}{0.2cm}\setlength{\listparindent}{0cm}
+                \setlength{\itemsep}{0.2cm}}}
+        {\end{list}}
+
+		\newcounter{aufgabenr}
+\newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
+		\stepcounter{aufgabenr}
+
+
+% Umgebung "Lösung"
+\newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
+
+
+% Zahlenmengen
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\GN}[1]{\ensuremath{\ulcorner #1 \urcorner}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\Ax}[1]{\ensuremath{\mathsf{#1}}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE Homework 9 for \textbf{MATH 225B}}
+
+\vspace{0,5cm}
+
+{\large Due: Thursday April 16}
+\end{center}
+
+
+\Aufg 
+In class we showed that $\PA^{\bot} = \PA + \neg \Ax{CON}_{\PA}$ is consistent, but $\PA^{\bot}$ proves its own inconsistency.
+Write two or three paragraphs explaining how one can resolve this apparent paradox.
+
+
+
+\Aufg
+Show that $\PA$ is interpretable in $\Ax{ZF}$.
+
+
+
+\Aufg
+Show that there is a strongly undecidable structure for a language  whose only non-logical symbol is a $4$-ary predicate symbol $R$.
+
+
+
+\Aufg
+Let $\Lang' \supset \Lang$ be an extension of a language $\Lang$ that adds only new constants. Suppose $\M'$ is an expansion of an $\Lang$-structure $\M$ to an $\Lang'$-structure. Show that if $\M'$ is strongly undecidable, then $\M$ is strongly undecidable.  
+
+
+
+\Aufg[*]
+Let $\mathcal{S}_\Integer$ be the symmetric group of $\Integer$, i.e.\ the set of all permutations of $\Integer$ under composition. Let $S$ be the element of $\mathcal{S}_\Integer$ defined by $S(n) = n+1$.
+
+\begin{alist}
+	
+	\item[a] Show that the mapping $n \mapsto S^n$ is a bijection between $\Integer$ and $\{F \in \mathcal{S}_\Integer \colon F \circ S = S \circ F \}$.
+	
+	\item[b] Show that for any integers $m,n$, $n$ is divisible by $m$ iff $S^n$ commutes with every element of  $\mathcal{S}_\Integer$ with which $S^m$ commutes.
+	
+	\item[c] Let $\M$ be the structure $(\Integer, +, |, 1)$, where $\cdot | \cdot$ is the divisibility relation over $\Integer$. Show that $\M$ is strongly undecidable. 
+	
+	\item[d] Show that $\mathcal{S}_\Integer$ is strongly undecidable.
+
+\end{alist}
+
+
+\vspace{5ex}
+
+\emph{Note: The last three exercises are from Shoenfield. He gives hints. I will post them on Sunday on bSpace. But if you want to use them right away, you know where to look.}
+
+\end{document}
+
