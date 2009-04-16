@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 
+\usepackage{url}
 %\usepackage{a4wide}
 \usepackage[centertags]{amsmath}
 \usepackage{amsthm}
@@ -98,6 +99,53 @@ In class we showed that $\PA^{\bot} = \PA + \neg \Ax{CON}_{\PA}$ is consistent, 
 Write two or three paragraphs explaining how one can resolve this apparent paradox.
 }
 
+Wikipedia~\footnote{
+\url{http://en.wikipedia.org/wiki/Theory_(mathematical_logic)#Consistency_and_completeness}
+}
+distinguishes between a \emph{syntactically consistent theory} and a 
+\emph{satisfiable theory} as definitions for consistency.
+By the satisfiability definition of consistency, it seems clear that
+$\PA^\bot$ is not consistent, because there can be no model of $\PA$ that is
+both consistent and inconsistent.  By the syntactical definition of
+consistency, which states that a consistent theory is one that never proves
+both a sentence and its negation, the problem becomes more interesting.
+By construction, since $\PA$ can not prove its own consistency, 
+if $\PA$ is consistent, then $\PA^\bot$ is also consistent.
+
+Unfortunately, the second incompleteness theorem means that we cannot prove
+$\PA$ or $\PA^\bot$ is consistent within itself.
+If we are willing to say that $\PA$ is inconsistent, then this paradox
+disappears immediately, as both $\PA$ and $\PA^\bot$ are inconsistent,
+and can both prove anything.
+\iffalse
+This means that if we take $\PA$ to be the universe of expressible statements,
+then we cannot prove that $\PA$ is consistent.
+Likewise, inside the universe of $\PA^\bot$, $\PA^\bot$ is inconsistent.
+
+It is possible, however, to move to a larger universe of discourse,
+in which we can prove that $\PA$ is consistent and also that $\PA^\bot$
+is inconsistent.
+\fi
+
+We may want to have $\PA$ be consistent, however.
+%
+Even though an informal idea of consistency is that ``anything that can
+be proved is true,'' this is a concrete example where that informal
+notion breaks down, since we have a theory $\PA^\bot$ that proves
+its own inconsistency but is consistent.
+This is allowable because the formal definition of consistency
+is that the theory may not prove two contradictory statements.
+Since $\PA^\bot$ proves its own inconsistency but not its consistency,
+it is consistent.
+This is a theory that is consistent, but has provable statements that are
+not true.
+
+We can resolve this paradox and get the intuitive behavior
+($\PA$ consistent, $\PA^\bot$ inconsistent), 
+by moving into a larger universe of
+discourse.  If we look at these statements in a theory capable of proving
+$\PA$, then we can prove the intuitive notions that $\PA$ is consistent and
+that $\PA^\bot$ is inconsistent.
 
 \problem{
 Show that $\PA$ is interpretable in $\Ax{ZF}$.
