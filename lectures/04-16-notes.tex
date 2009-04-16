@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc} 
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal} 
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\proves}{\vdash}
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+\author{Ben Lickly}
+\date{April 16, 2009}
+\title{Math 225B Notes}
+\begin{document}
+\maketitle
+.
+\fixme
+
+\section{Paris-Harrington Principle}
+Variation of the Finite R.T.
+
+For $n, m, r \in \Nat$, there ex. $l \in \Nat$ s.t.
+
+If $[l]^n = C_1 \cup \dots \cup C_r$
+there ehere sixists $\underline{Y} \subseteq \left\{ 0, \dots, l-1 \right\}$ s.t.
+\begin{itemize}
+  \item $\underline{Y}$ is homogeneous
+  \item $|\underline{Y}| \ge m$
+  \item $|\underline{Y}| \ge$ min $\underline{Y}$ (new) 
+    ($\underline{Y}$ is ``relatively large'')
+\end{itemize}
+
+
+\begin{proof}
+  As in FRT.
+
+  Ass. there is  no such $l$.
+
+  Let $T_e = \left\{ f : [e]^n \rightarrow r : \text{ no homog. $\underline{Y}$ exist with $|\underline{Y}| \ge m$, min $\underline{Y}$} \right\}$
+  \fixme
+\end{proof}
+
+\newtheorem*{parhar}{Paris Harrington Theorem}
+\begin{parhar}
+  The Paris-Harrington Principle is not provable in $\PA$.
+\end{parhar}
+\begin{proof}
+  (Idea)
+\begin{enumerate}
+  \item Show that downward closure of a set of diagonal indiscernibles in a model of $\PA$, $\mathcal{M}$, yields an initial segment of $\mathcal{M}$ that is itself a model of $\PA$
+  \item Show that the Paris-Harrington Principle, or rather a consequence, (*), proves the existence of arbitrarily large (but finite) sets of diag. indiscernibles f.any finite number of formulas.
+  \item Take a non-standard model of $\PA$ $\mathcal{M}$ such  that 
+    $\mathcal{M} \models (*)$ and a nonst. element $c \in M$
+  \item Use (*) to prove (in $\mathcal{M}$) to obtain a set $I$, $|I| \ge c$,
+    of diaf. indisc. in $\mathcal{M}$ f.all $\Delta_0$-formulas with GN $< c$
+    ($\mathcal{M}$ thinks there sre only finitely many).
+  \item In part, $I$ is a set of diag. indisc. for all standard $\Delta_0$-formulas.
+  \item $I$ induces a model of $\PA$, $\mathcal{N}$
+  \item If $\PA \models (*)$ then (*) would have to hold.
+  \item This will give a contradiction. 
+\end{enumerate}
+\end{proof}
+
+\subsection{Terminology}
+\subsubsection{Diagonal indiscernibles}
+$\Gamma$ set of $\mathcal{L}_A$-formulas.
+$\mathcal{M} \models \PA$
+
+$I \subseteq \mathcal{M}$ sequence of diagonal indiscernibles for $\Gamma$
+if whenever
+\begin{itemize}
+  \item \[\varphi(u_1, \dots, u_m, v_1, \dots, v_n) \in \Gamma\]
+  \item \[z, x_1, \dots, x_n, y_1, \dots, y_n \in I \text{ with }
+    z < x_1 < \dots < x_n \text{ and } z < y_1 < \dots < y_n\]
+  \item and \[a_1,\dots,a_m < z\] 
+\end{itemize}
+then $\mathcal{M} \models \varphi[\bar{a}, x_1, \dots, x_n] \Leftrightarrow
+\mathcal{M} \models \varphi[\bar{a}, y_1, \dots, y_n]$
+
+
+We can use the Paris-Harrington Principle to obtain, \dots (as in 2.)
+
+No hope for sets of inisc. that work for all fmlas.
+
+\defn
+Let $X \subset \Nat$
+\begin{itemize}
+  \item $f : [X]^n \rightarrow$ is \emph{regressive if}
+    \fixme
+  \item .\fixme
+\end{itemize}
+
+\textbf{
+Combinatorial Principle (*)
+}
+
+For all $c,m,n,k$ there is a $d$ s.t. if 
+$f_1, \dots, f_k : [d]^n \rightarrow d$ are regressive,
+then there is $\underline{Y} \subset [c,d)$ s.t.
+\[
+|Y| \ge m
+\]
+and $\underline{Y}$ is min-homog. for each $f_i$
+
+Exercise:
+We have Par-Har Principle $\Rightarrow (*)$
+
+
+\textbf{PROP:}
+For any $c, l, m, n$ and any 
+$\mathcal{L}_A$-formula 
+$\varphi_1$
+$\varphi_e$
+
+there is a set $I$ fo diag indisc.
+\fixme
+
+\begin{proof}
+  Wlog: $M > 2n$
+
+  By FRT, ex. $W$ s.t. $W \rightarrow \left( m+n \right)^{2n+1}_{l+1}$
+
+  $(*) \Rightarrow \exists s \ge l$ s.. whenever $f_1,\dots,f_k$  $[\bar{s}]^{2n+1} \rightarrow s$
+  are regressive, there is $\underline{Y} \subseteq [c,s)$ with
+  $|\underline{Y}| \ge w$ and $\underline{Y}$ min-homog. for each $f_i$
+\end{proof}
+
+\defn
+regressive 
+$f_i: [s]^{2n+1} \rightarrow l$ for $i = 1,\dots, k$
+and
+$g : [s]^{2n+1} \rightarrow l+1$
+
+Let $X = \left\{ x_0 < x_1 < \dots < x_{2n} \right\}$   $x_{2n} < l$
+
+If $\Nat \models \models \varphi_i[\vec{a}, x_1, \dots, x_n] \Leftrightarrow
+\Nat \models \varphi_i[\vec{a}, x_{n+1}, \dots, y_{2n}]$
+f.all $i \le l$ and  $a_1, \dots, a_m < x_0$
+then let $f_i(X) = 0$ and $g(X) = 0$
+
+Otherwise pick $i, a_1, \dots, a_m$ s.t.
+\[
+\varphi_i[\vec{a}, x_1, \dots, x_n] \not\Leftrightarrow_\Nat
+\varphi_i[\vec{a}, x_{n+1}, \dots, y_{2n}]
+\]
+and put 
+\begin{align*}
+  g(X) = i \\
+  f_i(X) = a_i
+\end{align*}
+
+
+Each $f_i$ regressive
+$\underline{Y}$ min-homog. for each $f_i$
+$|\underline{Y}| \ge w$
+
+\textbf{Show} $g$ is $\equiv 0$ on $z$
+
+pass to g-homog $Z \subset \underline{Y}$ $|Z| > 3n$
+
+\[
+\varphi_1[\vec{a}, x_1, \dots, x_n, x_{n+1}, \dots, x_{2n}] \not\Leftrightarrow_\Nat
+\varphi[\vec{a}, x_1, \dots, x_{2n}, x_{2n+1}, \dots, x_{3n}]
+\]
+
+\end{document}
