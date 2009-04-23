@@ -45,4 +45,264 @@
 \begin{document}
 \maketitle
 
+\section{Last Time}
+\newtheorem{parhar}{PaHa Principle}
+\begin{parhar}
+%{Paris-Harrington Principle}
+ For $n, m, r \in \Nat$, there ex. $l \in \Nat$ s.t.
+
+If $[l]^n = C_1 \cup \dots \cup C_r$
+there there exists $\underline{Y} \subseteq \left\{ 0, \dots, l-1 \right\}$ s.t.
+\begin{itemize}
+  \item $\underline{Y}$ is homogeneous
+  \item $|\underline{Y}| \ge m$
+  \item $|\underline{Y}| \ge$ min $\underline{Y}$ (new)
+    ($\underline{Y}$ is ``relatively large'')
+\end{itemize}
+\end{parhar}
+
+(*) For all $c,m,n,k$ there is a $d$ s.t.
+$f_1,\dots,f_k : [d]^n \rightarrow d$ are oregressive
+then there is $\underline{Y} \subseteq [c,d)$
+\begin{itemize}
+  \item $|Y| \ge m$
+  \item $\underline{Y}$ min-homogeneous for each $f_i$
+\end{itemize}
+
+\subsubsection{Diag-indiscernibles}
+$\mathcal{M} \models \PA$, $I \subseteq M$ sequence of
+indiscernibles for a fomula $\varphi$
+if whenever $z, x_1, \dots, x_n, \dots, y_1, \dots, y_n \in I$ s.t.
+
+$z < x_1 < \dots < x_n$
+and
+$z < y_1 < \dots < y_n$
+and
+$a_1, .., a_m < z$
+
+then $\mathcal{M} \models \varphi[\vec{a}, x_1, \dots, x_n] \Leftrightarrow
+\mathcal{M} \models \varphi[\vec{a}, y_1, \dots, y_n]$
+
+\subsubsection{Indiscernibles from (*)}
+For any $c, l, m, n, k$ and any $\varphi_1, \dots, \varphi_e$
+$\mathcal{L}_A$-formulas in $k+n$ variables there is a set $I$ of
+diag. indisc. for $\varphi_1, \dots, \varphi_e$ with $|I| \ge m$ and
+$min I > c$
+
+\newtheorem*{modelsi}{Models from indiscernibles}
+\begin{modelsi}
+  Sup $\mathcal{M} \models \PA$, $x_0 < x_1 < \dots$ sequence of diag. indisc.
+  for all $\Delta_0$-formulas.
+
+  Let $N = \left\{ y \in \mathcal{M} : y < x_i \text{ for some } i < \omega \right\}$
+
+  THen $N$ is closed under addition and multiplication
+  and $\mathcal{N} = (N, +, *, 0, 1) \le \mathcal{M}$ is a model of $\PA$
+\end{modelsi}
+\begin{proof}
+\begin{enumerate}[(1)]
+  \item $N$ closed under addition:
+    Let $a < x_i$, $b < x_j$, wlog $i < j$
+
+    Then $a + b < x_i + x_j$
+
+    Supp. $x_i + x_j > x_k$ for $k > j$
+
+    Then there ex. $c < x_i$ s.t. $c + x_j = x_k$
+
+    By indiscernability, $c+x_j = x_e$ f.any $e > k$
+
+    \fixme %FIXME
+
+  \item $N$ is closed under multiplication.
+    Let $a < x_i$, $b < x_j$, wlog $i < j$
+
+    Ass. $x_i * x_j > x_k$ for $k > j > i$
+
+    Then there ex. $c < e_i$ st..
+    (+) $c * x_j < x_k \le (c+1) * x_j$
+
+    add $x_j$:
+    \[
+(c+1) x_j < x_k + x_j
+    \]
+
+    By indiscerability, (+) also implies
+    \[
+    x_e < (c+1)* x_j \text{  f.all } l > k
+    \]
+    By proof of closure under $+$,
+    \begin{align*}
+x_k + x_j < x_e
+\rightarrow (c +1) * x_J < x_k + x_j < x_e \le (c+a) * x_j
+    \end{align*}
+\end{enumerate}
+Remains: Induction holds
+
+We will prove an equivalent principle:
+
+Least number principle (LNP):
+\[
+\forall \vec{y} \left( \exists x \varphi(x, \vec{y}) \rightarrow
+\exists z (\varphi(z, \vec{y}) \wedge \forall w < z \neg \varphi(w, \vec{y}))\right)
+\]
+
+HW Exercise:
+Oer $\PA^-$ LNP is equivalent to induction.
+Hence $\mathcal{M} \models \PA^- + LNP$ then $\mathcal{M} \models \PA$
+\end{proof}
+
+\subsubsection*{Verify LNP for $\mathcal{N}$:}
+Sup $\varphi$ is $\mathcal{L}_A$-formula, and $\vec{a}, b \in N$ s.t.
+\[
+\mathcal{N} \models \varphi[b, \vec{a}]
+\]
+How do we find a least $c \in N$ s.t. $\mathcal{N} \models \varphi[c, \vec{a}]$?
+(Remember, $\mathcal{M}$ is nonstandard)
+
+\textbf{We know:}
+$\mathcal{M}$ satisfies LNP, hence in $\mathcal{M}$ we can find least witness
+
+Problem: $\exists x \varphi$ might not hold in $\mathcal{M}$
+
+Recall: Absoluteness for initial segments:
+%
+We proved:
+$\Delta_0$-formulas are absolute between $\mathcal{L}_A$-structures $\mathcal{N}, \mathcal{M}$ s.t. $\mathcal{N} \subseteq_e \mathcal{M}$ (end-extension).
+%
+If $\varphi$ is $\Delta_0$ and $\vec{a} \in N$ then
+\[
+\mathcal{N} \models \varphi[\vec{a}] \text{ iff } \mathcal{M} \models \varphi[\vec{a}]
+\]
+
+---Notation:
+Write $\mathcal{M} \models \exists x \varphi(x, \vec{a})$
+meaning. There ex. $b \in \mathcal{M}$ s.t. $\mathcal{M} \models \varphi[b, \vec{a}]$
+
+If $\varphi$ were $\Delta_0$, we would be fine, by absoluteness
+---
+
+\textbf{Trick:} Link truth of $\varphi$ in $\mathcal{N}$ to truth of a
+$\Delta_0$-formula in $\mathcal{M}$
+\[
+\mathcal{N} \models \varphi(b, \vec{a})
+\]
+$\varphi$ is equivalent to formula $\exists v_1 \forall v_2 \dots Q v_n
+\psi(x, \vec{y}, v_1, \dots, v_n)$
+
+Hence
+\[
+\text{(a)} \mathcal{N} \models \exists v_1 \forall v_2 \dots Q v_n
+\psi(b, \vec{a}, v_1, \dots, v_n)
+\]
+
+$I$ unbounded in $N$.
+Thus for any formula $\Theta$,
+\[
+\mathcal{N} \models \exists x \Theta(x) \text{ iff exists $i$ s.t.}
+\mathcal{N} \models \exists x < x_i \Theta(x)
+\]
+\[
+\mathcal{N} \models \forall x \Theta(x) \text{ iff f.all $i$ s.t.}
+\mathcal{N} \models \forall x < x_i \Theta(x)
+\]
+
+
+Let $i$ be s.t. $b, \vec{a} < x_i$
+Continuing this argument inductively,
+we get
+\begin{align*}
+(a) \Leftrightarrow \exists i_1 > i, \forall i_2 > i_1, \dots Q i_n > i_{n-1}
+\text{ s.t. }
+\fixme
+  \\
+  \Leftrightarrow^{\Delta_0-\text{absoluteness}} \exists i_1 > i, \forall i_2 > i_1, \dots
+  \mathcal{M} \models \dots \\
+%
+(b) \qquad \Leftrightarrow^{I \text{ indisc for } \mathcal{M}}
+\mathcal{M} \models
+\exists v_i < x_{i+1}, \forall v_2 < x_{i+2}, \dots Q v_n < x_{i+n}
+\psi(b, \vec{a}, \vec{v})
+\end{align*}
+
+LNP holds in $\mathcal{M}$, hence there ex. least $c < x_i$ s.t.
+\[
+\mathcal{M} \models \dots \psi(c, \vec{a}, \vec{v})
+\]
+By def of $N$, $c \in N$ and by (b) and absoluteness,
+$\mathcal{N} \models \varphi(c, \vec{a})$ and $c$ is least witness in $\mathcal{N}$
+
+Final argument: If $\mathcal{M} \models \PA + (*)$
+then $\mathcal{N}$ is a model in which (*) fails.
+
+\subsection{
+Coding Syntax and Semantics in $\PA$
+}
+
+By C-T Thesis
+\[
+S = \left\{ ( \gn{\Theta(\vec{v})}) :
+\Theta(v_1, \dots, v_n) \text{ is } \Sigma_1 \text{ and }
+\Nat \models \Theta( (a)_1, \dots, (a)_n)\right\}
+\]
+is c.e.
+
+By Representation Thm, there is a $\Sigma_1$-formula $SAT_{\Sigma_1}(x,y)$
+repres. $S$ over $\Nat$
+
+Verify:
+$SAT_{\Sigma_1}(x,y)$ has all ``desired'' properties of a truth predicate for
+$\Sigma_1$-formulas over $\PA$.
+In particular
+\[
+\PA \proves \forall \vec{x} \left( \varphi(\vec{x}) \leftrightarrow
+SAT_{\Sigma_1}(\gn{\varphi}, \vec{x})
+\fixme
+\right)
+\]
+\fixme
+
+\begin{itemize}
+  \item relation $e(u,v,i)$
+    $u$ codes seqn of length $\ge i$ and $v$ is $i$th element of sequence
+  \item set of $GN's$
+\end{itemize}
+Can pick the coding for set s.t. code of a subset of $\left\{ 0, \dots, a-1 \right\}$ is $\le 2$
+
+---
+
+Show $PA \not \proves (*)$
+
+Let $\mathcal{M} \models \PA$ nonstandared s.t. $\mathcal{M} \models (*)$
+pick any non-standard $c \in M$
+
+One can show $\PA \proves \text{ Finite R.T}$
+$ \rightarrow $ there ex. least $w \in M$ s.t.
+$\mathcal{M} \models W \rightarrow \left( 3c + 1 \right)^{2c+1}_c$
+
+Since $\mathcal{M} \models (*)$, there ex. a least $d \in M$ s.t.
+(*)-statement holds (in $\mathcal{M}$) with $\underline{Y} \subseteq [c,d)$
+$|\underline{Y}| \ge w$
+(Formalize (*) in $\mathcal{L}_A$)
+
+``Follow'' proof of ``Indicerbiles from (*)'' inside $\mathcal{M}$
+                                % ^
+\begin{itemize}                 % ^
+ \item Formalize the statement of Lemma
+   \[
+   \forall c,k,l,m,n,p (p \text{ codes $l$ formula with $k + n$ free var}
+   \rightarrow \exists e (\text{ $e$ code for a set}))
+   \]
+   s.t. $|I| \ge c, min I > c$
+   and $I$ is a set of diag indisc formulas in $p$.
+   % use SAT pred.
+
+ \item  Note thta LEmma can be proved in $\PA + (*)$
+   \[
+   \mathcal{M} \models \sigma
+   \]
+\end{itemize}
+
+
+
 \end{document}
