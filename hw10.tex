@@ -43,7 +43,13 @@
 		\newcounter{aufgabenr}
 \newcommand{\Aufg}[1][\mbox{}]{\subsubsection*{Problem \arabic{aufgabenr}#1}\stepcounter{aufgabenr}}
 		\stepcounter{aufgabenr}
-
+\newcommand{\problem}[2][\mbox{}]
+{\subsubsection*{}
+\fbox{\parbox{\textwidth}{
+\vspace{-16pt}
+\Aufg[#1]
+#2}}
+\medskip}
 
 % Umgebung "Lösung"
 \newenvironment{lsg}{\par\bigskip\noindent{\emph{Solution.\ }}\footnotesize}{\hfill $\blacksquare$}
@@ -73,37 +79,35 @@
 \newcommand{\Ax}[1]{\ensuremath{\mathsf{#1}}}
 
 
-
-
 \begin{document}
 
 \begin{center}
 {\LARGE Homework 10 for \textbf{MATH 225B}}
 
-\vspace{0,5cm}
+%\vspace{0,5cm}
 
-{\large Due: Thursday May 7}
+{\large Author: Ben Lickly \\ Due: Thursday May 7}
 \end{center}
 
 
-\Aufg
+\problem{
 Show that $6 \to (3)^2_2$, but $5 \not\to (3)^2_2$.
+}
 
 
-
-\Aufg
+\problem{
 Show that $2^\Nat$ with the standard topology is a compact space and use this to give a topological proof of K\"onig's Lemma: If $T \subseteq 2^{<\Nat}$ is an infinite tree, then $[T] \neq \emptyset$.
+}
 
 
-
-\Aufg
+\problem{
 A group $G$ is \emph{free} if there exists a subset $X \subseteq G$ such that any element of $G$ can be written in one and only one way as a product of finitely many elements of $X$ and their inverses (disregarding trivial variations such as $st^{-1} = su^{-1}ut^{-1}$). In this case, we say $G$ is a free group on generators $X$. Think of a free group on generators $X$ as the set of all \emph{reduced} words over the symbol set $\{x, x^{-1}\colon x \in X\}$ (where a word is reduced if it does not contain a substring of the form $x^{-1}x$ or $xx^{-1}$). The group operation is concatenation and the identity is the empty string.
 
 Show that if $G$ is a free group on generators $X$, then $X$ is a set of indiscernibles on $X$.
+}
 
 
-
-\Aufg
+\problem{
 Given a formula $\varphi(x,\vec{y})$, the \emph{least number principle} (LNP) for $\varphi$ is defined as
 \[
 	\forall \vec{y} (\exists x \: \varphi(x,\vec{y}) \; \to \; \exists z (\varphi(z,\vec{y}) \: \wedge \: \forall w < z \: \neg \varphi(w,\vec{y}))).
@@ -112,10 +116,10 @@ Show that over $\PA^{-}$, LNP is equivalent to Induction
 \[
 	\forall \vec{y} (\varphi(0,\vec{y}) \: \wedge \: \forall x (\varphi(x,\vec{y}) \to \varphi(x+1,\vec{y})) \; \to \;  \forall x \: \varphi(x,\vec{y})).
 \]
+}
 
 
-
-\Aufg
+\problem{
 Let $\M \models \PA$ be non-standard. A \emph{proper cut} in $\M$ is a set $I \subsetneq M$ that is an initial segment of $M$ and closed under successor, e.g.\ the standard model $\Nat$.
 \begin{alist}
 
@@ -123,6 +127,7 @@ Let $\M \models \PA$ be non-standard. A \emph{proper cut} in $\M$ is a set $I \s
 
 	\item[b] Show that if $\M \models \PA^{-}$ is non-standard and satisfies the conclusion of (a), then $\M \models \PA$.
 \end{alist}
+}
 
 
 
