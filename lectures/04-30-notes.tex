@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal}
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\proves}{\vdash}
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+\author{Ben Lickly}
+\date{April 30, 2009}
+\title{Math 225B Notes}
+\begin{document}
+\maketitle
+
+$\PA \not\proves (*)$
+
+$\mathcal{M}$ nonstandard model of $\PA + (*)$
+\fixme
+
+Consider little variant
+\[
+(\tau = )
+\forall (p \text{ codes set of formulas and GN's of these formulas $< c$})
+\]
+In $\mathcal{M}$, this can be a non-standard element hence we can code
+infinite sets of formulas.
+% ^ in the ``real world''
+
+Such ``infinite'' codes must exist b/c of ``overspill''.
+
+It also holds that $\mathcal{M} \models \tau$
+
+Therefore, by choice of $d$ (and the fact that $\mathcal{M} \models (*)$,
+there ex. $I \subseteq [c,d)$, $|I| \ge c$
+s.t. f.all $\Sigma_1$-formulas with GN $< c$
+and f.all $i_0 < i_1 < \dots < i_n$ and $i_0 < j_1 < \dots < j_n$.
+\[
+\mathcal{M} \models \forall y < x_{i_0} \left( \varphi(y,x_{i_1},\dots,x_{i_n})
+\leftrightarrow \varphi(y,x_{j_1},\dots,x_{j_n})\right)
+\]
+i.e. $\mathcal{M}$ thinks $I$ is a set of indiscernibles for all
+$\Sigma_1$-formulas with GN $< c$.
+By absoluteness of $\Delta_1$ properties, these include all standard $\Delta_0$-formulas.
+
+Let $\mathcal{Y} = \left\{ x_i : i < w \right\}$ be an initial segment of $I$
+and let $\mathcal{N}$ be the initial segment of $\mathcal{M}$
+with universe $N = \left\{ y\in M : y < x_i \text{ for some } x_i \in \mathcal{Y} \right\}$
+\begin{itemize}
+  \item By Thm ``Models from indiscernibles,'' $\mathcal{N} \models \PA$
+  \item We have $c \in N$, but $d \not\in N$
+    (this will yield that $\mathcal{N} \not\models (*)$)
+
+    Argument: if (*) were true, then it would hold for some $d'<d$.
+    But this would work also for $\mathcal{M}$
+    $\Rightarrow\Leftarrow$ (choice of $d$ least such)
+\end{itemize}
+
+
+\end{document}
