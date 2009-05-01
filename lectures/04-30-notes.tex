@@ -88,5 +88,180 @@ with universe $N = \left\{ y\in M : y < x_i \text{ for some } x_i \in \mathcal{Y
     $\Rightarrow\Leftarrow$ (choice of $d$ least such)
 \end{itemize}
 
+\section{$\Pi^0_1$-classes (Effectively Closed Sets)}
 
+Recall: Topology on $2^\Nat$:
+Basis $[\sigma] = \left\{ X \in 2^\Nat : X \supset \sigma \right\}$
+
+Basic properties:
+\begin{itemize}
+  \item $2^\Nat$ compact
+  \item totally disconnected ($[\sigma]$ is clopen)
+\end{itemize}
+
+Similar: $\Nat^\Nat$, not compacr
+$\left\{ [<n>] \right\}_{n \in \Nat}$ % string over \Nat of length 1.
+does not have a finite subcover.
+
+Open Sets: Unions of cylinders
+
+Open representation of open set $U$ is given by a $W \subseteq 2^{<\Nat}$
+s.t.
+\[
+\bigcup_{\sigma \in W} [\sigma] = U
+\]
+We can assume that $W$ is closed upwards:
+If $\sigma \in W$ and $\sigma \subset \tau \Rightarrow \tau \in W$.
+
+By using a standard computable bijection $2^{<\Nat} \leftrightarrow \Nat$
+we can apply computability theoretic notions to $W$.
+
+Closed Sets:
+$\mathcal{C}$ complement of open set, $\mathcal{C} = 2^\Nat \setminus U$
+
+If $W$ is an open representation of $U$,
+then $F = 2^{<\Nat} \setminus W$ is called a \emph{closed representation}
+of $\mathcal{C}$
+
+Observation:
+If $F = 2^{<\Nat} \setminus W$ is a closed represent then $F$ is a tree
+(in the simple sense: $\sigma \in T \& T \subset \sigma \Rightarrow \tau \in T$)
+($W$ is closed upwards)
+
+Furthermore, $\mathcal{C} = [F]$.
+
+\subsection{Effectively open and closed sets}
+
+Let $U$ be open.  $U$ is \emph{effectively open} or
+\emph{$\Sigma^0_1$} (lightface) if it has a $c.e.$ open representation.
+
+$\mathcal{C} \subseteq 2^{<\Nat}$ is \emph{effectively closed} or
+a \emph{$\Pi^0_1$-class} if it's complement is effectively open.
+
+It follows from the definition that $\mathcal{C}$ is $\Pi^0_1$-class
+iff there exists a co-c.e. set $F$ s.t. $[F] = \mathcal{C}$.
+
+Both notinos can be reativised:
+%
+Given $z \in 2^\Nat$, say $\mathcal{U} \subseteq 2^\Nat$ is $\Sigma^0_1(z)$
+if it has an open representation that is c.e. in $z$.
+%
+Similar for closed sets.
+
+Observation: The open (\textbf{$\Sigma^0_1$} (closed (\textbf{$\Pi^0_1$})
+sets of $2^\Nat$ are exactly the ones which are $\Sigma^0_1(z)$
+($\Pi^0_1(z)$) for some $z \in 2^\Nat$
+
+\newtheorem*{thm}{THM}
+\begin{thm}
+  $\mathcal{C}$ is $\Pi^0_1$ iff there exists a computable tree $T$
+  s.t. $\mathcal{C} = [T]$
+\end{thm}
+\begin{proof}
+  $(\Leftarrow)$ clear, since every computable set is co-r.e.
+
+$(\Rightarrow)$ Assume $\mathcal{C} = [F]$, $F \subseteq 2^{<\Nat}$ co-c.e. tree
+
+By Normal Form,
+\[
+F = \left\{ \sigma : \forall n\ R(n, \sigma) \right\}
+\]
+
+\defn
+\[
+T = \left\{ \sigma : \forall n<|\sigma|
+\forall \tau \subseteq \sigma\ R(n,\tau) \right\}
+\]
+Then $T$ is computable.
+
+Claim: $[T] = [F]$
+
+CLear: $[T] \supseteq [F]$ since $T \supseteq F$
+
+Assume $X \not\in [F]$.
+Then there exists $n$ s.t.
+\[
+\forall l \ge n X \lceil l \not\in F
+\]
+Hence $\forall l \ge n$ there exists $m_l$ s.t.
+$R(m_l, X \lceil l)$ does not hold.
+
+Choose $l > m_n$.  THen $X \lceil l \not\in T$
+\end{proof}
+
+\subsection{Examples}
+\begin{enumerate}
+  \item Given a Turing functinoal $\Phi$, let
+\[
+\mathcal{C} = \left\{ z \in 2^\Nat : \Phi^z(n) \uparrow \right\}
+\]
+We have $\mathcal{C} = [T]$ where $T = \left\{ \sigma:\forall s \Phi^\sigma_s(n) \uparrow \right\}$
+  \item Let $C,D \subset \Nat$ be disjoint.
+    A \emph{separating set} for $C,D$ is a set $A \subseteq \Nat$
+    s.t. $C \subseteq A$, $A \cap D = \emptyset$
+
+If $C,D$ are disjoint c.e. sets, then the set
+\[
+\left\{ A \in 2^\Nat : A \text{ separates } C,D \right\}
+\]
+is a $\Pi^0_1$-class.
+\begin{proof}
+  $A = [T], C = W_e, D = W_i $ where
+  $T = \left\{ \sigma : \forall n < |\sigma| \forall s
+  \left( W_{e,s}(n) \downarrow \Rightarrow \sigma(n) = 1 \right) \&
+  \left( W_{i,s}(n) \downarrow \Rightarrow \sigma(n) = 0 \right)
+  \right\}$
+\end{proof}
+
+  \item Let $\Gamma$ be an effectively axiomatizable,
+    consistent theory.  Then the set of consistent extensions of $\Gamma$
+    is a $\Pi^0_1$-class
+\begin{proof}
+  Fix eff. enumeration of sentences: $\sigma_0, \sigma_1, \dots$
+
+  Let $C = \left\{ i : \Gamma \proves \sigma_i \right\}$
+  and $D = \left\{ j : \Gamma \proves \neg\sigma_j \right\}$
+  These are disjoint c.e. sets.
+
+  Refine $\tilde{T}$ by $\sigma \in \tilde{T} \Leftrightarrow \Sigma$ is in
+  the tree of Exa. (2)
+  \& $\forall i < |\sigma|$ ( Set of formulas def'd by $\sigma(i) = 1$ is consistent)
+\end{proof}
+
+ \item Complete extensions of $\Gamma$
+\end{enumerate}
+
+\subsection{Basis Theorems for $\Pi^0_1$-classes}
+Let $A$ be a class of subsets of $\Nat$ (Think: property)
+
+$A$ is called a \emph{basis for $\Pi^0_1$-classes} if every non-empty
+$\Pi^0_1$-class has a member that is in $A$.
+
+Negative result:
+The computable sets do not form a basis for $\Pi^0_1$-classes
+\begin{proof}
+  By (3), the consistent extensions of $\PA$ form a $\Pi^0_1$-class.
+  By First Incomp. Thm, no member is complete.
+
+  \defn Two disjoint c.e. sets $C,D$ are called \emph{computable inseparable}
+  if there does not exist a computable separating set.
+
+  COR: There ex. comp. insep. c.e. sets $C,D$
+\end{proof}
+
+
+\section{Next Time}
+
+\newtheorem*{krem}{Kremel Basis Thm}
+\begin{krem}
+  $\Delta^0_2$ is basis
+\end{krem}
+\newtheorem*{low}{Low Basis Thm}
+\begin{low}
+  \[
+X : X' \le_T \emptyset'
+  \]
+\end{low}
+
+Introduce $ML$-random sequences
 \end{document}
