@@ -78,6 +78,7 @@
 
 \newcommand{\Ax}[1]{\ensuremath{\mathsf{#1}}}
 
+\newtheorem*{thm}{Theorem}
 
 \begin{document}
 
@@ -93,7 +94,44 @@
 \problem{
 Show that $6 \to (3)^2_2$, but $5 \not\to (3)^2_2$.
 }
+\begin{thm}
+$6 \to (3)^2_2$
+\label{thm:6to3}
+\end{thm}
+\begin{proof}
+Given an arbitrary 2-coloring of $[6]^2$, let us look at the sets that
+contain an arbitrary element, $x$.
+Note that there will be 5 such sets, so at least 3 of which must be the
+same color.
+Without loss of generality, assume they are colored $C_1$.
+Each of these three sets has one element that is not $x$.
+Consider the sets of pairs of these elements.
 
+\textbf{Case 1}: (At least) one of these pairs is colored $C_1$.
+This means there is a size 3 homogeneous subset colored $C_1$, namely
+each of the sets containing only these two elements plus $x$.
+
+\textbf{Case 2}: None of these pairs is colored $C_1$.
+This means that the set of pairs of these elements is a size 3 homogeneous
+subset colored $C_2$.
+\end{proof}
+
+\begin{thm}
+$5 \not\to (3)^2_2$
+\label{thm:5notto3}
+\end{thm}
+\begin{proof}
+Assign the following coloring to $[5]^2$:
+\begin{align*}
+C_1 = \left\{
+\{1,2\}, \{2,3\}, \{3,4\}, \{4,5\}, \{5,1\}
+\right\} \\
+C_2 = \left\{
+\{1,3\}, \{3,5\}, \{5,2\}, \{2,4\}, \{4,1\}
+\right\} 
+\end{align*}
+This has no homogeneous subset of size greater than 2.
+\end{proof}
 
 \problem{
 Show that $2^\Nat$ with the standard topology is a compact space and use this to give a topological proof of K\"onig's Lemma: If $T \subseteq 2^{<\Nat}$ is an infinite tree, then $[T] \neq \emptyset$.
