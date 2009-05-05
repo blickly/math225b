@@ -39,10 +39,136 @@
 \newcommand{\defn}{\textbf{Definition}: }
 \newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
 
+
 \author{Ben Lickly}
 \date{May 5, 2009}
 \title{Math 225B Notes}
 \begin{document}
 \maketitle
+$\Pi^0_1$-classes
+set of infinite paths through computable trees
 
+\section{Basis Theorems}
+Family of sets s.t. every non-empty $\Pi^0_1$-class has a member from that
+family.
+
+Comp sets do not form a basis.
+
+\newtheorem*{krb}{Kreisel Basis Thm}
+\begin{krb}
+  The $\Delta^0_2$ sets form a basis for $\Pi^0_1$<++>-classes
+\end{krb}
+\begin{proof}
+  Linear order on $2^\Nat$:
+  If $X,\underline{Y} \in 2^\Nat, X\ne \underline{Y}$ then say
+  $X < \underline{Y}$ if $X(N) < \underline{Y}(N)$
+  where $N = min_n\left\{ X(n) \ne Y(n) \right\}<++>$<++>
+  We define the \emph{leftmost path} of $[T]$ as the $<$-min element of $[T]$.
+
+  Claim: This exists
+
+  We define seqn. $X \in 2^\Nat$ as follows:
+  % Or do Konig's Lemma but always pick leftmost possible extension
+  Let $X \lceil n$ = the lexicograph. least $\sigma$
+  extending $X \lceil n-1$, $|\sigma| = n$
+  s.t. $T_\sigma = \left\{  \tau \in T : \sigma \subseteq T \right\}$
+  is infinite.
+  By def, $X$ is a leftmost path.
+
+  Claim 2: $X$ is $\Delta^0_2$
+  \begin{proof}
+    By construction of $X$, we need to determine whether for given $\sigma$,
+    the tree above $\sigma$ is infinite.
+\[
+T_\sigma \text{ infinite } \Leftrightarrow \forall n \ge |\sigma|
+        (\exists \tau, |\tau| = n) (\tau \supseteq \sigma \& \tau \in T)
+\]
+    This is $\Pi^0_1$ so $\emptyset'$ can decide this.
+  \end{proof}
+\end{proof}
+
+\subsection{Low Basis Theorm}
+
+A set $A$ is \emph{low} if $A' \le_T \emptyset'$.
+\newtheorem{lowbasis}{Low Basis Thm}
+\begin{lowbasis}
+  Every non-empty $\Pi^0_1$-class has a low member.
+\end{lowbasis}
+Cor: There are non-comp low sets.
+\begin{proof}
+  Let $\mathcal{P}$ be $\Pi^0_1$ and non-empty.
+  Define a sequence of $\Pi^0_1$-classes:
+  \[
+  \mathcal{P} = \mathcal{P}_0 \supseteq \mathcal{P}_1 \dots
+  \]
+  $\mathcal{P}_i$ are non-empty.
+
+  By compactness, $\widetilde{\mathcal{P}} = \bigcap_{i=0}^\infty \mathcal{P}_i$ is non-empty.
+
+  Given $\mathcal{P}_n$, define $\mathcal{P}_{n+1}$
+
+  Case 1: $\mathcal{P}_n \cap U_n \ne \emptyset$,
+  where $U_n = \left\{ Z : \Phi^z_n(n) \uparrow \right\}$
+  %      ^ is \Pi^0_1
+  Then let $\mathcal{P}_{n+1} = \mathcal{P}_n \cap U_n$
+  (Note: Intersection of two $\Pi^0_1$-classes is $\Pi^0_1$.)
+
+  Case 2: o.w.
+  Then $\Phi^z_n(n) \downarrow$ f.all $Z \in \mathcal{P}_n$.
+  Let $\mathcal{P}_{n+1} = \mathcal{P}$
+
+  Claim: For any $Y \in \widetilde{P}, Y' \le_T \emptyset'$
+  \begin{proof}
+\begin{itemize}
+  \item
+    First observe that fiven a comp. tree $T$,
+    $\emptyset'$ can determine whether $[T] \ne \emptyset$
+    (As in proof of Kreisel Basis Thm).
+  \item
+    The intersection of two comp. trees is a computable tree.
+  \item Finally, we can use $\emptyset'$ to effectively determine
+    an index for each tree occurring in the construction.
+\end{itemize}
+  \end{proof}
+  $\emptyset'$ determines whether case 1 or case 2 applies.
+
+  Case 1 $\Rightarrow n \not\in \underline{Y}'$
+
+  Case 2 $\Rightarrow n \in \underline{Y}'$
+\end{proof}
+
+\section{Martin-L\"of Randomness}
+
+Recall: Lebesgue measure on $2^\Nat$:
+$A \subseteq 2^\Nat$ is \emph{$\lambda$-null} or has \emph{$\lambda$-measure 0} if
+for any $\varepsilon > 0$ there ex. $W \subseteq 2^{<\Nat}$ s.t.
+\begin{align*}
+  A \subseteq \bigcup_{\sigma \in W} [\sigma]
+\quad \text{and} \quad
+  \sum_{\sigma \in W} 2^{-|\sigma|} < \varepsilon
+\end{align*}
+
+Reformulation: $A$ has measure 0 iff there exists a sequence
+$\left( W_n \right)_{n \in \Nat}$ s.t. f.all $n$:
+\[
+  A \subseteq \bigcup_{\sigma \in W} [\sigma]
+\quad \text{and} \quad
+\sum_{\sigma \in W} 2^{-|\sigma|} < \varepsilon
+\]
+
+Goal: Define an \emph{individual random} sequence.
+e.g. the outlaw of an infinite sequence of coin tosses.
+
+Probability Theory:
+The complement of the set
+\[
+\left\{ X : lim_{n \rightarrow \infty} \frac{|\left\{ i < n : X(i) = 1\right\}|}{n} = 1/2 \right\}
+\]
+has measure 0. (Law of large numbers)
+
+Random sequences should satisfy all properties of measure 1.
+
+Problem: Given $X \in 2^\Nat$, $\left\{ X \right\}$ is null.
+Hence $2^\Nat \setminus \left\{ X \right\}$ has measure 1.
+Therefore, there ex. a set of measure 1 to which $X$ does not belong.
 \end{document}
