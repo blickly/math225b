@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amscd,amsbsy}
+\usepackage{txfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fullpage}
+\usepackage{ulsy}
+
+\usepackage{eucal}
+\usepackage{enumerate}
+\usepackage{pdfsync}
+\usepackage{undertilde}
+
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Comp}{\ensuremath{\mathbb{C}}}
+\newcommand{\Conj}[1]{\ensuremath{\overline{#1}}}
+
+\newcommand{\Lang}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\LA}{\ensuremath{\mathcal{L}_A}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\TA}{\ensuremath{\operatorname{Th}(\Nat)}}
+\newcommand{\PA}{\ensuremath{\mathsf{PA}}}
+
+\newcommand{\Term}[1]{\ensuremath{\underline{#1}}}
+
+\newcommand{\Pow}[1]{\ensuremath{\mathcal{P}(#1)}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\proves}{\vdash}
+\newcommand{\gn}[1]{\ulcorner #1 \urcorner}
+\newcommand{\defn}{\textbf{Definition}: }
+\newcommand{\fixme}{\\ \textbf{FIXME}: Incomplete notes!}
+
+
+\author{Ben Lickly}
+\date{May 7, 2009}
+\title{Math 225B Notes}
+\begin{document}
+\maketitle
+
+Idea: Pick a countable family of measure 1. sets.
+
+PROP: The intersection of countable many meas. 1 sets has meas. 1.
+\begin{proof}
+  Show that countable union of nullsets is null.
+  Let $U_1,..$ be meas. 0 sets.
+
+  For each $n$, choose $\left( W^{(n)}_k \right)_{K\in \Nat}$ s.t.
+\begin{align}
+  U_n \subseteq \bigcup_{\sigma\in W^{(n)}_k} [\sigma]
+  \text{ and }
+  \sum_{\sigma\in W^{(n)}_k} 2^{-|\sigma|} < 2^{-k}
+  \label{eq:plus}
+\end{align}
+Let $V_n = \bigcup_{k=1}^\infty W^{(k)}_{n+k}$.
+
+Since $U_n \subseteq \bigcup_{W^{(n)}_l} [\sigma]$ f.all $l$,
+we have:
+\begin{align*}
+  \bigcup_{n=1}^\infty U_n \subseteq
+  \bigcup_{k=1}^\infty \bigcup_{\sigma\in W^{(k)}_{m+k}}[\sigma] \\
+  \text{and }
+  \sum_{\sigma \in V_m} 2^{-|\sigma|} = \sum_{k=1}^\infty \sum_{\sigma\in W^{(k)}_{m+k}} 2^{-|\sigma|}
+  \\
+  \le
+  \sum_{k=1}^\infty 2^{-m-k} = 2^{-m}
+\end{align*}
+\end{proof}
+
+\defn A \emph{Martin-L\"of test} is a c.e. set $W \subseteq \Nat \times 2^{<\Nat}$ s.t. f.all $n$,
+\[
+\sum_{(n,\sigma) \in W} < 2^{-n}
+\]
+
+Think: $W$ induces a seqn. of uniformly c.e. sets:
+\[
+W_n = \left\{ \sigma : (n,\sigma) \in W \right\}
+\]
+A sequence $X \in 2^W$ is \emph{convered by a test $W$} if f.all $n$,
+$X \in \bigcup_{\sigma \in W_n} [\sigma]$.
+
+\defn $X$ is \emph{Martin-L\"of racdom} if it is not covered by any ML-test.
+
+By previous proposition, ML-random seqn. exist.
+(there are only countabl many ML-tests.)
+
+PROP:
+No computable sequence is random.
+Gicen $X \in 2^\Nat$ computable.
+\begin{proof}
+  Take the test $W_n = \left\{ x\lceil n+1 \right\}$
+  $W = \left\{ (n, x\lceil n+1) : n \in  \Nat \right\}$
+\end{proof}
+
+Exercise: Show that no c.e. set is random.
+
+Universal test:  There exists a test $U$ such that
+$X$ is ML-random iff it is not covered by $U$.
+\begin{proof}[idea]
+  First enumerate all ML-tests
+
+  Then perform the ``union of null sets is null'' construction.
+\end{proof}
+COR: The set of all ML-random sequences
+is an effective union of $\Pi^0_1$-classes.
+i.e. there exists a comp. function
+$f: \Nat \rightarrow \Nat$
+s.t. f.all $n$, $f(n)$ is an index of a comput. tree
+$T_{f(n)}$ and $X$ ML-random iff $X \in \bigcup_{n=0}^\infty [T_{f(n)}]$
+%                                        ^ $\Sigma^0_2$-class
+\begin{proof}
+  Let $U^{(n)} = \left\{ \tau : \exists \sigma \left( (n,\sigma) \in U \right) \wedge \tau \supset \sigma \right\}$
+  where $u$ is the universal ML-test.
+
+  $\left( U^{(n)} \right)_{n \in \Nat}$ is a seqn. of uniformly c.e. sets.
+  The complement of each $U^{(n)}$ induces a $\Pi^0_1$-class $\mathcal{P}^{(n)}$we can unoformly conert an index for $U^(n)$ into an index for a comp. tree repres of $P^{(n)}$.
+\end{proof}
+
+COR: Low Basis Thm $\Rightarrow$ There exist low ML-random sequences.
+
+
+However:
+
+THM: (Kucera, Gacs)
+For every $\underline{Y} \in 2^\Nat$ there ex. ML-rand. $X$ s.t. $Y \le_T X$.
+
+We saw (HW): If $\underline{Y} >_T \sigma,\ \lambda\left\{ X : Y \le_T X \right\} = 0$
+%
+THM says that this does have effective measure 0
+
+\section{Kolomogorov Complexity}
+Let $M$ be a Turing machine.
+Def. the \emph{M-complexity} of a string $\sigma \in 2^{<\Nat}$ as
+\[                       % p \in 2^{<\Nat}
+C_M(\sigma) = min\left\{ |p| : M(p) \downarrow = \sigma \right\}
+\]
+If there is no-such $p$, let $C_M(\sigma) = \infty$
+
+
+Equivariance THm: There ex. machine $U$ s.t. f.all other machines, there
+ex. constant $\gamma_M$ s.t.
+\[
+\forall \sigma C_U(\sigma) \le C_M(\sigma) + \gamma_M
+\]
+\begin{proof}
+  Use universal TM:
+  $\gamma_M$ is given by GN of M
+\end{proof}
+Fix $U$
+Define $C(\sigma) = C_U(\sigma)$, the \emph{Kolomogorov Complexity} of $\sigma$.
+
+Call $\sigma$ \emph{random} if $C(\sigma) > \sigma$.
+
+Counting argument: For all $n$, there ex. $\sigma = n$
+and $\sigma$ is random.
+
+\begin{align*}
+  2^n \text{ strings of length } n \\
+  2^n - 1 \text{ strings of length } < n
+\end{align*}
+
+\defn $X \in 2^\Nat$ is incompressible if
+f.all $n$, $C(X \lceil n) \ge n$
+%
+Such $X$ does not exist.
+Reason: length of input provides extra information.
+
+
+\defn TM $M$ is called \emph{prefix-free} if whenever
+$M(\sigma)\downarrow$ then $M(\tau) \uparrow$ f.all $\tau \supset \sigma$
+
+Similar to above, there exists a universal prefix-free TM $\widetilde{U}$<++>
+\begin{align*}
+  \widetilde{U}
+  C_{\widetilde{U}}(\sigma) \le_M(\sigma) + \gamma_M
+\end{align*} f.all prefix-free machines $M$.
+
+Define the \emph{prefix-free Kolomogorov complexity} of $\sigma$
+as $K(\sigma) = C_{\widetilde{U}}(\sigma)$.
+
+THM:
+$X$ is ML-random iff there ex. a $c$ s.t.
+\[
+\forall n, K(X\lceil n) \ge n - c
+\]
+We have
+\[
+K(\sigma) \le C(\sigma) + 2\log C(\sigma) + O(1)
+\]
+\end{document}
